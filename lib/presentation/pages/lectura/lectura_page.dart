@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:solfeo/presentation/pages/lectura/widgets/botonera.dart';
+import 'package:solfeo/presentation/pages/lectura/widgets/metronomo/metronomo.dart';
 import 'package:solfeo/presentation/pages/lectura/widgets/pentagrama.dart';
 
 class LecturaPage extends StatelessWidget {
@@ -9,18 +10,34 @@ class LecturaPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Solfeo'),
+        backgroundColor: const Color.fromARGB(255, 11, 11, 11),
+        title: const Text(
+          'Entrenamiento de Lectura',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+        ),
+        centerTitle: true,
       ),
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.grey.shade900,
       body: Column(
-        children: const [
-          Expanded(
+        children: [
+          const Expanded(
             child: Pentagrama(
               height: 120,
             ),
           ),
           Expanded(
-            child: Botonera(),
+            child: Padding(
+              padding: const EdgeInsets.all(24.0),
+              child: Stack(
+                children: const [
+                  Metronomo(),
+                  Botonera(),
+                ],
+              ),
+            ),
           ),
         ],
       ),

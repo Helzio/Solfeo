@@ -8,15 +8,16 @@ class Botonera extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(24.0),
       child: Stack(
-        children: [
-          const CirculoBlanco(),
-          const BotonNota(nota: 0),
-          const BotonNota(nota: 1),
-          const BotonNota(nota: 2),
-          const BotonNota(nota: 3),
-          const BotonNota(nota: 4),
-          const BotonNota(nota: 5),
-          const BotonNota(nota: 6),
+        alignment: Alignment.center,
+        children: const [
+          CirculoBlanco(),
+          BotonNota(nota: 0),
+          BotonNota(nota: 1),
+          BotonNota(nota: 2),
+          BotonNota(nota: 3),
+          BotonNota(nota: 4),
+          BotonNota(nota: 5),
+          BotonNota(nota: 6),
         ],
       ),
     );
@@ -28,33 +29,22 @@ class CirculoBlanco extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Padding(
-          padding: const EdgeInsets.all(48.0),
-          child: AspectRatio(
-            aspectRatio: 1,
-            child: Container(
-              decoration: const BoxDecoration(
+    return IgnorePointer(
+      child: Padding(
+        padding: const EdgeInsets.all(39.0),
+        child: AspectRatio(
+          aspectRatio: 1,
+          child: Container(
+            decoration: BoxDecoration(
+              color: Colors.transparent,
+              shape: BoxShape.circle,
+              border: Border.all(
                 color: Colors.white,
-                shape: BoxShape.circle,
               ),
             ),
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.all(50.0),
-          child: AspectRatio(
-            aspectRatio: 1,
-            child: Container(
-              decoration: const BoxDecoration(
-                color: Colors.black,
-                shape: BoxShape.circle,
-              ),
-            ),
-          ),
-        ),
-      ],
+      ),
     );
   }
 }
@@ -76,10 +66,10 @@ class BotonNota extends StatelessWidget {
           child: Align(
             alignment: Alignment.topCenter,
             child: Container(
-              height: 88,
-              width: 88,
-              decoration: const BoxDecoration(
-                color: Colors.black,
+              height: 80,
+              width: 80,
+              decoration: BoxDecoration(
+                color: Colors.grey.shade900,
                 shape: BoxShape.circle,
               ),
             ),
@@ -90,23 +80,27 @@ class BotonNota extends StatelessWidget {
           child: Align(
             alignment: Alignment.topCenter,
             child: Padding(
-              padding: const EdgeInsets.only(top: 8.0),
+              padding: const EdgeInsets.all(8.0),
               child: Container(
-                height: 72,
-                width: 72,
+                height: 64,
+                width: 64,
                 decoration: BoxDecoration(
-                  color: Colors.grey.shade900,
+                  color: Colors.grey.shade800,
                   shape: BoxShape.circle,
                 ),
-                child: Center(
-                  child: Transform.rotate(
-                    angle: -(nota * 0.8975979010239272),
-                    child: Text(
-                      nombreNotas[nota].toUpperCase(),
-                      style: const TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
+                child: FloatingActionButton(
+                  onPressed: () {},
+                  backgroundColor: Colors.grey.shade800,
+                  child: Center(
+                    child: Transform.rotate(
+                      angle: -(nota * 0.8975979010239272),
+                      child: Text(
+                        nombreNotas[nota].toUpperCase(),
+                        style: const TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
                   ),
