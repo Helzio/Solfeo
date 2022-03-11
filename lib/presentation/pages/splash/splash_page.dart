@@ -7,7 +7,7 @@ class SplashPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Future.delayed(const Duration(seconds: 1)).then(
+    Future.delayed(const Duration(milliseconds: 300)).then(
       (value) => AutoRouter.of(context).replace(
         const MenuPrincipalRoute(),
       ),

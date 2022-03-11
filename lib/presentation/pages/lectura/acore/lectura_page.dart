@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:solfeo/presentation/pages/lectura/widgets/botonera.dart';
-import 'package:solfeo/presentation/pages/lectura/widgets/metronomo/metronomo.dart';
-import 'package:solfeo/presentation/pages/lectura/widgets/pentagrama.dart';
+import 'package:solfeo/presentation/pages/lectura/acore/widgets/botonera.dart';
+import 'package:solfeo/presentation/pages/lectura/acore/widgets/metronomo/metronomo.dart';
+import 'package:solfeo/presentation/pages/lectura/acore/widgets/pentagrama.dart';
 
 class LecturaPage extends StatelessWidget {
   const LecturaPage({Key? key}) : super(key: key);

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:solfeo/features/partitura_scroll/providers/partitura_scroll_provider.dart';
-import 'package:solfeo/presentation/pages/lectura/widgets/metronomo/aguja.dart';
+import 'package:solfeo/presentation/pages/lectura/acore/widgets/metronomo/aguja.dart';
 import 'package:soundpool/soundpool.dart';
 
 class Metronomo extends ConsumerStatefulWidget {

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class Guia extends StatelessWidget {
-  const Guia({
+  final Color color;
+  const Guia(
+    this.color, {
     Key? key,
   }) : super(key: key);
   @override
@@ -16,7 +18,7 @@ class Guia extends StatelessWidget {
           painter: GuiaPainter(
             1 / MediaQuery.of(context).devicePixelRatio,
             constraints.maxWidth,
-            Colors.white,
+            color,
           ),
         );
       },

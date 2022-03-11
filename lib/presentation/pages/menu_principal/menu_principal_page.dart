@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:solfeo/presentation/acore/utils/colors.dart';
+import 'package:solfeo/routes/app_route.gr.dart';
 
 class MenuPrincipalPage extends ConsumerWidget {
   const MenuPrincipalPage({Key? key}) : super(key: key);
@@ -70,13 +71,13 @@ class MenuPrincipalPage extends ConsumerWidget {
                               fontWeight: FontWeight.w500,
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 4,
                           ),
-                          LinearProgressIndicator(
+                          const LinearProgressIndicator(
                             value: .33,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 4,
                           ),
                           Align(
@@ -154,7 +155,11 @@ class MenuPrincipalPage extends ConsumerWidget {
                         fontSize: 14,
                       ),
                     ),
-                    onTap: () {},
+                    onTap: () {
+                      AutoRouter.of(context).push(
+                        const LecturaLibreRoute(),
+                      );
+                    },
                     trailing: const Icon(
                       Icons.arrow_forward_ios,
                       size: 20,
