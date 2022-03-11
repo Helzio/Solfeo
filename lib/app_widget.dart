@@ -16,8 +16,8 @@ class _AppWidgetState extends State<AppWidget> {
     return MaterialApp.router(
       title: 'Solfeo',
       debugShowCheckedModeBanner: false,
-      themeMode: ThemeMode.dark,
-      theme: ThemeData.dark(),
+      themeMode: ThemeMode.light,
+      theme: ThemeData.light(),
       routeInformationParser: appRouter.defaultRouteParser(),
       routerDelegate: appRouter.delegate(),
     );

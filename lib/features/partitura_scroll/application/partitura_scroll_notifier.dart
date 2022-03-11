@@ -22,7 +22,6 @@ class PartituraScrollNotifier extends StateNotifier<PartituraScrollState> {
 
   void addCurrentNote() {
     state = state.copyWith(currentNote: state.currentNote + 1);
-    print(state.currentNote);
   }
 
   void reset() {
