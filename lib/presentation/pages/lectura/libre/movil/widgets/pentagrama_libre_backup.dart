@@ -2,174 +2,139 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:solfeo/acore/ejercicios/ejercicios.dart';
-import 'package:solfeo/features/partitura_scroll/application/partitura_scroll_notifier.dart';
-import 'package:solfeo/features/partitura_scroll/providers/partitura_scroll_provider.dart';
-import 'package:solfeo/presentation/pages/lectura/acore/widgets/guia.dart';
+import 'package:solfeo/features/lectura_libre/providers/lectura_libre_provider.dart';
+import 'package:solfeo/presentation/acore/widgets/guias/guia.dart';
 
-class Pentagrama extends ConsumerStatefulWidget {
-  final double height;
-  const Pentagrama({
-    Key? key,
-    required this.height,
-  }) : super(key: key);
+class PentagramaLibre extends ConsumerWidget {
+  const PentagramaLibre({Key? key}) : super(key: key);
 
   @override
-  ConsumerState<Pentagrama> createState() => _PentagramaState();
-}
-
-class _PentagramaState extends ConsumerState<Pentagrama> {
-  final isThemeWhite = true;
-  final double pentagramaSize = 150;
-  final ItemScrollController itemScrollController = ItemScrollController();
-  final ItemPositionsListener itemPositionsListener =
-      ItemPositionsListener.create();
-
-  @override
-  Widget build(BuildContext context) {
-    ref.listen<PartituraScrollState>(partituraScrollProvider, (previous, next) {
-      itemScrollController.scrollTo(
-        index: next.currentNote ~/ 10,
-        duration: const Duration(milliseconds: 250),
+  Widget build(BuildContext context, WidgetRef ref) {
+    final isThemeWhite = true;
+    final state = ref.watch(lecturaLibreProvider);
+    if (state.notes.isEmpty) {
+      Future.microtask(
+        () => ref.read(lecturaLibreProvider.notifier).generateNotes(),
       );
-    });
-    final isStop = ref.watch(
-      partituraScrollProvider.select((value) => value.currentNote == -5),
-    );
-    return NotificationListener<OverscrollIndicatorNotification>(
-      onNotification: (OverscrollIndicatorNotification overscroll) {
-        overscroll.disallowIndicator();
-        return false;
+    }
+
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return MediaQuery.of(context).size.width > 600
+            ? SizedBox(
+                height: 50,
+                child: Container(
+                  height: 50,
+                  color: Colors.red,
+                  child: PentagramaSuelto(
+                    pentagramaSize: constraints.maxHeight / 3,
+                    startIndex: 0,
+                    endIndex: 14,
+                    isEnd: true,
+                  ),
+                ),
+              )
+            : Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  PentagramaSuelto(
+                    pentagramaSize: constraints.maxHeight / 3,
+                    startIndex: 0,
+                    endIndex: 9,
+                  ),
+                  PentagramaSuelto(
+                    pentagramaSize: constraints.maxHeight / 3,
+                    startIndex: 10,
+                    endIndex: 19,
+                  ),
+                  PentagramaSuelto(
+                    pentagramaSize: constraints.maxHeight / 3,
+                    startIndex: 20,
+                    endIndex: 29,
+                    isEnd: true,
+                  ),
+                ],
+              );
       },
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const SizedBox(
-            height: 16,
-          ),
-          Row(
-            children: [
-              const SizedBox(
-                width: 16,
-              ),
-              Text(
-                "𝅘𝅥",
-                maxLines: 1,
-                overflow: TextOverflow.visible,
-                style: GoogleFonts.notoMusic(
-                  fontSize: 15,
-                  fontWeight: FontWeight.bold,
-                  color: isThemeWhite ? Colors.grey.shade800 : Colors.white,
-                ),
-                textAlign: TextAlign.center,
-              ),
-              Text(
-                " = 100",
-                style: TextStyle(
-                  fontSize: 15,
-                  fontWeight: FontWeight.bold,
-                  color: isThemeWhite ? Colors.grey.shade800 : Colors.white,
-                ),
-              ),
-            ],
-          ),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16.0),
-            child: Divider(),
-          ),
-          const SizedBox(
-            height: 16,
-          ),
-          Expanded(
-            child: ScrollablePositionedList.builder(
-              physics: isStop
-                  ? const BouncingScrollPhysics()
-                  : const NeverScrollableScrollPhysics(),
-              itemCount: (ejercicio16.length / 10).ceil(),
-              itemBuilder: (context, index) {
-                final sublist = ejercicio16.sublist(index * 10);
-                final sublist2 = sublist.sublist(
-                  0,
-                  sublist.length >= 10 ? 10 : null,
-                );
-                return PentagramaSuelto(
-                  pentagramaSize: pentagramaSize,
-                  listNotas: sublist2,
-                  startIndex: index * 10,
-                  endIndex: index * 10 + sublist2.length,
-                );
-              },
-              itemScrollController: itemScrollController,
-              itemPositionsListener: itemPositionsListener,
-            ),
-          ),
-        ],
-      ),
     );
   }
 }
 
-class PentagramaSuelto extends StatefulWidget {
+class PentagramaSuelto extends ConsumerWidget {
+  final double pentagramaSize;
+  final int startIndex;
+  final int endIndex;
+  final bool isEnd;
+
   const PentagramaSuelto({
     Key? key,
     required this.pentagramaSize,
-    required this.listNotas,
     required this.startIndex,
     required this.endIndex,
+    this.isEnd = false,
   }) : super(key: key);
 
-  final double pentagramaSize;
-  final List<String> listNotas;
-  final int startIndex;
-  final int endIndex;
-
   @override
-  State<PentagramaSuelto> createState() => _PentagramaSueltoState();
-}
-
-class _PentagramaSueltoState extends State<PentagramaSuelto> {
-  final isThemeWhite = true;
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8),
-      child: Stack(
-        alignment: Alignment.center,
-        children: [
-          LineasPentagrama(pentagramaSize: widget.pentagramaSize),
-          Row(
+  Widget build(BuildContext context, WidgetRef ref) {
+    final notas =
+        ref.watch(lecturaLibreProvider.select((value) => value.notes));
+    return SizedBox(
+      height: 100,
+      child: Container(
+        color: Colors.yellow,
+        height: 100,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8),
+          child: Stack(
+            alignment: Alignment.center,
             children: [
-              const SizedBox(
-                width: 16,
+              Positioned.fill(
+                child: LineasPentagrama(pentagramaSize: pentagramaSize),
               ),
-              CeldaSimbolo(
-                pentagramaSize: widget.pentagramaSize,
-                simbolo: "𝄞",
-              ),
-              const SizedBox(
-                width: 16,
-              ),
-              Expanded(
-                child: Row(
-                  children: [
-                    ...widget.listNotas
-                        .mapIndexed(
-                          (i, e) => CeldaNota(
-                            pentagramaSize: widget.pentagramaSize,
-                            nota: notasMap[e]!,
-                            index: widget.startIndex + i,
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const SizedBox(
+                    width: 16,
+                  ),
+                  CeldaSimbolo(
+                    pentagramaSize: pentagramaSize,
+                    simbolo: "𝄞",
+                  ),
+                  const SizedBox(
+                    width: 16,
+                  ),
+                  Flexible(
+                    child: notas.isEmpty
+                        ? Container()
+                        : Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              ...List.generate(
+                                MediaQuery.of(context).size.width > 600
+                                    ? 30
+                                    : 10,
+                                (index) => CeldaNota(
+                                  pentagramaSize: pentagramaSize,
+                                  nota: notasMap[notas[startIndex + index]] ??
+                                      -33,
+                                  index: startIndex + index,
+                                ),
+                              ),
+                            ],
                           ),
-                        )
-                        .toList(),
-                  ],
-                ),
+                  ),
+                  if (isEnd)
+                    CeldaSimbolo(
+                      pentagramaSize: pentagramaSize,
+                      simbolo: "𝄁",
+                    ),
+                ],
               ),
             ],
           ),
-        ],
+        ),
       ),
     );
   }
@@ -192,18 +157,73 @@ class CeldaNota extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final isThemeWhite = true;
+    const isThemeWhite = true;
     final match = ref.watch(
-      partituraScrollProvider.select(
-        (value) => value.currentNote == index,
+      lecturaLibreProvider.select(
+        (value) => value.index == index,
       ),
     );
+    final error = ref.watch(
+      lecturaLibreProvider.select(
+        (value) => value.listErrorIndex.contains(index),
+      ),
+    );
+    final passed = ref.watch(
+      lecturaLibreProvider.select(
+        (value) => value.index > index,
+      ),
+    );
+
+    if (nota == -33) {
+      return Center(
+        child: Container(
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(3),
+            color: match ? Colors.white10 : Colors.transparent,
+          ),
+          height: pentagramaSize * .7,
+          child: SizedBox(
+            height: pentagramaSize * .5,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 4.0),
+              child: Align(
+                child: SizedBox(
+                  height: pentagramaSize,
+                  width: pentagramaSize * .15,
+                  child: Align(
+                    child: SizedBox(
+                      height: pentagramaSize * .5,
+                      child: FittedBox(
+                        fit: BoxFit.fill,
+                        child: Container(
+                          alignment: Alignment.center,
+                          child: Text(
+                            tipo == 0 ? "𝅘𝅥" : "𝅘𝅥𝅮",
+                            maxLines: 1,
+                            overflow: TextOverflow.visible,
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
+      );
+    }
+
+    final noteStyle = TextStyle();
+
     return Center(
       child: Container(
         alignment: Alignment.center,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(3),
-          color: match ? Colors.white10 : Colors.transparent,
+          color: match ? Colors.black12 : Colors.transparent,
         ),
         height: pentagramaSize * .7,
         child: SizedBox(
@@ -230,11 +250,7 @@ class CeldaNota extends ConsumerWidget {
                                   tipo == 0 ? "𝅘𝅥" : "𝅘𝅥𝅮",
                                   maxLines: 1,
                                   overflow: TextOverflow.visible,
-                                  style: GoogleFonts.notoMusic(
-                                    color: isThemeWhite
-                                        ? Colors.grey.shade800
-                                        : Colors.white,
-                                  ),
+                                  style: noteStyle,
                                   textAlign: TextAlign.center,
                                 ),
                               ),
@@ -271,11 +287,7 @@ class CeldaNota extends ConsumerWidget {
                                         "𝅘𝅥",
                                         maxLines: 1,
                                         overflow: TextOverflow.visible,
-                                        style: GoogleFonts.notoMusic(
-                                          color: isThemeWhite
-                                              ? Colors.grey.shade800
-                                              : Colors.white,
-                                        ),
+                                        style: noteStyle,
                                         textAlign: TextAlign.center,
                                       ),
                                     ),
@@ -293,11 +305,7 @@ class CeldaNota extends ConsumerWidget {
                                             "𝅮",
                                             maxLines: 1,
                                             overflow: TextOverflow.visible,
-                                            style: GoogleFonts.notoMusic(
-                                              color: isThemeWhite
-                                                  ? Colors.grey.shade800
-                                                  : Colors.white,
-                                            ),
+                                            style: noteStyle,
                                             textAlign: TextAlign.center,
                                           ),
                                         ),
@@ -451,9 +459,6 @@ class CeldaSimbolo extends StatelessWidget {
             simbolo,
             maxLines: 1,
             overflow: TextOverflow.visible,
-            style: GoogleFonts.notoMusic(
-              color: isThemeWhite ? Colors.grey.shade800 : Colors.white,
-            ),
             textAlign: TextAlign.center,
           ),
         ),
@@ -472,30 +477,36 @@ class LineasPentagrama extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isThemeWhite = true;
-    return Container(
-      height: pentagramaSize * .7,
-      alignment: Alignment.center,
-      child: SizedBox(
-        height: pentagramaSize * .5,
-        child: Padding(
-          padding: EdgeInsets.only(
-            top: pentagramaSize * .1,
-            bottom: pentagramaSize * .12,
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        print(constraints);
+        return Container(
+          width: constraints.maxHeight,
+          height: pentagramaSize * .7,
+          alignment: Alignment.center,
+          child: SizedBox(
+            height: pentagramaSize * .5,
+            child: Padding(
+              padding: EdgeInsets.only(
+                top: pentagramaSize * .1,
+                bottom: pentagramaSize * .12,
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  ...List.generate(5, (index) => null)
+                      .map(
+                        (e) => Guia(
+                          isThemeWhite ? Colors.grey.shade800 : Colors.white,
+                        ),
+                      )
+                      .toList()
+                ],
+              ),
+            ),
           ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              ...List.generate(5, (index) => null)
-                  .map(
-                    (e) => Guia(
-                      isThemeWhite ? Colors.grey.shade800 : Colors.white,
-                    ),
-                  )
-                  .toList()
-            ],
-          ),
-        ),
-      ),
+        );
+      },
     );
   }
 }

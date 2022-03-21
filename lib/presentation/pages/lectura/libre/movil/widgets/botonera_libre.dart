@@ -4,30 +4,34 @@ import 'package:solfeo/features/lectura_libre/providers/lectura_libre_provider.d
 
 enum Size { small, normal, big }
 
-class BotoneraLibre extends StatefulWidget {
+class BotoneraLibre extends ConsumerStatefulWidget {
   const BotoneraLibre({Key? key}) : super(key: key);
 
   @override
-  State<BotoneraLibre> createState() => _BotoneraLibreState();
+  ConsumerState<BotoneraLibre> createState() => _BotoneraLibreState();
 }
 
-class _BotoneraLibreState extends State<BotoneraLibre> {
+class _BotoneraLibreState extends ConsumerState<BotoneraLibre> {
   final isThemeWhite = true;
+  final FocusNode focusNode = FocusNode();
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      alignment: Alignment.center,
-      children: const [
-        Circulo(),
-        BotonNota(nota: 0),
-        BotonNota(nota: 1),
-        BotonNota(nota: 2),
-        BotonNota(nota: 3),
-        BotonNota(nota: 4),
-        BotonNota(nota: 5),
-        BotonNota(nota: 6),
-      ],
+    return AspectRatio(
+      aspectRatio: 1,
+      child: Stack(
+        alignment: Alignment.center,
+        children: const [
+          Circulo(),
+          BotonNota(nota: 0),
+          BotonNota(nota: 1),
+          BotonNota(nota: 2),
+          BotonNota(nota: 3),
+          BotonNota(nota: 4),
+          BotonNota(nota: 5),
+          BotonNota(nota: 6),
+        ],
+      ),
     );
   }
 }

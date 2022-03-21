@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:solfeo/features/pentagrama/domain/entities/pentagrama.dart';
 part 'lectura_libre_notifier.freezed.dart';
 
 @freezed
@@ -26,9 +27,10 @@ class LecturaLibreState with _$LecturaLibreState {
     required List<String> notes,
     required DateTime? startTime,
     required DateTime? endTime,
+    required Pentagrama pentagrama,
   }) = _LecturaLibreState;
 
-  factory LecturaLibreState.initial() => const LecturaLibreState(
+  factory LecturaLibreState.initial() => LecturaLibreState(
         index: 0,
         level: 1,
         speed: 0,
@@ -53,6 +55,7 @@ class LecturaLibreState with _$LecturaLibreState {
         lastScore: 0,
         lastAccuracy: 0,
         lastSpeed: 0,
+        pentagrama: Pentagrama.lecturaLibre(nivel: 1),
       );
 }
 
@@ -74,17 +77,22 @@ class LecturaLibreNotifier extends StateNotifier<LecturaLibreState> {
   }
 
   List<String> generarLista() {
+    final _random = Random();
     final lista = <String>[];
-    final numeroNotas = 30 ~/ state.availableNotes.length;
-    final sobrante = 30 % state.availableNotes.length;
+    final numeroNotas = 23 ~/ state.availableNotes.length;
+    final sobrante = 23 % state.availableNotes.length;
     for (final note in state.availableNotes) {
       for (int i = 0; i < numeroNotas; i++) {
         lista.add(note);
       }
     }
+    for (int i = 0; i < 7; i++) {
+      lista.add(
+        state.availableNotes[_random.nextInt(state.availableNotes.length)],
+      );
+    }
 
     if (sobrante > 0) {
-      final _random = Random();
       for (int i = 0; i < sobrante; i++) {
         lista.add(
           state.availableNotes[_random.nextInt(state.availableNotes.length)],
@@ -169,6 +177,8 @@ class LecturaLibreNotifier extends StateNotifier<LecturaLibreState> {
             state.index,
           ],
         );
+
+        return;
       }
 
       state = state.copyWith(
@@ -191,8 +201,10 @@ class LecturaLibreNotifier extends StateNotifier<LecturaLibreState> {
   }
 
   void addLevel() {
-    comprobarAvance(force: true);
-    generateNotes();
+    if (state.level <= 14) {
+      comprobarAvance(force: true);
+      generateNotes();
+    }
   }
 
   void removeLevel() {

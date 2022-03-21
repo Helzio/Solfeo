@@ -2,17 +2,17 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:solfeo/acore/ejercicios/ejercicios.dart';
 import 'package:solfeo/features/lectura_libre/providers/lectura_libre_provider.dart';
-import 'package:solfeo/presentation/pages/lectura/acore/widgets/guia.dart';
+import 'package:solfeo/presentation/acore/widgets/guias/guia.dart';
+import 'package:solfeo/presentation/pages/lectura/libre/movil/widgets/pentagrama_suelto.dart';
 
 class PentagramaLibre extends ConsumerWidget {
-  const PentagramaLibre({Key? key}) : super(key: key);
+  const PentagramaLibre({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final isThemeWhite = true;
     final state = ref.watch(lecturaLibreProvider);
     if (state.notes.isEmpty) {
       Future.microtask(
@@ -20,108 +20,40 @@ class PentagramaLibre extends ConsumerWidget {
       );
     }
 
-    return Scaffold(
-      backgroundColor: Colors.white24,
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          ref.read(lecturaLibreProvider.notifier).generateNotes();
-        },
-        backgroundColor: Colors.black,
-        child: const Icon(
-          Icons.refresh,
-          color: Colors.white,
-        ),
-      ),
-      body: LayoutBuilder(
-        builder: (context, constraints) {
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              PentagramaSuelto(
-                pentagramaSize: constraints.maxHeight / 3,
-                startIndex: 0,
-                endIndex: 9,
-              ),
-              PentagramaSuelto(
-                pentagramaSize: constraints.maxHeight / 3,
-                startIndex: 10,
-                endIndex: 19,
-              ),
-              PentagramaSuelto(
-                pentagramaSize: constraints.maxHeight / 3,
-                startIndex: 20,
-                endIndex: 29,
-                isEnd: true,
-              ),
-            ],
-          );
-        },
-      ),
-    );
-  }
-}
-
-class PentagramaSuelto extends ConsumerWidget {
-  final double pentagramaSize;
-  final int startIndex;
-  final int endIndex;
-  final bool isEnd;
-
-  const PentagramaSuelto({
-    Key? key,
-    required this.pentagramaSize,
-    required this.startIndex,
-    required this.endIndex,
-    this.isEnd = false,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final notas =
-        ref.watch(lecturaLibreProvider.select((value) => value.notes));
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8),
-      child: Stack(
-        alignment: Alignment.center,
-        children: [
-          LineasPentagrama(pentagramaSize: pentagramaSize),
-          Row(
-            children: [
-              const SizedBox(
-                width: 16,
-              ),
-              CeldaSimbolo(
-                pentagramaSize: pentagramaSize,
-                simbolo: "𝄞",
-              ),
-              const SizedBox(
-                width: 16,
-              ),
-              Expanded(
-                child: notas.isEmpty
-                    ? Container()
-                    : Row(
-                        children: [
-                          ...List.generate(
-                            10,
-                            (index) => CeldaNota(
-                              pentagramaSize: pentagramaSize,
-                              nota: notasMap[notas[startIndex + index]] ?? -33,
-                              index: startIndex + index,
-                            ),
-                          ),
-                        ],
-                      ),
-              ),
-              if (isEnd)
-                CeldaSimbolo(
-                  pentagramaSize: pentagramaSize,
-                  simbolo: "𝄁",
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return MediaQuery.of(context).size.width > 600
+            ? SizedBox(
+                height: 50,
+                child: PentagramaSuelto(
+                  pentagramaSize: constraints.maxHeight / 3,
+                  startIndex: 0,
+                  endIndex: 14,
+                  isEnd: true,
                 ),
-            ],
-          ),
-        ],
-      ),
+              )
+            : Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  PentagramaSuelto(
+                    pentagramaSize: constraints.maxHeight / 3,
+                    startIndex: 0,
+                    endIndex: 9,
+                  ),
+                  PentagramaSuelto(
+                    pentagramaSize: constraints.maxHeight / 3,
+                    startIndex: 10,
+                    endIndex: 19,
+                  ),
+                  PentagramaSuelto(
+                    pentagramaSize: constraints.maxHeight / 3,
+                    startIndex: 20,
+                    endIndex: 29,
+                    isEnd: true,
+                  ),
+                ],
+              );
+      },
     );
   }
 }
@@ -188,9 +120,6 @@ class CeldaNota extends ConsumerWidget {
                             tipo == 0 ? "𝅘𝅥" : "𝅘𝅥𝅮",
                             maxLines: 1,
                             overflow: TextOverflow.visible,
-                            style: GoogleFonts.notoMusic(
-                              color: Colors.transparent,
-                            ),
                             textAlign: TextAlign.center,
                           ),
                         ),
@@ -205,13 +134,7 @@ class CeldaNota extends ConsumerWidget {
       );
     }
 
-    final noteStyle = GoogleFonts.notoMusic(
-      color: error
-          ? Colors.red
-          : isThemeWhite
-              ? Colors.grey.shade800.withOpacity(passed ? .6 : 1)
-              : Colors.white.withOpacity(passed ? .6 : 1),
-    );
+    final noteStyle = TextStyle();
 
     return Center(
       child: Container(
@@ -431,40 +354,6 @@ class CeldaNota extends ConsumerWidget {
   }
 }
 
-class CeldaSimbolo extends StatelessWidget {
-  final double pentagramaSize;
-  final String simbolo;
-  const CeldaSimbolo({
-    Key? key,
-    required this.pentagramaSize,
-    required this.simbolo,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    final isThemeWhite = true;
-    return Container(
-      height: pentagramaSize * .7,
-      alignment: Alignment.center,
-      child: SizedBox(
-        height: pentagramaSize * .5,
-        child: FittedBox(
-          fit: BoxFit.fill,
-          child: Text(
-            simbolo,
-            maxLines: 1,
-            overflow: TextOverflow.visible,
-            style: GoogleFonts.notoMusic(
-              color: isThemeWhite ? Colors.grey.shade800 : Colors.white,
-            ),
-            textAlign: TextAlign.center,
-          ),
-        ),
-      ),
-    );
-  }
-}
-
 class LineasPentagrama extends StatelessWidget {
   final double pentagramaSize;
   const LineasPentagrama({
@@ -475,30 +364,36 @@ class LineasPentagrama extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isThemeWhite = true;
-    return Container(
-      height: pentagramaSize * .7,
-      alignment: Alignment.center,
-      child: SizedBox(
-        height: pentagramaSize * .5,
-        child: Padding(
-          padding: EdgeInsets.only(
-            top: pentagramaSize * .1,
-            bottom: pentagramaSize * .12,
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        print(constraints);
+        return Container(
+          width: constraints.maxHeight,
+          height: pentagramaSize * .7,
+          alignment: Alignment.center,
+          child: SizedBox(
+            height: pentagramaSize * .5,
+            child: Padding(
+              padding: EdgeInsets.only(
+                top: pentagramaSize * .1,
+                bottom: pentagramaSize * .12,
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  ...List.generate(5, (index) => null)
+                      .map(
+                        (e) => Guia(
+                          isThemeWhite ? Colors.grey.shade800 : Colors.white,
+                        ),
+                      )
+                      .toList()
+                ],
+              ),
+            ),
           ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              ...List.generate(5, (index) => null)
-                  .map(
-                    (e) => Guia(
-                      isThemeWhite ? Colors.grey.shade800 : Colors.white,
-                    ),
-                  )
-                  .toList()
-            ],
-          ),
-        ),
-      ),
+        );
+      },
     );
   }
 }

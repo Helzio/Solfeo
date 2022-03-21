@@ -36,7 +36,8 @@ class _$LecturaLibreStateTearOff {
       required bool isRunning,
       required List<String> notes,
       required DateTime? startTime,
-      required DateTime? endTime}) {
+      required DateTime? endTime,
+      required Pentagrama pentagrama}) {
     return _LecturaLibreState(
       index: index,
       level: level,
@@ -56,6 +57,7 @@ class _$LecturaLibreStateTearOff {
       notes: notes,
       startTime: startTime,
       endTime: endTime,
+      pentagrama: pentagrama,
     );
   }
 }
@@ -83,6 +85,7 @@ mixin _$LecturaLibreState {
   List<String> get notes => throw _privateConstructorUsedError;
   DateTime? get startTime => throw _privateConstructorUsedError;
   DateTime? get endTime => throw _privateConstructorUsedError;
+  Pentagrama get pentagrama => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $LecturaLibreStateCopyWith<LecturaLibreState> get copyWith =>
@@ -112,7 +115,10 @@ abstract class $LecturaLibreStateCopyWith<$Res> {
       bool isRunning,
       List<String> notes,
       DateTime? startTime,
-      DateTime? endTime});
+      DateTime? endTime,
+      Pentagrama pentagrama});
+
+  $PentagramaCopyWith<$Res> get pentagrama;
 }
 
 /// @nodoc
@@ -144,6 +150,7 @@ class _$LecturaLibreStateCopyWithImpl<$Res>
     Object? notes = freezed,
     Object? startTime = freezed,
     Object? endTime = freezed,
+    Object? pentagrama = freezed,
   }) {
     return _then(_value.copyWith(
       index: index == freezed
@@ -218,7 +225,18 @@ class _$LecturaLibreStateCopyWithImpl<$Res>
           ? _value.endTime
           : endTime // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      pentagrama: pentagrama == freezed
+          ? _value.pentagrama
+          : pentagrama // ignore: cast_nullable_to_non_nullable
+              as Pentagrama,
     ));
+  }
+
+  @override
+  $PentagramaCopyWith<$Res> get pentagrama {
+    return $PentagramaCopyWith<$Res>(_value.pentagrama, (value) {
+      return _then(_value.copyWith(pentagrama: value));
+    });
   }
 }
 
@@ -247,7 +265,11 @@ abstract class _$LecturaLibreStateCopyWith<$Res>
       bool isRunning,
       List<String> notes,
       DateTime? startTime,
-      DateTime? endTime});
+      DateTime? endTime,
+      Pentagrama pentagrama});
+
+  @override
+  $PentagramaCopyWith<$Res> get pentagrama;
 }
 
 /// @nodoc
@@ -281,6 +303,7 @@ class __$LecturaLibreStateCopyWithImpl<$Res>
     Object? notes = freezed,
     Object? startTime = freezed,
     Object? endTime = freezed,
+    Object? pentagrama = freezed,
   }) {
     return _then(_LecturaLibreState(
       index: index == freezed
@@ -355,6 +378,10 @@ class __$LecturaLibreStateCopyWithImpl<$Res>
           ? _value.endTime
           : endTime // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      pentagrama: pentagrama == freezed
+          ? _value.pentagrama
+          : pentagrama // ignore: cast_nullable_to_non_nullable
+              as Pentagrama,
     ));
   }
 }
@@ -380,7 +407,8 @@ class _$_LecturaLibreState extends _LecturaLibreState {
       required this.isRunning,
       required this.notes,
       required this.startTime,
-      required this.endTime})
+      required this.endTime,
+      required this.pentagrama})
       : super._();
 
   @override
@@ -419,10 +447,12 @@ class _$_LecturaLibreState extends _LecturaLibreState {
   final DateTime? startTime;
   @override
   final DateTime? endTime;
+  @override
+  final Pentagrama pentagrama;
 
   @override
   String toString() {
-    return 'LecturaLibreState(index: $index, level: $level, speed: $speed, lastSpeed: $lastSpeed, accuracy: $accuracy, lastAccuracy: $lastAccuracy, score: $score, lastScore: $lastScore, enterNote: $enterNote, availableNotes: $availableNotes, currentNotes: $currentNotes, errors: $errors, errorCount: $errorCount, listErrorIndex: $listErrorIndex, isRunning: $isRunning, notes: $notes, startTime: $startTime, endTime: $endTime)';
+    return 'LecturaLibreState(index: $index, level: $level, speed: $speed, lastSpeed: $lastSpeed, accuracy: $accuracy, lastAccuracy: $lastAccuracy, score: $score, lastScore: $lastScore, enterNote: $enterNote, availableNotes: $availableNotes, currentNotes: $currentNotes, errors: $errors, errorCount: $errorCount, listErrorIndex: $listErrorIndex, isRunning: $isRunning, notes: $notes, startTime: $startTime, endTime: $endTime, pentagrama: $pentagrama)';
   }
 
   @override
@@ -452,30 +482,34 @@ class _$_LecturaLibreState extends _LecturaLibreState {
             const DeepCollectionEquality().equals(other.isRunning, isRunning) &&
             const DeepCollectionEquality().equals(other.notes, notes) &&
             const DeepCollectionEquality().equals(other.startTime, startTime) &&
-            const DeepCollectionEquality().equals(other.endTime, endTime));
+            const DeepCollectionEquality().equals(other.endTime, endTime) &&
+            const DeepCollectionEquality()
+                .equals(other.pentagrama, pentagrama));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(index),
-      const DeepCollectionEquality().hash(level),
-      const DeepCollectionEquality().hash(speed),
-      const DeepCollectionEquality().hash(lastSpeed),
-      const DeepCollectionEquality().hash(accuracy),
-      const DeepCollectionEquality().hash(lastAccuracy),
-      const DeepCollectionEquality().hash(score),
-      const DeepCollectionEquality().hash(lastScore),
-      const DeepCollectionEquality().hash(enterNote),
-      const DeepCollectionEquality().hash(availableNotes),
-      const DeepCollectionEquality().hash(currentNotes),
-      const DeepCollectionEquality().hash(errors),
-      const DeepCollectionEquality().hash(errorCount),
-      const DeepCollectionEquality().hash(listErrorIndex),
-      const DeepCollectionEquality().hash(isRunning),
-      const DeepCollectionEquality().hash(notes),
-      const DeepCollectionEquality().hash(startTime),
-      const DeepCollectionEquality().hash(endTime));
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(index),
+        const DeepCollectionEquality().hash(level),
+        const DeepCollectionEquality().hash(speed),
+        const DeepCollectionEquality().hash(lastSpeed),
+        const DeepCollectionEquality().hash(accuracy),
+        const DeepCollectionEquality().hash(lastAccuracy),
+        const DeepCollectionEquality().hash(score),
+        const DeepCollectionEquality().hash(lastScore),
+        const DeepCollectionEquality().hash(enterNote),
+        const DeepCollectionEquality().hash(availableNotes),
+        const DeepCollectionEquality().hash(currentNotes),
+        const DeepCollectionEquality().hash(errors),
+        const DeepCollectionEquality().hash(errorCount),
+        const DeepCollectionEquality().hash(listErrorIndex),
+        const DeepCollectionEquality().hash(isRunning),
+        const DeepCollectionEquality().hash(notes),
+        const DeepCollectionEquality().hash(startTime),
+        const DeepCollectionEquality().hash(endTime),
+        const DeepCollectionEquality().hash(pentagrama)
+      ]);
 
   @JsonKey(ignore: true)
   @override
@@ -502,7 +536,8 @@ abstract class _LecturaLibreState extends LecturaLibreState {
       required bool isRunning,
       required List<String> notes,
       required DateTime? startTime,
-      required DateTime? endTime}) = _$_LecturaLibreState;
+      required DateTime? endTime,
+      required Pentagrama pentagrama}) = _$_LecturaLibreState;
   const _LecturaLibreState._() : super._();
 
   @override
@@ -541,6 +576,8 @@ abstract class _LecturaLibreState extends LecturaLibreState {
   DateTime? get startTime;
   @override
   DateTime? get endTime;
+  @override
+  Pentagrama get pentagrama;
   @override
   @JsonKey(ignore: true)
   _$LecturaLibreStateCopyWith<_LecturaLibreState> get copyWith =>

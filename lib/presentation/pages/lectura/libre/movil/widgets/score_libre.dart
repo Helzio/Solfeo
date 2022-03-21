@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:solfeo/features/lectura_libre/providers/lectura_libre_provider.dart';
 
 class ScoreLibre extends ConsumerWidget {
@@ -46,10 +45,6 @@ class ScoreLibre extends ConsumerWidget {
               "𝅘𝅥",
               maxLines: 1,
               overflow: TextOverflow.visible,
-              style: GoogleFonts.notoMusic(
-                fontSize: 15,
-                color: true ? Colors.grey.shade800 : Colors.white,
-              ),
               textAlign: TextAlign.center,
             ),
             Text(

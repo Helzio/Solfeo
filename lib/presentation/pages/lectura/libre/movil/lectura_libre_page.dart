@@ -1,12 +1,14 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:solfeo/features/lectura_libre/providers/lectura_libre_provider.dart';
-import 'package:solfeo/presentation/acore/widgets/score/score_widget.dart';
-import 'package:solfeo/presentation/pages/lectura/libre/widgets/pentagrama_lectura_libre.dart';
+import 'package:solfeo/presentation/pages/lectura/libre/movil/widgets/botonera_libre.dart';
+import 'package:solfeo/presentation/pages/lectura/libre/movil/widgets/pentagrama_libre.dart';
+import 'package:solfeo/presentation/pages/lectura/libre/movil/widgets/score_libre.dart';
 
 class LecturaLibrePage extends ConsumerStatefulWidget {
-  const LecturaLibrePage({Key? key}) : super(key: key);
+  const LecturaLibrePage({
+    Key? key,
+  }) : super(key: key);
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() =>
@@ -14,12 +16,8 @@ class LecturaLibrePage extends ConsumerStatefulWidget {
 }
 
 class _LecturaLibrePageState extends ConsumerState<LecturaLibrePage> {
+  final isThemeWhite = true;
   final FocusNode focusNode = FocusNode();
-
-  @override
-  void initState() {
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -64,22 +62,64 @@ class _LecturaLibrePageState extends ConsumerState<LecturaLibrePage> {
         }
       },
       child: Scaffold(
-        backgroundColor: Colors.grey.shade100,
+        appBar: AppBar(
+          iconTheme: const IconThemeData(
+            color: Colors.white,
+          ),
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          toolbarHeight: 56,
+          flexibleSpace: SizedBox(
+            height: 56,
+            child: Material(
+              elevation: 8,
+              color: Colors.grey.shade900,
+            ),
+          ),
+          title: const Padding(
+            padding: EdgeInsets.only(left: 8.0),
+            child: Text("Entrenamiento libre"),
+          ),
+          actions: [
+            IconButton(
+              onPressed: () {
+                ref.read(lecturaLibreProvider.notifier).removeLevel();
+              },
+              icon: const Icon(
+                Icons.remove,
+              ),
+            ),
+            IconButton(
+              onPressed: () {
+                ref.read(lecturaLibreProvider.notifier).addLevel();
+              },
+              icon: const Icon(
+                Icons.add,
+              ),
+            ),
+          ],
+        ),
+        backgroundColor: isThemeWhite ? Colors.white : Colors.grey.shade900,
         body: Column(
           children: [
-            const ScoreWidget(),
-            const Expanded(
+            const ScoreLibre(),
+            Expanded(
               flex: 60,
-              child: PentagramaLecturaLibre(),
+              child: PentagramaLibre(
+              ),
             ),
-            if (kIsWeb)
-              Expanded(
-                flex: 40,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(),
+            const Divider(),
+            Expanded(
+              flex: 40,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Stack(
+                  children: const [
+                    BotoneraLibre(),
+                  ],
                 ),
               ),
+            ),
           ],
         ),
       ),
