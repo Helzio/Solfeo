@@ -1,8 +1,5 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:solfeo/features/pentagrama/domain/entities/pentagrama.dart';
 
@@ -36,8 +33,6 @@ class _PentagramaWidgetState extends ConsumerState<PentagramaWidget> {
     final unidadesDisponibles = unidades - pentagramaUnidadesOcupadas;
     final notasDisponibles = unidadesDisponibles ~/ 3;
     final textSize = altura / 3;
-    print("notasDisponibles");
-    print(notasDisponibles);
     final notas = widget.pentagrama.notas;
     final pentagramas = (notas.length / notasDisponibles).ceil();
 
