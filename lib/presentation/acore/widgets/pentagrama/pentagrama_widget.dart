@@ -243,8 +243,14 @@ class PentagramaNota extends ConsumerWidget {
     BuildContext context,
     WidgetRef ref,
   ) {
-    final stateIndex = ref.read(lecturaLibreProvider).index;
-    final listErrorIndex = ref.read(lecturaLibreProvider).listErrorIndex;
+    final stateIndex =
+        ref.watch(lecturaLibreProvider.select((value) => value.index));
+    final listErrorIndex =
+        ref.watch(lecturaLibreProvider.select((value) => value.listErrorIndex));
+    final greenNotes =
+        ref.watch(lecturaLibreProvider.select((value) => value.greenNotes));
+    final greenNote = greenNotes.contains(nota);
+
     final unidad = textSize * pentagramaRatio * .8 / 4;
     return Container(
       decoration: BoxDecoration(
@@ -259,14 +265,26 @@ class PentagramaNota extends ConsumerWidget {
         child: SizedBox(
           height: textSize * pentagramaRatio,
           width: unidad * getNoteSize(valor: nota.valor),
-          child: Text(
-            getNotaPosicion(
-                tono: nota.tono, octava: nota.ocatava, valor: nota.valor),
-            style: TextStyle(
-              fontSize: textSize * pentagramaRatio,
-              overflow: TextOverflow.visible,
-              color: listErrorIndex.contains(index) ? Colors.red : Colors.black,
-              fontFamily: "BravuraText",
+          child: Transform.translate(
+            offset: nota.tono == Tono.Re && nota.ocatava == Ocatava.Sexta
+                ? Offset(0, -unidad)
+                : Offset.zero,
+            child: Text(
+              getNotaPosicion(
+                tono: nota.tono,
+                octava: nota.ocatava,
+                valor: nota.valor,
+              ),
+              style: TextStyle(
+                fontSize: textSize * pentagramaRatio,
+                overflow: TextOverflow.visible,
+                color: listErrorIndex.contains(index)
+                    ? Colors.red
+                    : greenNote
+                        ? Colors.green
+                        : Colors.black,
+                fontFamily: "BravuraText",
+              ),
             ),
           ),
         ),

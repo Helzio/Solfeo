@@ -43,25 +43,39 @@ class _LecturaLibrePageState extends ConsumerState<LecturaLibrePage> {
             ref.read(lecturaLibreProvider.notifier).removeLevel();
           }
           if (key.keyLabel == "D") {
-            ref.read(lecturaLibreProvider.notifier).setEnterNote(Nota.initial(Tono.Do));
+            ref
+                .read(lecturaLibreProvider.notifier)
+                .setEnterNote(Nota.initial(Tono.Do));
           }
           if (key.keyLabel == "R") {
-            ref.read(lecturaLibreProvider.notifier).setEnterNote(Nota.initial(Tono.Re));
+            ref
+                .read(lecturaLibreProvider.notifier)
+                .setEnterNote(Nota.initial(Tono.Re));
           }
           if (key.keyLabel == "M") {
-            ref.read(lecturaLibreProvider.notifier).setEnterNote(Nota.initial(Tono.Mi));
+            ref
+                .read(lecturaLibreProvider.notifier)
+                .setEnterNote(Nota.initial(Tono.Mi));
           }
           if (key.keyLabel == "F") {
-            ref.read(lecturaLibreProvider.notifier).setEnterNote(Nota.initial(Tono.Fa));
+            ref
+                .read(lecturaLibreProvider.notifier)
+                .setEnterNote(Nota.initial(Tono.Fa));
           }
           if (key.keyLabel == "S") {
-            ref.read(lecturaLibreProvider.notifier).setEnterNote(Nota.initial(Tono.Sol));
+            ref
+                .read(lecturaLibreProvider.notifier)
+                .setEnterNote(Nota.initial(Tono.Sol));
           }
           if (key.keyLabel == "L") {
-            ref.read(lecturaLibreProvider.notifier).setEnterNote(Nota.initial(Tono.La));
+            ref
+                .read(lecturaLibreProvider.notifier)
+                .setEnterNote(Nota.initial(Tono.La));
           }
           if (key.keyLabel == "I") {
-            ref.read(lecturaLibreProvider.notifier).setEnterNote(Nota.initial(Tono.Si));
+            ref
+                .read(lecturaLibreProvider.notifier)
+                .setEnterNote(Nota.initial(Tono.Si));
           }
         }
       },
@@ -81,6 +95,7 @@ class _LecturaLibrePageState extends ConsumerState<LecturaLibrePage> {
               flex: 55,
               child: PentagramaLecturaLibre(),
             ),
+            const Divider(),
             Expanded(
               flex: 45,
               child: Padding(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:solfeo/features/lectura_libre/providers/lectura_libre_provider.dart';
+import 'package:solfeo/features/pentagrama/domain/entities/pentagrama.dart';
 import 'package:solfeo/presentation/acore/widgets/guias/guia.dart';
 import 'package:solfeo/presentation/acore/widgets/score/chips/level_chip.dart';
 
@@ -24,13 +25,16 @@ class ScoreWidget extends ConsumerWidget {
     final lastSpeed = ref
         .watch(lecturaLibreProvider.select((value) => value.lastSpeed.toInt()));
 
+    final totalTime =
+        ref.watch(lecturaLibreProvider.select((value) => value.totalTime));
+
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 32.0),
+      padding: const EdgeInsets.symmetric(horizontal: 24.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(
-            height: 32,
+            height: 24,
           ),
           const Padding(
             padding: EdgeInsets.symmetric(vertical: 6.0),
@@ -167,10 +171,10 @@ class ScoreWidget extends ConsumerWidget {
           Row(
             children: [
               SizedBox(
-                width: 76,
+                width: 50,
                 child: RichText(
                   text: TextSpan(
-                    text: "Nivel $nivel:  ",
+                    text: "Nivel ${nivel < 10 ? nivel : 'X'}",
                     style: TextStyle(
                       fontSize: 13,
                       color: Colors.grey.shade600,
@@ -178,98 +182,131 @@ class ScoreWidget extends ConsumerWidget {
                   ),
                 ),
               ),
+              Column(
+                children: [
+                  const SizedBox(
+                    height: 2,
+                  ),
+                  InkResponse(
+                    radius: 16,
+                    onTap: () {
+                      ref.read(lecturaLibreProvider.notifier).removeLevel();
+                    },
+                    child: const Icon(
+                      Icons.remove_circle_outline,
+                      size: 18,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 2,
+                  ),
+                  InkResponse(
+                    radius: 16,
+                    onTap: () {
+                      ref.read(lecturaLibreProvider.notifier).addLevel();
+                    },
+                    child: const Icon(
+                      Icons.add_circle_outline,
+                      size: 18,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(
+                width: 8,
+              ),
               Expanded(
                 child: Wrap(
                   children: [
                     LevelChip(
                       text: "Do4",
                       enabled: nivel >= 1,
-                      isNew: nivel == 1,
+                      nota: Nota.nivel(Tono.Do, Ocatava.Cuarta),
                     ),
                     LevelChip(
                       text: "Sol4",
                       enabled: nivel >= 1,
-                      isNew: nivel == 1,
+                      nota: Nota.nivel(Tono.Sol, Ocatava.Cuarta),
                     ),
                     LevelChip(
                       text: "Do5",
                       enabled: nivel >= 2,
-                      isNew: nivel == 2,
+                      nota: Nota.nivel(Tono.Do, Ocatava.Quinta),
                     ),
                     LevelChip(
                       text: "Sol5",
                       enabled: nivel >= 2,
-                      isNew: nivel == 2,
+                      nota: Nota.nivel(Tono.Sol, Ocatava.Quinta),
                     ),
                     LevelChip(
                       text: "La4",
                       enabled: nivel >= 3,
-                      isNew: nivel == 3,
+                      nota: Nota.nivel(Tono.La, Ocatava.Cuarta),
                     ),
                     LevelChip(
                       text: "Re5",
                       enabled: nivel >= 3,
-                      isNew: nivel == 3,
+                      nota: Nota.nivel(Tono.Re, Ocatava.Quinta),
                     ),
                     LevelChip(
                       text: "Fa4",
                       enabled: nivel >= 4,
-                      isNew: nivel == 4,
+                      nota: Nota.nivel(Tono.Fa, Ocatava.Cuarta),
                     ),
                     LevelChip(
                       text: "Si4",
                       enabled: nivel >= 4,
-                      isNew: nivel == 4,
+                      nota: Nota.nivel(Tono.Si, Ocatava.Cuarta),
                     ),
                     LevelChip(
                       text: "Fa5",
                       enabled: nivel >= 5,
-                      isNew: nivel == 5,
+                      nota: Nota.nivel(Tono.Fa, Ocatava.Quinta),
                     ),
                     LevelChip(
                       text: "Re4",
                       enabled: nivel >= 5,
-                      isNew: nivel == 5,
+                      nota: Nota.nivel(Tono.Re, Ocatava.Cuarta),
                     ),
                     LevelChip(
                       text: "La5",
                       enabled: nivel >= 6,
-                      isNew: nivel == 6,
+                      nota: Nota.nivel(Tono.La, Ocatava.Quinta),
                     ),
                     LevelChip(
                       text: "Si3",
                       enabled: nivel >= 6,
-                      isNew: nivel == 6,
+                      nota: Nota.nivel(Tono.Si, Ocatava.Tercera),
                     ),
                     LevelChip(
                       text: "Mi4",
                       enabled: nivel >= 7,
-                      isNew: nivel == 7,
+                      nota: Nota.nivel(Tono.Mi, Ocatava.Cuarta),
                     ),
                     LevelChip(
                       text: "Mi5",
                       enabled: nivel >= 7,
-                      isNew: nivel == 7,
+                      nota: Nota.nivel(Tono.Mi, Ocatava.Quinta),
                     ),
                     LevelChip(
                       text: "Si5",
                       enabled: nivel >= 8,
-                      isNew: nivel == 8,
+                      nota: Nota.nivel(Tono.Si, Ocatava.Quinta),
                     ),
                     LevelChip(
                       text: "La3",
                       enabled: nivel >= 8,
-                      isNew: nivel == 8,
+                      nota: Nota.nivel(Tono.La, Ocatava.Tercera),
                     ),
                     LevelChip(
                       text: "Do6",
                       enabled: nivel >= 9,
-                      isNew: nivel == 9,
+                      nota: Nota.nivel(Tono.Do, Ocatava.Sexta),
                     ),
                     LevelChip(
                       text: "Re6",
                       enabled: nivel >= 9,
-                      isNew: nivel == 9,
+                      nota: Nota.nivel(Tono.Re, Ocatava.Sexta),
                     ),
                   ],
                 ),
@@ -299,7 +336,8 @@ class ScoreWidget extends ConsumerWidget {
               ),
               RichText(
                 text: TextSpan(
-                  text: "0/15 minutos",
+                  text:
+                      "${(totalTime / 1000 / 60).toStringAsFixed(1)}/10 minutos",
                   style: TextStyle(
                     fontSize: 11,
                     fontWeight: FontWeight.bold,
@@ -315,7 +353,7 @@ class ScoreWidget extends ConsumerWidget {
                   padding: const EdgeInsets.all(1),
                   child: LinearProgressIndicator(
                     backgroundColor: Colors.grey.shade300,
-                    value: 0,
+                    value: totalTime / 900000,
                   ),
                 ),
               ),

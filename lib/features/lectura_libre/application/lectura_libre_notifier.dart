@@ -22,7 +22,9 @@ class LecturaLibreState with _$LecturaLibreState {
     required bool isRunning,
     required DateTime? startTime,
     required int ellapsedTime,
+    required int totalTime,
     required Pentagrama pentagrama,
+    required Set<Nota> greenNotes,
   }) = _LecturaLibreState;
 
   factory LecturaLibreState.initial() => LecturaLibreState(
@@ -37,10 +39,15 @@ class LecturaLibreState with _$LecturaLibreState {
         isRunning: false,
         startTime: null,
         ellapsedTime: 0,
+        totalTime: 0,
         score: 0,
         lastScore: 0,
         lastAccuracy: 0,
         lastSpeed: 0,
+        greenNotes: {
+          getNotasDisponibles(nivel: 1)[0],
+          getNotasDisponibles(nivel: 1)[1],
+        },
         pentagrama: Pentagrama.lecturaLibre(nivel: 1),
       );
 }
@@ -58,13 +65,22 @@ class LecturaLibreNotifier extends StateNotifier<LecturaLibreState> {
       listErrorIndex: [],
       enterNote: null,
       errorCount: 0,
+      greenNotes: state.level == 10
+          ? {}
+          : {
+              getNotasDisponibles(nivel: state.level)[0],
+              getNotasDisponibles(nivel: state.level)[1],
+            },
       pentagrama: Pentagrama.lecturaLibre(nivel: state.level),
     );
   }
 
-  void comprobarAvance({bool force = false}) {
-    if (((state.accuracy >= 89 && state.speed > 100) || force) &&
-        state.level <= 9) {
+  void comprobarAvance() {
+    if (state.accuracy >= 50 && state.speed > 30) {
+      state = state.copyWith(totalTime: state.totalTime + state.ellapsedTime);
+    }
+
+    if ((state.accuracy >= 89 && state.speed > 100) && state.level <= 9) {
       state = state.copyWith(
         level: state.level + 1,
       );
@@ -75,7 +91,9 @@ class LecturaLibreNotifier extends StateNotifier<LecturaLibreState> {
     Nota note,
   ) {
     if (state.index == 0) {
-      state = state.copyWith(startTime: DateTime.now());
+      if (state.startTime == null) {
+        state = state.copyWith(startTime: DateTime.now());
+      }
     }
     if (state.index == state.pentagrama.notas.length - 1) {
       final ellapsedTime = DateTime.now().millisecondsSinceEpoch -
@@ -89,6 +107,7 @@ class LecturaLibreNotifier extends StateNotifier<LecturaLibreState> {
             : ellapsedTime,
         lastSpeed: state.speed,
         speed: speed,
+        startTime: null,
       );
     }
 
@@ -132,15 +151,53 @@ class LecturaLibreNotifier extends StateNotifier<LecturaLibreState> {
 
   void addLevel() {
     if (state.level <= 9) {
-      comprobarAvance(force: true);
+      state = state.copyWith(
+        accuracy: 0,
+        lastAccuracy: 0,
+        speed: 0,
+        lastSpeed: 0,
+        level: state.level + 1,
+      );
       generateNotes();
     }
+  }
+
+  void addGreenNote(Nota note) {
+    final greenNotes = {...state.greenNotes};
+    greenNotes.add(note);
+    state = state.copyWith(
+      greenNotes: greenNotes,
+    );
+  }
+
+  void addAllGreenNotes() {
+    state = state.copyWith(
+      greenNotes: {...getNotasDisponibles(nivel: 9)},
+    );
+  }
+
+  void clearGreenNotes() {
+    state = state.copyWith(
+      greenNotes: {},
+    );
+  }
+
+  void removeGreenNote(Nota note) {
+    final greenNotes = {...state.greenNotes};
+    greenNotes.remove(note);
+    state = state.copyWith(
+      greenNotes: greenNotes,
+    );
   }
 
   void removeLevel() {
     if (state.level != 1) {
       state = state.copyWith(
         level: state.level - 1,
+        accuracy: 0,
+        lastAccuracy: 0,
+        speed: 0,
+        lastSpeed: 0,
       );
       generateNotes();
     }

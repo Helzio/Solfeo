@@ -64,7 +64,54 @@ class _BotoneraState extends State<Botonera> {
           color: widget.color,
           colorSecundary: widget.colorSecundary,
         ),
+        /* Container(
+          height: 48,
+          width: 48,
+          decoration: const BoxDecoration(
+            shape: BoxShape.circle,
+          ),
+          child: ResetButton(
+            color: widget.color,
+            colorSecundary: widget.colorSecundary,
+          ),
+        ), */
       ],
+    );
+  }
+}
+
+class ResetButton extends ConsumerWidget {
+  final Size size;
+  final Color color;
+  final Color colorSecundary;
+  const ResetButton({
+    Key? key,
+    required this.color,
+    required this.colorSecundary,
+    this.size = Size.normal,
+  }) : super(key: key);
+
+  @override
+  Widget build(
+    BuildContext context,
+    WidgetRef ref,
+  ) {
+    return ElevatedButton(
+      onPressed: () {
+        ref.read(lecturaLibreProvider.notifier).generateNotes();
+      },
+      style: ElevatedButton.styleFrom(
+        primary: color,
+        padding: EdgeInsets.zero,
+        shape: const StadiumBorder(),
+      ),
+      child: Center(
+        child: Icon(
+          Icons.refresh,
+          size: size == Size.normal ? 12 : 14,
+          color: colorSecundary,
+        ),
+      ),
     );
   }
 }
@@ -157,7 +204,9 @@ class _BotonNotaState extends ConsumerState<BotonNota> {
               ),
               child: ElevatedButton(
                 onPressed: () {
-                  ref.read(lecturaLibreProvider.notifier).setEnterNote(BotonNota.notas[widget.nota]);
+                  ref
+                      .read(lecturaLibreProvider.notifier)
+                      .setEnterNote(BotonNota.notas[widget.nota]);
                 },
                 style: ElevatedButton.styleFrom(
                   primary: widget.color,
