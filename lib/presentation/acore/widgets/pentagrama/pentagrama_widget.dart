@@ -1,9 +1,11 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
+import 'package:solfeo/features/lectura_libre/providers/lectura_libre_provider.dart';
 import 'package:solfeo/features/pentagrama/domain/entities/pentagrama.dart';
 
-const double pentagramaRatio = .55;
+const double pentagramaRatio = kIsWeb ? .6 : .35;
 
 class PentagramaWidget extends ConsumerStatefulWidget {
   final Size size;
@@ -36,67 +38,70 @@ class _PentagramaWidgetState extends ConsumerState<PentagramaWidget> {
     final notas = widget.pentagrama.notas;
     final pentagramas = (notas.length / notasDisponibles).ceil();
 
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: [
-        ...List.generate(
-          pentagramas,
-          (pentagramaIndex) => Container(
-            color: Colors.purple.withOpacity(.01),
-            height: altura / 3,
-            child: Stack(
-              alignment: Alignment.center,
-              children: [
-                Row(
-                  children: [
-                    ...List.generate(
-                      notasDisponibles >=
-                              notas.length - notasDisponibles * pentagramaIndex
-                          ? (notas.length -
-                                      notasDisponibles * pentagramaIndex) *
-                                  3 +
-                              pentagramaUnidadesOcupadas
-                          : unidades,
-                      (i) => PentagramaLineas(
-                        textSize: textSize,
-                        index: i,
-                      ),
-                    ),
-                  ],
-                ),
-                Row(
-                  children: [
-                    PentagramaClave(
-                      clave: widget.pentagrama.clave,
-                      textSize: textSize,
-                    ),
-                    Row(
-                      children: [
-                        ...List.generate(
-                          notasDisponibles,
-                          (index) =>
-                              index + (pentagramaIndex * notasDisponibles) <
-                                      notas.length
-                                  ? PentagramaNota(
-                                      textSize: textSize,
-                                      nota: notas[index +
-                                          (pentagramaIndex * notasDisponibles)],
-                                    )
-                                  : Container(),
+    return SingleChildScrollView(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          ...List.generate(
+            pentagramas,
+            (pentagramaIndex) => SizedBox(
+              height: altura / 3,
+              child: Stack(
+                alignment: Alignment.center,
+                children: [
+                  Row(
+                    children: [
+                      ...List.generate(
+                        notasDisponibles >=
+                                notas.length -
+                                    notasDisponibles * pentagramaIndex
+                            ? (notas.length -
+                                        notasDisponibles * pentagramaIndex) *
+                                    3 +
+                                pentagramaUnidadesOcupadas
+                            : unidades,
+                        (i) => PentagramaLineas(
+                          textSize: textSize,
                         ),
-                      ],
-                    ),
-                    PentagramaDobleBarraFinal(
-                      textSize: textSize,
-                      visible: pentagramaIndex == pentagramas - 1,
-                    ),
-                  ],
-                ),
-              ],
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      PentagramaClave(
+                        clave: widget.pentagrama.clave,
+                        textSize: textSize,
+                      ),
+                      Row(
+                        children: [
+                          ...List.generate(
+                            notasDisponibles,
+                            (index) => index +
+                                        (pentagramaIndex * notasDisponibles) <
+                                    notas.length
+                                ? PentagramaNota(
+                                    textSize: textSize,
+                                    nota: notas[index +
+                                        (pentagramaIndex * notasDisponibles)],
+                                    index: pentagramaIndex * notasDisponibles +
+                                        index,
+                                  )
+                                : Container(),
+                          ),
+                        ],
+                      ),
+                      PentagramaDobleBarraFinal(
+                        textSize: textSize,
+                        visible: pentagramaIndex == pentagramas - 1,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
@@ -140,18 +145,15 @@ class PentagramaClave extends StatelessWidget {
 
 class PentagramaLineas extends StatelessWidget {
   final double textSize;
-  final int index;
   const PentagramaLineas({
     Key? key,
     required this.textSize,
-    required this.index,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final unidad = textSize * pentagramaRatio * .8 / 4;
-    return Container(
-      color: Colors.primaries[index % Colors.primaries.length].withOpacity(.0),
+    return SizedBox(
       width: unidad,
       height: textSize * pentagramaRatio,
       child: Text(
@@ -159,7 +161,7 @@ class PentagramaLineas extends StatelessWidget {
         style: TextStyle(
           fontSize: textSize * pentagramaRatio,
           overflow: TextOverflow.visible,
-          color: Colors.black,
+          color: Colors.black.withOpacity(.4),
           fontFamily: "BravuraText",
         ),
       ),
@@ -225,21 +227,30 @@ class PentagramaLineaDivisoria extends StatelessWidget {
   }
 }
 
-class PentagramaNota extends StatelessWidget {
+class PentagramaNota extends ConsumerWidget {
   final double textSize;
   final Nota nota;
+  final int index;
   const PentagramaNota({
     Key? key,
     required this.textSize,
     required this.nota,
+    required this.index,
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(
+    BuildContext context,
+    WidgetRef ref,
+  ) {
+    final stateIndex = ref.read(lecturaLibreProvider).index;
+    final listErrorIndex = ref.read(lecturaLibreProvider).listErrorIndex;
     final unidad = textSize * pentagramaRatio * .8 / 4;
     return Container(
       decoration: BoxDecoration(
-        color: Colors.black.withOpacity(0),
+        color: stateIndex == index
+            ? Colors.black.withOpacity(.13)
+            : Colors.black.withOpacity(0),
         borderRadius: BorderRadius.circular(unidad / 3),
       ),
       width: unidad * 3,
@@ -247,18 +258,14 @@ class PentagramaNota extends StatelessWidget {
       child: Center(
         child: SizedBox(
           height: textSize * pentagramaRatio,
-          width: unidad * 3,
-          child: Padding(
-            padding: EdgeInsets.only(left: unidad),
-            child: Text(
-              "${getNotaPosicion(tono: nota.tono)}${getNoteString(valor: nota.valor)}",
-              textAlign: TextAlign.start,
-              style: TextStyle(
-                fontSize: textSize * pentagramaRatio,
-                overflow: TextOverflow.visible,
-                color: Colors.black,
-                fontFamily: "BravuraText",
-              ),
+          width: unidad * getNoteSize(valor: nota.valor),
+          child: Text(
+            "${getNotaPosicion(tono: nota.tono)}${getNoteString(valor: nota.valor)}",
+            style: TextStyle(
+              fontSize: textSize * pentagramaRatio,
+              overflow: TextOverflow.visible,
+              color: listErrorIndex.contains(index) ? Colors.red : Colors.black,
+              fontFamily: "BravuraText",
             ),
           ),
         ),

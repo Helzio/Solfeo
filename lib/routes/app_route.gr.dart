@@ -10,46 +10,56 @@
 //
 // ignore_for_file: type=lint
 
-import 'package:auto_route/auto_route.dart' as _i3;
-import 'package:flutter/material.dart' as _i4;
+import 'package:auto_route/auto_route.dart' as _i4;
+import 'package:flutter/material.dart' as _i5;
 
+import '../presentation/pages/lectura/libre/lectura_libre_page.dart' as _i3;
 import '../presentation/pages/menu_principal/menu_principal_page.dart' as _i2;
 import '../presentation/pages/splash/splash_page.dart' as _i1;
 
-class AppRouter extends _i3.RootStackRouter {
-  AppRouter([_i4.GlobalKey<_i4.NavigatorState>? navigatorKey])
+class AppRouter extends _i4.RootStackRouter {
+  AppRouter([_i5.GlobalKey<_i5.NavigatorState>? navigatorKey])
       : super(navigatorKey);
 
   @override
-  final Map<String, _i3.PageFactory> pagesMap = {
+  final Map<String, _i4.PageFactory> pagesMap = {
     SplashRoute.name: (routeData) {
-      return _i3.CustomPage<dynamic>(
+      return _i4.CustomPage<dynamic>(
           routeData: routeData,
           child: const _i1.SplashPage(),
-          transitionsBuilder: _i3.TransitionsBuilders.fadeIn,
+          transitionsBuilder: _i4.TransitionsBuilders.fadeIn,
           opaque: true,
           barrierDismissible: false);
     },
     MenuPrincipalRoute.name: (routeData) {
-      return _i3.CustomPage<dynamic>(
+      return _i4.CustomPage<dynamic>(
           routeData: routeData,
           child: const _i2.MenuPrincipalPage(),
-          transitionsBuilder: _i3.TransitionsBuilders.fadeIn,
+          transitionsBuilder: _i4.TransitionsBuilders.fadeIn,
+          opaque: true,
+          barrierDismissible: false);
+    },
+    LecturaLibreRoute.name: (routeData) {
+      return _i4.CustomPage<dynamic>(
+          routeData: routeData,
+          child: const _i3.LecturaLibrePage(),
+          transitionsBuilder: _i4.TransitionsBuilders.fadeIn,
           opaque: true,
           barrierDismissible: false);
     }
   };
 
   @override
-  List<_i3.RouteConfig> get routes => [
-        _i3.RouteConfig(SplashRoute.name, path: '/'),
-        _i3.RouteConfig(MenuPrincipalRoute.name, path: '/menu')
+  List<_i4.RouteConfig> get routes => [
+        _i4.RouteConfig(SplashRoute.name, path: '/'),
+        _i4.RouteConfig(MenuPrincipalRoute.name, path: '/menu'),
+        _i4.RouteConfig(LecturaLibreRoute.name, path: '/lectura_libre')
       ];
 }
 
 /// generated route for
 /// [_i1.SplashPage]
-class SplashRoute extends _i3.PageRouteInfo<void> {
+class SplashRoute extends _i4.PageRouteInfo<void> {
   const SplashRoute() : super(SplashRoute.name, path: '/');
 
   static const String name = 'SplashRoute';
@@ -57,8 +67,17 @@ class SplashRoute extends _i3.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i2.MenuPrincipalPage]
-class MenuPrincipalRoute extends _i3.PageRouteInfo<void> {
+class MenuPrincipalRoute extends _i4.PageRouteInfo<void> {
   const MenuPrincipalRoute() : super(MenuPrincipalRoute.name, path: '/menu');
 
   static const String name = 'MenuPrincipalRoute';
+}
+
+/// generated route for
+/// [_i3.LecturaLibrePage]
+class LecturaLibreRoute extends _i4.PageRouteInfo<void> {
+  const LecturaLibreRoute()
+      : super(LecturaLibreRoute.name, path: '/lectura_libre');
+
+  static const String name = 'LecturaLibreRoute';
 }

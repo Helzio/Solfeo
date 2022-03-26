@@ -1,7 +1,8 @@
-
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:solfeo/presentation/acore/utils/colors.dart';
+import 'package:solfeo/routes/app_route.gr.dart';
 
 class MenuMovil extends StatefulWidget {
   const MenuMovil({
@@ -17,7 +18,6 @@ class _MenuMovilState extends State<MenuMovil> {
   void initState() {
     super.initState();
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -166,6 +166,7 @@ class _MenuMovilState extends State<MenuMovil> {
                       ),
                     ),
                     onTap: () {
+                      AutoRouter.of(context).push(const LecturaLibreRoute());
                     },
                     trailing: const Icon(
                       Icons.arrow_forward_ios,
@@ -188,7 +189,7 @@ class _MenuMovilState extends State<MenuMovil> {
                     horizontalTitleGap: 16,
                     contentPadding: const EdgeInsets.symmetric(horizontal: 24),
                     title: const Text(
-                      "Entrenamiento guiado",
+                      "Entrenamiento con metrónomo",
                       style: TextStyle(
                         color: Color(0xff2E3E5C),
                         fontSize: 12,
@@ -295,7 +296,7 @@ class _MenuMovilState extends State<MenuMovil> {
                     horizontalTitleGap: 16,
                     contentPadding: const EdgeInsets.symmetric(horizontal: 24),
                     title: const Text(
-                      "Entrenamiento guiado",
+                      "Entrenamiento con metrónomo",
                       style: TextStyle(
                         color: Color(0xff2E3E5C),
                         fontSize: 12,

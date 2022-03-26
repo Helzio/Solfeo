@@ -27,16 +27,13 @@ class _$LecturaLibreStateTearOff {
       required double lastAccuracy,
       required double score,
       required double lastScore,
-      required String enterNote,
-      required List<String> availableNotes,
-      required List<String> currentNotes,
-      required Map<String, int> errors,
+      required Nota? enterNote,
+      required Map<Nota, int> errors,
       required int errorCount,
       required List<int> listErrorIndex,
       required bool isRunning,
-      required List<String> notes,
       required DateTime? startTime,
-      required DateTime? endTime,
+      required int ellapsedTime,
       required Pentagrama pentagrama}) {
     return _LecturaLibreState(
       index: index,
@@ -48,15 +45,12 @@ class _$LecturaLibreStateTearOff {
       score: score,
       lastScore: lastScore,
       enterNote: enterNote,
-      availableNotes: availableNotes,
-      currentNotes: currentNotes,
       errors: errors,
       errorCount: errorCount,
       listErrorIndex: listErrorIndex,
       isRunning: isRunning,
-      notes: notes,
       startTime: startTime,
-      endTime: endTime,
+      ellapsedTime: ellapsedTime,
       pentagrama: pentagrama,
     );
   }
@@ -75,16 +69,13 @@ mixin _$LecturaLibreState {
   double get lastAccuracy => throw _privateConstructorUsedError;
   double get score => throw _privateConstructorUsedError;
   double get lastScore => throw _privateConstructorUsedError;
-  String get enterNote => throw _privateConstructorUsedError;
-  List<String> get availableNotes => throw _privateConstructorUsedError;
-  List<String> get currentNotes => throw _privateConstructorUsedError;
-  Map<String, int> get errors => throw _privateConstructorUsedError;
+  Nota? get enterNote => throw _privateConstructorUsedError;
+  Map<Nota, int> get errors => throw _privateConstructorUsedError;
   int get errorCount => throw _privateConstructorUsedError;
   List<int> get listErrorIndex => throw _privateConstructorUsedError;
   bool get isRunning => throw _privateConstructorUsedError;
-  List<String> get notes => throw _privateConstructorUsedError;
   DateTime? get startTime => throw _privateConstructorUsedError;
-  DateTime? get endTime => throw _privateConstructorUsedError;
+  int get ellapsedTime => throw _privateConstructorUsedError;
   Pentagrama get pentagrama => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -106,18 +97,16 @@ abstract class $LecturaLibreStateCopyWith<$Res> {
       double lastAccuracy,
       double score,
       double lastScore,
-      String enterNote,
-      List<String> availableNotes,
-      List<String> currentNotes,
-      Map<String, int> errors,
+      Nota? enterNote,
+      Map<Nota, int> errors,
       int errorCount,
       List<int> listErrorIndex,
       bool isRunning,
-      List<String> notes,
       DateTime? startTime,
-      DateTime? endTime,
+      int ellapsedTime,
       Pentagrama pentagrama});
 
+  $NotaCopyWith<$Res>? get enterNote;
   $PentagramaCopyWith<$Res> get pentagrama;
 }
 
@@ -141,15 +130,12 @@ class _$LecturaLibreStateCopyWithImpl<$Res>
     Object? score = freezed,
     Object? lastScore = freezed,
     Object? enterNote = freezed,
-    Object? availableNotes = freezed,
-    Object? currentNotes = freezed,
     Object? errors = freezed,
     Object? errorCount = freezed,
     Object? listErrorIndex = freezed,
     Object? isRunning = freezed,
-    Object? notes = freezed,
     Object? startTime = freezed,
-    Object? endTime = freezed,
+    Object? ellapsedTime = freezed,
     Object? pentagrama = freezed,
   }) {
     return _then(_value.copyWith(
@@ -188,19 +174,11 @@ class _$LecturaLibreStateCopyWithImpl<$Res>
       enterNote: enterNote == freezed
           ? _value.enterNote
           : enterNote // ignore: cast_nullable_to_non_nullable
-              as String,
-      availableNotes: availableNotes == freezed
-          ? _value.availableNotes
-          : availableNotes // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      currentNotes: currentNotes == freezed
-          ? _value.currentNotes
-          : currentNotes // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as Nota?,
       errors: errors == freezed
           ? _value.errors
           : errors // ignore: cast_nullable_to_non_nullable
-              as Map<String, int>,
+              as Map<Nota, int>,
       errorCount: errorCount == freezed
           ? _value.errorCount
           : errorCount // ignore: cast_nullable_to_non_nullable
@@ -213,23 +191,30 @@ class _$LecturaLibreStateCopyWithImpl<$Res>
           ? _value.isRunning
           : isRunning // ignore: cast_nullable_to_non_nullable
               as bool,
-      notes: notes == freezed
-          ? _value.notes
-          : notes // ignore: cast_nullable_to_non_nullable
-              as List<String>,
       startTime: startTime == freezed
           ? _value.startTime
           : startTime // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      endTime: endTime == freezed
-          ? _value.endTime
-          : endTime // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+      ellapsedTime: ellapsedTime == freezed
+          ? _value.ellapsedTime
+          : ellapsedTime // ignore: cast_nullable_to_non_nullable
+              as int,
       pentagrama: pentagrama == freezed
           ? _value.pentagrama
           : pentagrama // ignore: cast_nullable_to_non_nullable
               as Pentagrama,
     ));
+  }
+
+  @override
+  $NotaCopyWith<$Res>? get enterNote {
+    if (_value.enterNote == null) {
+      return null;
+    }
+
+    return $NotaCopyWith<$Res>(_value.enterNote!, (value) {
+      return _then(_value.copyWith(enterNote: value));
+    });
   }
 
   @override
@@ -256,18 +241,17 @@ abstract class _$LecturaLibreStateCopyWith<$Res>
       double lastAccuracy,
       double score,
       double lastScore,
-      String enterNote,
-      List<String> availableNotes,
-      List<String> currentNotes,
-      Map<String, int> errors,
+      Nota? enterNote,
+      Map<Nota, int> errors,
       int errorCount,
       List<int> listErrorIndex,
       bool isRunning,
-      List<String> notes,
       DateTime? startTime,
-      DateTime? endTime,
+      int ellapsedTime,
       Pentagrama pentagrama});
 
+  @override
+  $NotaCopyWith<$Res>? get enterNote;
   @override
   $PentagramaCopyWith<$Res> get pentagrama;
 }
@@ -294,15 +278,12 @@ class __$LecturaLibreStateCopyWithImpl<$Res>
     Object? score = freezed,
     Object? lastScore = freezed,
     Object? enterNote = freezed,
-    Object? availableNotes = freezed,
-    Object? currentNotes = freezed,
     Object? errors = freezed,
     Object? errorCount = freezed,
     Object? listErrorIndex = freezed,
     Object? isRunning = freezed,
-    Object? notes = freezed,
     Object? startTime = freezed,
-    Object? endTime = freezed,
+    Object? ellapsedTime = freezed,
     Object? pentagrama = freezed,
   }) {
     return _then(_LecturaLibreState(
@@ -341,19 +322,11 @@ class __$LecturaLibreStateCopyWithImpl<$Res>
       enterNote: enterNote == freezed
           ? _value.enterNote
           : enterNote // ignore: cast_nullable_to_non_nullable
-              as String,
-      availableNotes: availableNotes == freezed
-          ? _value.availableNotes
-          : availableNotes // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      currentNotes: currentNotes == freezed
-          ? _value.currentNotes
-          : currentNotes // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as Nota?,
       errors: errors == freezed
           ? _value.errors
           : errors // ignore: cast_nullable_to_non_nullable
-              as Map<String, int>,
+              as Map<Nota, int>,
       errorCount: errorCount == freezed
           ? _value.errorCount
           : errorCount // ignore: cast_nullable_to_non_nullable
@@ -366,18 +339,14 @@ class __$LecturaLibreStateCopyWithImpl<$Res>
           ? _value.isRunning
           : isRunning // ignore: cast_nullable_to_non_nullable
               as bool,
-      notes: notes == freezed
-          ? _value.notes
-          : notes // ignore: cast_nullable_to_non_nullable
-              as List<String>,
       startTime: startTime == freezed
           ? _value.startTime
           : startTime // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      endTime: endTime == freezed
-          ? _value.endTime
-          : endTime // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+      ellapsedTime: ellapsedTime == freezed
+          ? _value.ellapsedTime
+          : ellapsedTime // ignore: cast_nullable_to_non_nullable
+              as int,
       pentagrama: pentagrama == freezed
           ? _value.pentagrama
           : pentagrama // ignore: cast_nullable_to_non_nullable
@@ -399,15 +368,12 @@ class _$_LecturaLibreState extends _LecturaLibreState {
       required this.score,
       required this.lastScore,
       required this.enterNote,
-      required this.availableNotes,
-      required this.currentNotes,
       required this.errors,
       required this.errorCount,
       required this.listErrorIndex,
       required this.isRunning,
-      required this.notes,
       required this.startTime,
-      required this.endTime,
+      required this.ellapsedTime,
       required this.pentagrama})
       : super._();
 
@@ -428,13 +394,9 @@ class _$_LecturaLibreState extends _LecturaLibreState {
   @override
   final double lastScore;
   @override
-  final String enterNote;
+  final Nota? enterNote;
   @override
-  final List<String> availableNotes;
-  @override
-  final List<String> currentNotes;
-  @override
-  final Map<String, int> errors;
+  final Map<Nota, int> errors;
   @override
   final int errorCount;
   @override
@@ -442,17 +404,15 @@ class _$_LecturaLibreState extends _LecturaLibreState {
   @override
   final bool isRunning;
   @override
-  final List<String> notes;
-  @override
   final DateTime? startTime;
   @override
-  final DateTime? endTime;
+  final int ellapsedTime;
   @override
   final Pentagrama pentagrama;
 
   @override
   String toString() {
-    return 'LecturaLibreState(index: $index, level: $level, speed: $speed, lastSpeed: $lastSpeed, accuracy: $accuracy, lastAccuracy: $lastAccuracy, score: $score, lastScore: $lastScore, enterNote: $enterNote, availableNotes: $availableNotes, currentNotes: $currentNotes, errors: $errors, errorCount: $errorCount, listErrorIndex: $listErrorIndex, isRunning: $isRunning, notes: $notes, startTime: $startTime, endTime: $endTime, pentagrama: $pentagrama)';
+    return 'LecturaLibreState(index: $index, level: $level, speed: $speed, lastSpeed: $lastSpeed, accuracy: $accuracy, lastAccuracy: $lastAccuracy, score: $score, lastScore: $lastScore, enterNote: $enterNote, errors: $errors, errorCount: $errorCount, listErrorIndex: $listErrorIndex, isRunning: $isRunning, startTime: $startTime, ellapsedTime: $ellapsedTime, pentagrama: $pentagrama)';
   }
 
   @override
@@ -470,46 +430,38 @@ class _$_LecturaLibreState extends _LecturaLibreState {
             const DeepCollectionEquality().equals(other.score, score) &&
             const DeepCollectionEquality().equals(other.lastScore, lastScore) &&
             const DeepCollectionEquality().equals(other.enterNote, enterNote) &&
-            const DeepCollectionEquality()
-                .equals(other.availableNotes, availableNotes) &&
-            const DeepCollectionEquality()
-                .equals(other.currentNotes, currentNotes) &&
             const DeepCollectionEquality().equals(other.errors, errors) &&
             const DeepCollectionEquality()
                 .equals(other.errorCount, errorCount) &&
             const DeepCollectionEquality()
                 .equals(other.listErrorIndex, listErrorIndex) &&
             const DeepCollectionEquality().equals(other.isRunning, isRunning) &&
-            const DeepCollectionEquality().equals(other.notes, notes) &&
             const DeepCollectionEquality().equals(other.startTime, startTime) &&
-            const DeepCollectionEquality().equals(other.endTime, endTime) &&
+            const DeepCollectionEquality()
+                .equals(other.ellapsedTime, ellapsedTime) &&
             const DeepCollectionEquality()
                 .equals(other.pentagrama, pentagrama));
   }
 
   @override
-  int get hashCode => Object.hashAll([
-        runtimeType,
-        const DeepCollectionEquality().hash(index),
-        const DeepCollectionEquality().hash(level),
-        const DeepCollectionEquality().hash(speed),
-        const DeepCollectionEquality().hash(lastSpeed),
-        const DeepCollectionEquality().hash(accuracy),
-        const DeepCollectionEquality().hash(lastAccuracy),
-        const DeepCollectionEquality().hash(score),
-        const DeepCollectionEquality().hash(lastScore),
-        const DeepCollectionEquality().hash(enterNote),
-        const DeepCollectionEquality().hash(availableNotes),
-        const DeepCollectionEquality().hash(currentNotes),
-        const DeepCollectionEquality().hash(errors),
-        const DeepCollectionEquality().hash(errorCount),
-        const DeepCollectionEquality().hash(listErrorIndex),
-        const DeepCollectionEquality().hash(isRunning),
-        const DeepCollectionEquality().hash(notes),
-        const DeepCollectionEquality().hash(startTime),
-        const DeepCollectionEquality().hash(endTime),
-        const DeepCollectionEquality().hash(pentagrama)
-      ]);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(index),
+      const DeepCollectionEquality().hash(level),
+      const DeepCollectionEquality().hash(speed),
+      const DeepCollectionEquality().hash(lastSpeed),
+      const DeepCollectionEquality().hash(accuracy),
+      const DeepCollectionEquality().hash(lastAccuracy),
+      const DeepCollectionEquality().hash(score),
+      const DeepCollectionEquality().hash(lastScore),
+      const DeepCollectionEquality().hash(enterNote),
+      const DeepCollectionEquality().hash(errors),
+      const DeepCollectionEquality().hash(errorCount),
+      const DeepCollectionEquality().hash(listErrorIndex),
+      const DeepCollectionEquality().hash(isRunning),
+      const DeepCollectionEquality().hash(startTime),
+      const DeepCollectionEquality().hash(ellapsedTime),
+      const DeepCollectionEquality().hash(pentagrama));
 
   @JsonKey(ignore: true)
   @override
@@ -527,16 +479,13 @@ abstract class _LecturaLibreState extends LecturaLibreState {
       required double lastAccuracy,
       required double score,
       required double lastScore,
-      required String enterNote,
-      required List<String> availableNotes,
-      required List<String> currentNotes,
-      required Map<String, int> errors,
+      required Nota? enterNote,
+      required Map<Nota, int> errors,
       required int errorCount,
       required List<int> listErrorIndex,
       required bool isRunning,
-      required List<String> notes,
       required DateTime? startTime,
-      required DateTime? endTime,
+      required int ellapsedTime,
       required Pentagrama pentagrama}) = _$_LecturaLibreState;
   const _LecturaLibreState._() : super._();
 
@@ -557,13 +506,9 @@ abstract class _LecturaLibreState extends LecturaLibreState {
   @override
   double get lastScore;
   @override
-  String get enterNote;
+  Nota? get enterNote;
   @override
-  List<String> get availableNotes;
-  @override
-  List<String> get currentNotes;
-  @override
-  Map<String, int> get errors;
+  Map<Nota, int> get errors;
   @override
   int get errorCount;
   @override
@@ -571,11 +516,9 @@ abstract class _LecturaLibreState extends LecturaLibreState {
   @override
   bool get isRunning;
   @override
-  List<String> get notes;
-  @override
   DateTime? get startTime;
   @override
-  DateTime? get endTime;
+  int get ellapsedTime;
   @override
   Pentagrama get pentagrama;
   @override

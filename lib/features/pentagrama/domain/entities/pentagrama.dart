@@ -107,33 +107,99 @@ class Pentagrama with _$Pentagrama {
 }
 
 List<Nota> getNotasDisponibles({required int nivel}) {
-  switch (nivel) {
-    case 1:
-      return [
-        const Nota(
-          tono: Tono.Do,
-          ocatava: Ocatava.Cuarta,
-          valor: Valor.Negra,
-          silencio: false,
-          puntillosRepeticion: null,
-          casillaDeRepeticion: 0,
-          puntillo: false,
-          calderon: false,
-        ),
-        const Nota(
-          tono: Tono.Sol,
-          ocatava: Ocatava.Cuarta,
-          valor: Valor.Negra,
-          silencio: false,
-          puntillosRepeticion: null,
-          casillaDeRepeticion: 0,
-          puntillo: false,
-          calderon: false,
-        ),
-      ];
-    default:
-      return [];
+  final notas = <Nota>[];
+  if (nivel >= 1) {
+    notas.insert(
+      0,
+      Nota.nivel(Tono.Do, Ocatava.Cuarta),
+    );
+    notas.insert(
+      0,
+      Nota.nivel(Tono.Sol, Ocatava.Cuarta),
+    );
   }
+  if (nivel >= 2) {
+    notas.insert(
+      0,
+      Nota.nivel(Tono.Do, Ocatava.Quinta),
+    );
+    notas.insert(
+      0,
+      Nota.nivel(Tono.Sol, Ocatava.Quinta),
+    );
+  }
+  if (nivel >= 3) {
+    notas.insert(
+      0,
+      Nota.nivel(Tono.La, Ocatava.Cuarta),
+    );
+    notas.insert(
+      0,
+      Nota.nivel(Tono.Re, Ocatava.Quinta),
+    );
+  }
+  if (nivel >= 4) {
+    notas.insert(
+      0,
+      Nota.nivel(Tono.Fa, Ocatava.Cuarta),
+    );
+    notas.insert(
+      0,
+      Nota.nivel(Tono.Si, Ocatava.Cuarta),
+    );
+  }
+  if (nivel >= 5) {
+    notas.insert(
+      0,
+      Nota.nivel(Tono.Fa, Ocatava.Quinta),
+    );
+    notas.insert(
+      0,
+      Nota.nivel(Tono.Re, Ocatava.Cuarta),
+    );
+  }
+  if (nivel >= 6) {
+    notas.insert(
+      0,
+      Nota.nivel(Tono.La, Ocatava.Quinta),
+    );
+    notas.insert(
+      0,
+      Nota.nivel(Tono.Si, Ocatava.Tercera),
+    );
+  }
+  if (nivel >= 7) {
+    notas.insert(
+      0,
+      Nota.nivel(Tono.Mi, Ocatava.Cuarta),
+    );
+    notas.insert(
+      0,
+      Nota.nivel(Tono.Mi, Ocatava.Quinta),
+    );
+  }
+  if (nivel >= 8) {
+    notas.insert(
+      0,
+      Nota.nivel(Tono.Si, Ocatava.Quinta),
+    );
+    notas.insert(
+      0,
+      Nota.nivel(Tono.La, Ocatava.Tercera),
+    );
+  }
+  if (nivel >= 9) {
+    notas.insert(
+      0,
+      Nota.nivel(Tono.Do, Ocatava.Sexta),
+    );
+    notas.insert(
+      0,
+      Nota.nivel(Tono.Re, Ocatava.Sexta),
+    );
+  }
+
+  return notas;
 }
 
 List<Compas> generarCompasesLecturaLibre({required int nivel}) {
@@ -190,6 +256,32 @@ class Nota with _$Nota {
     required bool puntillo,
     required bool calderon,
   }) = _Nota;
+
+  factory Nota.initial(Tono tono) => Nota(
+        tono: tono,
+        ocatava: Ocatava.Cuarta,
+        valor: Valor.Negra,
+        silencio: false,
+        puntillosRepeticion: null,
+        casillaDeRepeticion: 0,
+        puntillo: false,
+        calderon: false,
+      );
+
+  factory Nota.nivel(
+    Tono tono,
+    Ocatava ocatava,
+  ) =>
+      Nota(
+        tono: tono,
+        ocatava: ocatava,
+        valor: Valor.Negra,
+        silencio: false,
+        puntillosRepeticion: null,
+        casillaDeRepeticion: 0,
+        puntillo: false,
+        calderon: false,
+      );
 }
 
 String getNotaPosicion({
@@ -240,6 +332,23 @@ String getNotaPosicion({
       } else {
         return "";
       }
+  }
+}
+
+double getNoteSize({
+  required Valor valor,
+}) {
+  switch (valor) {
+    case Valor.Redonda:
+      return 1.328;
+    case Valor.Blanca:
+      return 1.328;
+    case Valor.Negra:
+      return 1.328;
+    case Valor.Corchea:
+      return 1.328;
+    case Valor.SemiCorchea:
+      return 1.328;
   }
 }
 

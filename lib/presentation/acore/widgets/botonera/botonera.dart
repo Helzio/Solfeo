@@ -1,9 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:solfeo/features/lectura_libre/providers/lectura_libre_provider.dart';
+import 'package:solfeo/features/pentagrama/domain/entities/pentagrama.dart';
 
 enum Size { small, normal, big }
 
 class Botonera extends StatefulWidget {
-  const Botonera({Key? key}) : super(key: key);
+  final Color color;
+  final Color colorSecundary;
+  const Botonera({
+    Key? key,
+    required this.color,
+    required this.colorSecundary,
+  }) : super(key: key);
 
   @override
   State<Botonera> createState() => _BotoneraState();
@@ -16,15 +25,45 @@ class _BotoneraState extends State<Botonera> {
   Widget build(BuildContext context) {
     return Stack(
       alignment: Alignment.center,
-      children: const [
-        Circulo(),
-        BotonNota(nota: 0),
-        BotonNota(nota: 1),
-        BotonNota(nota: 2),
-        BotonNota(nota: 3),
-        BotonNota(nota: 4),
-        BotonNota(nota: 5),
-        BotonNota(nota: 6),
+      children: [
+        Circulo(
+          colorSecundary: widget.colorSecundary,
+        ),
+        BotonNota(
+          nota: 0,
+          color: widget.color,
+          colorSecundary: widget.colorSecundary,
+        ),
+        BotonNota(
+          nota: 1,
+          color: widget.color,
+          colorSecundary: widget.colorSecundary,
+        ),
+        BotonNota(
+          nota: 2,
+          color: widget.color,
+          colorSecundary: widget.colorSecundary,
+        ),
+        BotonNota(
+          nota: 3,
+          color: widget.color,
+          colorSecundary: widget.colorSecundary,
+        ),
+        BotonNota(
+          nota: 4,
+          color: widget.color,
+          colorSecundary: widget.colorSecundary,
+        ),
+        BotonNota(
+          nota: 5,
+          color: widget.color,
+          colorSecundary: widget.colorSecundary,
+        ),
+        BotonNota(
+          nota: 6,
+          color: widget.color,
+          colorSecundary: widget.colorSecundary,
+        ),
       ],
     );
   }
@@ -32,9 +71,11 @@ class _BotoneraState extends State<Botonera> {
 
 class Circulo extends StatefulWidget {
   final Size size;
+  final Color colorSecundary;
   const Circulo({
     Key? key,
     this.size = Size.normal,
+    required this.colorSecundary,
   }) : super(key: key);
 
   @override
@@ -42,8 +83,6 @@ class Circulo extends StatefulWidget {
 }
 
 class _CirculoState extends State<Circulo> {
-  final isThemeWhite = true;
-
   @override
   Widget build(BuildContext context) {
     return IgnorePointer(
@@ -58,7 +97,7 @@ class _CirculoState extends State<Circulo> {
               color: Colors.transparent,
               shape: BoxShape.circle,
               border: Border.all(
-                color: isThemeWhite ? Colors.grey.shade800 : Colors.white,
+                color: widget.colorSecundary,
               ),
             ),
           ),
@@ -68,23 +107,34 @@ class _CirculoState extends State<Circulo> {
   }
 }
 
-class BotonNota extends StatefulWidget {
+class BotonNota extends ConsumerStatefulWidget {
   final int nota;
   final Size size;
+  final Color color;
+  final Color colorSecundary;
   static const nombreNotas = ["do", "re", "mi", "fa", "sol", "la", "si"];
+  static List<Nota> notas = [
+    Nota.initial(Tono.Do),
+    Nota.initial(Tono.Re),
+    Nota.initial(Tono.Mi),
+    Nota.initial(Tono.Fa),
+    Nota.initial(Tono.Sol),
+    Nota.initial(Tono.La),
+    Nota.initial(Tono.Si),
+  ];
   const BotonNota({
     Key? key,
     required this.nota,
+    required this.color,
+    required this.colorSecundary,
     this.size = Size.normal,
   }) : super(key: key);
 
   @override
-  State<BotonNota> createState() => _BotonNotaState();
+  ConsumerState<BotonNota> createState() => _BotonNotaState();
 }
 
-class _BotonNotaState extends State<BotonNota> {
-  final isThemeWhite = true;
-
+class _BotonNotaState extends ConsumerState<BotonNota> {
   @override
   Widget build(BuildContext context) {
     return Transform.rotate(
@@ -95,7 +145,7 @@ class _BotonNotaState extends State<BotonNota> {
           height: widget.size == Size.normal ? 64 : 80,
           width: widget.size == Size.normal ? 64 : 80,
           decoration: BoxDecoration(
-            color: isThemeWhite ? Colors.white : Colors.grey.shade900,
+            color: widget.color,
             shape: BoxShape.circle,
           ),
           child: Align(
@@ -106,11 +156,11 @@ class _BotonNotaState extends State<BotonNota> {
                 shape: BoxShape.circle,
               ),
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  ref.read(lecturaLibreProvider.notifier).setEnterNote(BotonNota.notas[widget.nota]);
+                },
                 style: ElevatedButton.styleFrom(
-                  primary: isThemeWhite
-                      ? Colors.grey.shade100
-                      : Colors.grey.shade800,
+                  primary: widget.color,
                   padding: EdgeInsets.zero,
                   shape: const StadiumBorder(),
                 ),
@@ -121,7 +171,7 @@ class _BotonNotaState extends State<BotonNota> {
                       BotonNota.nombreNotas[widget.nota].toUpperCase(),
                       style: TextStyle(
                         fontSize: widget.size == Size.normal ? 12 : 14,
-                        color: isThemeWhite ? Colors.black : Colors.white,
+                        color: widget.colorSecundary,
                       ),
                     ),
                   ),
