@@ -8,7 +8,8 @@ class PentagramaLecturaLibre extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final lecturaLibreState = ref.watch(lecturaLibreProvider);
+    final pentagrama =
+        ref.watch(lecturaLibreProvider.select((value) => value.pentagrama));
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 32.0),
       child: LayoutBuilder(
@@ -18,7 +19,7 @@ class PentagramaLecturaLibre extends ConsumerWidget {
               constraints.maxWidth,
               constraints.maxHeight,
             ),
-            pentagrama: lecturaLibreState.pentagrama,
+            pentagrama: pentagrama,
           );
         },
       ),

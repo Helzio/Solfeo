@@ -63,7 +63,8 @@ class LecturaLibreNotifier extends StateNotifier<LecturaLibreState> {
   }
 
   void comprobarAvance({bool force = false}) {
-    if ((state.accuracy >= 89 || force) && state.level <= 9) {
+    if (((state.accuracy >= 89 && state.speed > 100) || force) &&
+        state.level <= 9) {
       state = state.copyWith(
         level: state.level + 1,
       );
@@ -79,7 +80,16 @@ class LecturaLibreNotifier extends StateNotifier<LecturaLibreState> {
     if (state.index == state.pentagrama.notas.length - 1) {
       final ellapsedTime = DateTime.now().millisecondsSinceEpoch -
           state.startTime!.millisecondsSinceEpoch;
-      state = state.copyWith(ellapsedTime: ellapsedTime);
+      final segundos = ellapsedTime / 1000;
+      final notasPorSegundo = state.pentagrama.notas.length / segundos;
+      final speed = notasPorSegundo * 60;
+      state = state.copyWith(
+        ellapsedTime: ellapsedTime == state.ellapsedTime
+            ? ellapsedTime + 1
+            : ellapsedTime,
+        lastSpeed: state.speed,
+        speed: speed,
+      );
     }
 
     if (state.pentagrama.notas[state.index].tono != note.tono) {
@@ -121,7 +131,7 @@ class LecturaLibreNotifier extends StateNotifier<LecturaLibreState> {
   }
 
   void addLevel() {
-    if (state.level <= 14) {
+    if (state.level <= 9) {
       comprobarAvance(force: true);
       generateNotes();
     }

@@ -260,7 +260,8 @@ class PentagramaNota extends ConsumerWidget {
           height: textSize * pentagramaRatio,
           width: unidad * getNoteSize(valor: nota.valor),
           child: Text(
-            "${getNotaPosicion(tono: nota.tono)}${getNoteString(valor: nota.valor)}",
+            getNotaPosicion(
+                tono: nota.tono, octava: nota.ocatava, valor: nota.valor),
             style: TextStyle(
               fontSize: textSize * pentagramaRatio,
               overflow: TextOverflow.visible,

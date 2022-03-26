@@ -202,6 +202,15 @@ List<Nota> getNotasDisponibles({required int nivel}) {
   return notas;
 }
 
+const up1 = "\u{EB90}";
+const up2 = "\u{EB91}";
+const up3 = "\u{EB92}";
+const up4 = "\u{EB93}";
+const up5 = "\u{EB94}";
+const up6 = "\u{EB95}";
+const up7 = "\u{EB96}";
+const up8 = "\u{EB97}";
+
 List<Compas> generarCompasesLecturaLibre({required int nivel}) {
   final List<Compas> compases = [];
   List<Nota> notasDisponibles = getNotasDisponibles(nivel: nivel)..shuffle();
@@ -287,50 +296,59 @@ class Nota with _$Nota {
 String getNotaPosicion({
   Clave clave = Clave.Sol,
   required Tono tono,
-  Ocatava ocatava = Ocatava.Cuarta,
+  Ocatava octava = Ocatava.Cuarta,
+  Valor valor = Valor.Negra,
 }) {
   switch (tono) {
     case Tono.Do:
-      if (ocatava == Ocatava.Cuarta) {
-        return "\u{EB9D}\u{E022}\u{EB9D}";
+      if (octava == Ocatava.Cuarta) {
+        return "\u{EB9D}\u{E022}\u{EB9D}${getNoteString(valor: valor)}";
+      } else if (octava == Ocatava.Quinta) {
+        return up1 + getNoteString(valor: valor);
       } else {
-        return "";
+        return getNoteString(valor: valor);
       }
     case Tono.Re:
-      if (ocatava == Ocatava.Cuarta) {
-        return "\uEB9C";
+      if (octava == Ocatava.Cuarta) {
+        return "\uEB9C${getNoteString(valor: valor)}";
       } else {
-        return "";
+        return getNoteString(valor: valor);
       }
     case Tono.Mi:
-      if (ocatava == Ocatava.Cuarta) {
-        return "\uEB9B";
+      if (octava == Ocatava.Cuarta) {
+        return "\uEB9B${getNoteString(valor: valor)}";
       } else {
-        return "";
+        return getNoteString(valor: valor);
       }
     case Tono.Fa:
-      if (ocatava == Ocatava.Cuarta) {
-        return "\uEB9A";
+      if (octava == Ocatava.Cuarta) {
+        return "\uEB9A${getNoteString(valor: valor)}";
       } else {
-        return "";
+        return getNoteString(valor: valor);
       }
     case Tono.Sol:
-      if (ocatava == Ocatava.Cuarta) {
-        return "\uEB99";
+      if (octava == Ocatava.Cuarta) {
+        return "\uEB99${getNoteString(valor: valor)}";
+      } else if (octava == Ocatava.Quinta) {
+        return up5 +
+            getNoteString(
+              valor: valor,
+              down: true,
+            );
       } else {
-        return "";
+        return getNoteString(valor: valor);
       }
     case Tono.La:
-      if (ocatava == Ocatava.Cuarta) {
-        return "\uEB98";
+      if (octava == Ocatava.Cuarta) {
+        return "\uEB98${getNoteString(valor: valor)}";
       } else {
-        return "";
+        return getNoteString(valor: valor);
       }
     case Tono.Si:
-      if (ocatava == Ocatava.Cuarta) {
-        return "\uEB9D";
+      if (octava == Ocatava.Cuarta) {
+        return "\uEB9D${getNoteString(valor: valor)}";
       } else {
-        return "";
+        return getNoteString(valor: valor);
       }
   }
 }
@@ -352,10 +370,13 @@ double getNoteSize({
   }
 }
 
+const negraUp = "\u{E1D5}";
+const negraDown = "\u{E1D6}";
+
 String getNoteString({
   required Valor valor,
   bool silencio = false,
-  bool haciaAbajo = false,
+  bool down = false,
 }) {
   switch (valor) {
     case Valor.Redonda:
@@ -372,7 +393,7 @@ String getNoteString({
       }
     case Valor.Negra:
       if (!silencio) {
-        return "\u{E1D5}";
+        return down ? negraDown : negraUp;
       } else {
         return "\u{E4E5}";
       }

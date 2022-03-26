@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 class LevelChip extends StatelessWidget {
   final String text;
   final bool enabled;
+  final bool isNew;
   const LevelChip({
     Key? key,
     required this.text,
     required this.enabled,
+    required this.isNew,
   }) : super(key: key);
 
   @override
@@ -14,9 +16,12 @@ class LevelChip extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(right: 4, top: 4),
       child: Container(
-        decoration: ShapeDecoration(
+        decoration: BoxDecoration(
           color: enabled ? Colors.grey.shade400 : Colors.grey.shade200,
-          shape: const StadiumBorder(),
+          borderRadius: BorderRadius.circular(8),
+          border: isNew
+              ? Border.all(color: Colors.green)
+              : Border.all(color: Colors.transparent),
         ),
         child: Padding(
           padding: const EdgeInsets.all(4.0),

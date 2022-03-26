@@ -19,10 +19,10 @@ class ScoreWidget extends ConsumerWidget {
         ref.watch(lecturaLibreProvider.select((value) => value.lastAccuracy));
 
     final speed =
-        ref.watch(lecturaLibreProvider.select((value) => value.speed));
+        ref.watch(lecturaLibreProvider.select((value) => value.speed.toInt()));
 
-    final lastSpeed =
-        ref.watch(lecturaLibreProvider.select((value) => value.lastSpeed));
+    final lastSpeed = ref
+        .watch(lecturaLibreProvider.select((value) => value.lastSpeed.toInt()));
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 32.0),
@@ -72,7 +72,7 @@ class ScoreWidget extends ConsumerWidget {
                             ),
                           ),
                           TextSpan(
-                            text: "= 0",
+                            text: "= ${speed.toString()}",
                             style: TextStyle(
                               fontSize: 11,
                               fontWeight: FontWeight.bold,
@@ -93,8 +93,7 @@ class ScoreWidget extends ConsumerWidget {
                             ),
                           ),
                           TextSpan(
-                            text:
-                                "${(speed - lastSpeed).abs().toStringAsFixed(2)})",
+                            text: "${(speed - lastSpeed).abs().toString()})",
                             style: TextStyle(
                               fontSize: 11,
                               fontWeight: FontWeight.bold,
@@ -122,7 +121,7 @@ class ScoreWidget extends ConsumerWidget {
                     ),
                     children: [
                       TextSpan(
-                        text: acuracy.toStringAsFixed(2),
+                        text: "%${acuracy.toStringAsFixed(2)}",
                         style: TextStyle(
                           fontSize: 11,
                           fontWeight: FontWeight.bold,
@@ -185,74 +184,92 @@ class ScoreWidget extends ConsumerWidget {
                     LevelChip(
                       text: "Do4",
                       enabled: nivel >= 1,
+                      isNew: nivel == 1,
                     ),
                     LevelChip(
                       text: "Sol4",
                       enabled: nivel >= 1,
+                      isNew: nivel == 1,
                     ),
                     LevelChip(
                       text: "Do5",
                       enabled: nivel >= 2,
+                      isNew: nivel == 2,
                     ),
                     LevelChip(
                       text: "Sol5",
                       enabled: nivel >= 2,
+                      isNew: nivel == 2,
                     ),
                     LevelChip(
                       text: "La4",
                       enabled: nivel >= 3,
+                      isNew: nivel == 3,
                     ),
                     LevelChip(
                       text: "Re5",
                       enabled: nivel >= 3,
+                      isNew: nivel == 3,
                     ),
                     LevelChip(
                       text: "Fa4",
                       enabled: nivel >= 4,
+                      isNew: nivel == 4,
                     ),
                     LevelChip(
                       text: "Si4",
                       enabled: nivel >= 4,
+                      isNew: nivel == 4,
                     ),
                     LevelChip(
                       text: "Fa5",
                       enabled: nivel >= 5,
+                      isNew: nivel == 5,
                     ),
                     LevelChip(
                       text: "Re4",
                       enabled: nivel >= 5,
+                      isNew: nivel == 5,
                     ),
                     LevelChip(
                       text: "La5",
                       enabled: nivel >= 6,
+                      isNew: nivel == 6,
                     ),
                     LevelChip(
                       text: "Si3",
                       enabled: nivel >= 6,
+                      isNew: nivel == 6,
                     ),
                     LevelChip(
                       text: "Mi4",
                       enabled: nivel >= 7,
+                      isNew: nivel == 7,
                     ),
                     LevelChip(
                       text: "Mi5",
                       enabled: nivel >= 7,
+                      isNew: nivel == 7,
                     ),
                     LevelChip(
                       text: "Si5",
                       enabled: nivel >= 8,
+                      isNew: nivel == 8,
                     ),
                     LevelChip(
                       text: "La3",
                       enabled: nivel >= 8,
+                      isNew: nivel == 8,
                     ),
                     LevelChip(
                       text: "Do6",
                       enabled: nivel >= 9,
+                      isNew: nivel == 9,
                     ),
                     LevelChip(
                       text: "Re6",
                       enabled: nivel >= 9,
+                      isNew: nivel == 9,
                     ),
                   ],
                 ),
