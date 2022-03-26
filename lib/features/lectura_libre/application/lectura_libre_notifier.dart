@@ -65,12 +65,6 @@ class LecturaLibreNotifier extends StateNotifier<LecturaLibreState> {
       listErrorIndex: [],
       enterNote: null,
       errorCount: 0,
-      greenNotes: state.level == 10
-          ? {}
-          : {
-              getNotasDisponibles(nivel: state.level)[0],
-              getNotasDisponibles(nivel: state.level)[1],
-            },
       pentagrama: Pentagrama.lecturaLibre(nivel: state.level),
     );
   }
@@ -83,6 +77,12 @@ class LecturaLibreNotifier extends StateNotifier<LecturaLibreState> {
     if ((state.accuracy >= 89 && state.speed > 100) && state.level <= 9) {
       state = state.copyWith(
         level: state.level + 1,
+        greenNotes: state.level == 10
+            ? {}
+            : {
+                getNotasDisponibles(nivel: state.level + 1)[0],
+                getNotasDisponibles(nivel: state.level + 1)[1],
+              },
       );
     }
   }
@@ -112,6 +112,9 @@ class LecturaLibreNotifier extends StateNotifier<LecturaLibreState> {
     }
 
     if (state.pentagrama.notas[state.index].tono != note.tono) {
+      if (state.listErrorIndex.contains(state.index)) {
+        return;
+      }
       final Map<Nota, int> map = {
         ...state.errors,
       };
