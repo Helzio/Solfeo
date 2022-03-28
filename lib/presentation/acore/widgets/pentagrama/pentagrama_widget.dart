@@ -5,7 +5,7 @@ import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:solfeo/features/lectura_libre/providers/lectura_libre_provider.dart';
 import 'package:solfeo/features/pentagrama/domain/entities/pentagrama.dart';
 
-const double pentagramaRatio = kIsWeb ? .6 : .35;
+const double pentagramaRatio = kIsWeb ? .6 : .40;
 
 class PentagramaWidget extends ConsumerStatefulWidget {
   final Size size;

@@ -44,10 +44,7 @@ class LecturaLibreState with _$LecturaLibreState {
         lastScore: 0,
         lastAccuracy: 0,
         lastSpeed: 0,
-        greenNotes: {
-          getNotasDisponibles(nivel: 1)[0],
-          getNotasDisponibles(nivel: 1)[1],
-        },
+        greenNotes: {},
         pentagrama: Pentagrama.lecturaLibre(nivel: 1),
       );
 }
@@ -77,12 +74,6 @@ class LecturaLibreNotifier extends StateNotifier<LecturaLibreState> {
     if ((state.accuracy >= 89 && state.speed > 100) && state.level <= 9) {
       state = state.copyWith(
         level: state.level + 1,
-        greenNotes: state.level == 10
-            ? {}
-            : {
-                getNotasDisponibles(nivel: state.level + 1)[0],
-                getNotasDisponibles(nivel: state.level + 1)[1],
-              },
       );
     }
   }
@@ -94,21 +85,6 @@ class LecturaLibreNotifier extends StateNotifier<LecturaLibreState> {
       if (state.startTime == null) {
         state = state.copyWith(startTime: DateTime.now());
       }
-    }
-    if (state.index == state.pentagrama.notas.length - 1) {
-      final ellapsedTime = DateTime.now().millisecondsSinceEpoch -
-          state.startTime!.millisecondsSinceEpoch;
-      final segundos = ellapsedTime / 1000;
-      final notasPorSegundo = state.pentagrama.notas.length / segundos;
-      final speed = notasPorSegundo * 60;
-      state = state.copyWith(
-        ellapsedTime: ellapsedTime == state.ellapsedTime
-            ? ellapsedTime + 1
-            : ellapsedTime,
-        lastSpeed: state.speed,
-        speed: speed,
-        startTime: null,
-      );
     }
 
     if (state.pentagrama.notas[state.index].tono != note.tono) {
@@ -130,6 +106,22 @@ class LecturaLibreNotifier extends StateNotifier<LecturaLibreState> {
       );
 
       return;
+    }
+
+    if (state.index == state.pentagrama.notas.length - 1) {
+      final ellapsedTime = DateTime.now().millisecondsSinceEpoch -
+          state.startTime!.millisecondsSinceEpoch;
+      final segundos = ellapsedTime / 1000;
+      final notasPorSegundo = state.pentagrama.notas.length / segundos;
+      final speed = notasPorSegundo * 60;
+      state = state.copyWith(
+        ellapsedTime: ellapsedTime == state.ellapsedTime
+            ? ellapsedTime + 1
+            : ellapsedTime,
+        lastSpeed: state.speed,
+        speed: speed,
+        startTime: null,
+      );
     }
 
     state = state.copyWith(

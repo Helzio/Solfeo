@@ -182,35 +182,40 @@ class ScoreWidget extends ConsumerWidget {
                   ),
                 ),
               ),
-              Column(
-                children: [
-                  const SizedBox(
-                    height: 2,
+              AbsorbPointer(
+                child: Opacity(
+                  opacity: 0,
+                  child: Column(
+                    children: [
+                      const SizedBox(
+                        height: 2,
+                      ),
+                      InkResponse(
+                        radius: 16,
+                        onTap: () {
+                          ref.read(lecturaLibreProvider.notifier).removeLevel();
+                        },
+                        child: const Icon(
+                          Icons.remove_circle_outline,
+                          size: 18,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 2,
+                      ),
+                      InkResponse(
+                        radius: 16,
+                        onTap: () {
+                          ref.read(lecturaLibreProvider.notifier).addLevel();
+                        },
+                        child: const Icon(
+                          Icons.add_circle_outline,
+                          size: 18,
+                        ),
+                      ),
+                    ],
                   ),
-                  InkResponse(
-                    radius: 16,
-                    onTap: () {
-                      ref.read(lecturaLibreProvider.notifier).removeLevel();
-                    },
-                    child: const Icon(
-                      Icons.remove_circle_outline,
-                      size: 18,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 2,
-                  ),
-                  InkResponse(
-                    radius: 16,
-                    onTap: () {
-                      ref.read(lecturaLibreProvider.notifier).addLevel();
-                    },
-                    child: const Icon(
-                      Icons.add_circle_outline,
-                      size: 18,
-                    ),
-                  ),
-                ],
+                ),
               ),
               const SizedBox(
                 width: 8,
@@ -353,7 +358,7 @@ class ScoreWidget extends ConsumerWidget {
                   padding: const EdgeInsets.all(1),
                   child: LinearProgressIndicator(
                     backgroundColor: Colors.grey.shade300,
-                    value: totalTime / 900000,
+                    value: totalTime / 600000,
                   ),
                 ),
               ),
@@ -362,6 +367,41 @@ class ScoreWidget extends ConsumerWidget {
           const Padding(
             padding: EdgeInsets.symmetric(vertical: 6.0),
             child: Guia(Colors.black),
+          ),
+          Row(
+            children: [
+              Expanded(
+                child: RichText(
+                  text: TextSpan(
+                    text: "",
+                    style: TextStyle(
+                      fontSize: 13,
+                      color: Colors.grey.shade600,
+                    ),
+                  ),
+                ),
+              ),
+              RichText(
+                text: TextSpan(
+                  text: "",
+                  style: TextStyle(
+                    fontSize: 11,
+                    color: Colors.grey.shade600,
+                  ),
+                  children: [
+                    TextSpan(
+                      text:
+                          "Velocidad >100 y precisión >90 para subir de nivel*",
+                      style: TextStyle(
+                        fontSize: 8,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.grey.shade800,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
           const SizedBox(
             height: 16,

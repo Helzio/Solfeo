@@ -92,12 +92,12 @@ class _LecturaLibrePageState extends ConsumerState<LecturaLibrePage> {
               ),
             const ScoreWidget(),
             const Expanded(
-              flex: 55,
+              flex: 50,
               child: PentagramaLecturaLibre(),
             ),
             const Divider(),
             Expanded(
-              flex: 45,
+              flex: 50,
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Botonera(

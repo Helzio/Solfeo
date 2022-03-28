@@ -29,13 +29,17 @@ class LevelChip extends ConsumerWidget {
               : Border.all(color: Colors.transparent),
         ),
         child: InkWell(
-          onTap: () {
-            if (greenNotes.contains(nota)) {
-              ref.read(lecturaLibreProvider.notifier).removeGreenNote(nota);
-            } else {
-              ref.read(lecturaLibreProvider.notifier).addGreenNote(nota);
-            }
-          },
+          onTap: enabled
+              ? () {
+                  if (greenNotes.contains(nota)) {
+                    ref
+                        .read(lecturaLibreProvider.notifier)
+                        .removeGreenNote(nota);
+                  } else {
+                    ref.read(lecturaLibreProvider.notifier).addGreenNote(nota);
+                  }
+                }
+              : null,
           onLongPress: () {
             if (greenNotes.contains(nota)) {
               ref.read(lecturaLibreProvider.notifier).clearGreenNotes();
@@ -46,7 +50,7 @@ class LevelChip extends ConsumerWidget {
           child: Padding(
             padding: const EdgeInsets.all(4.0),
             child: SizedBox(
-              width: 16,
+              width: 17,
               child: Text(
                 text,
                 textAlign: TextAlign.center,
