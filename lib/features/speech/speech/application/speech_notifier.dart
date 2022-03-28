@@ -24,7 +24,9 @@ class SpeechNotifier extends StateNotifier<SpeechState> {
 
   Future load() async {
     state = const SpeechState.loading();
-    final String languagePath = await getLanguagePath();
+    final String languagePath =
+        (await getLanguagePath()).replaceAll(".zip", "");
+
     if (await Directory(languagePath).exists()) {
       try {
         await OfflineSpeechRecognition.load(languagePath);
@@ -42,7 +44,7 @@ class SpeechNotifier extends StateNotifier<SpeechState> {
       await OfflineSpeechRecognition.start();
       state = const SpeechState.listening("");
       OfflineSpeechRecognition.onPartial()!.listen((event) {
-        state = SpeechState.listening("${event.partial}- ${DateTime.now()}");
+        state = SpeechState.listening(event.partial);
       });
     } catch (e) {
       state = const SpeechState.noFile();
@@ -51,8 +53,8 @@ class SpeechNotifier extends StateNotifier<SpeechState> {
 
   Future<void> stop() async {
     try {
-      await OfflineSpeechRecognition.stop();
       state = const SpeechState.loaded();
+      await OfflineSpeechRecognition.stop();
     } catch (e) {
       state = const SpeechState.noFile();
     }

@@ -19,6 +19,10 @@ class DownloadSpeechNotifier extends StateNotifier<DownloadSpeechState> {
   DownloadSpeechNotifier(this._repository)
       : super(const DownloadSpeechState.initial());
 
+  void reset(){
+    state = const DownloadSpeechState.initial();
+  }
+
   Future<void> downloadLanguage() async {
     state = const DownloadSpeechState.loading(0);
     final response = await _repository.downloadSpeech(

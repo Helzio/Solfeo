@@ -72,7 +72,8 @@ public class SpeechRecognitionModel implements RecognitionListener {
 
         @Override
         public Model call() {
-            LibVosk.setLogLevel(LogLevel.INFO);
+          LibVosk.setLogLevel(LogLevel.INFO);
+
             return new Model(path);
         }
     }
@@ -91,21 +92,26 @@ public class SpeechRecognitionModel implements RecognitionListener {
         }
 
         Recognizer rec = new Recognizer(model, 16000.0f, "[\"do\",\"re\",\"mi\",\"fa\",\"sol\",\"la\",\"si\"]");
+        rec.setWords(true);
         speechService = new SpeechService(rec, 16000.0f);
         speechService.startListening(this);
     }
 
     public void stop() {
         if (speechService != null) {
-            speechService.stop();
+          speechService.cancel();
+          speechService.stop();
             speechService.shutdown();
+            speechService = null;
         }
     }
 
     public void destroy() {
         if (speechService != null) {
+          speechService.cancel();
             speechService.stop();
             speechService.shutdown();
+            speechService = null;
         }
 
     }

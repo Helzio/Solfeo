@@ -67,7 +67,9 @@ class OfflineSpeechRecognition {
   static Stream<SpeechPartial>? onPartial() {
     _onPartial ??= _partialMessageChannel
         .receiveBroadcastStream()
-        .map((data) => SpeechPartial.fromJson(jsonDecode(data)));
+        .map((data) {
+          return SpeechPartial.fromJson(jsonDecode(data));
+        });
     return _onPartial;
   }
 }

@@ -1,8 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:offline_speech_recognition/model/speech_partial.dart';
 import 'package:solfeo/features/lectura_libre/providers/lectura_libre_provider.dart';
 import 'package:solfeo/features/pentagrama/domain/entities/pentagrama.dart';
+import 'package:solfeo/features/speech/download/providers/download_speech_providers.dart';
+import 'package:solfeo/features/speech/speech/application/speech_notifier.dart';
 import 'package:solfeo/features/speech/speech/providers/speech_providers.dart';
 import 'package:solfeo/routes/app_route.gr.dart';
 
@@ -78,6 +81,8 @@ class _BotoneraState extends State<Botonera> {
             colorSecundary: widget.colorSecundary,
           ),
         ), */
+
+        const SpeechText(),
         Align(
           alignment: Alignment.topRight,
           child: Padding(
@@ -95,6 +100,47 @@ class _BotoneraState extends State<Botonera> {
   }
 }
 
+class SpeechText extends ConsumerWidget {
+  const SpeechText({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(
+    BuildContext context,
+    WidgetRef ref,
+  ) {
+    return StreamBuilder(
+      stream: ref.read(speechProvider.notifier).onPartial(),
+      builder: (BuildContext context, AsyncSnapshot<SpeechPartial> snapshot) {
+        if (snapshot.hasData) {
+          return Center(
+            child: Text(
+              snapshot.data!.partial.split(" ").last,
+              style: const TextStyle(
+                fontSize: 22,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          );
+        } else {
+          return const Center(
+            child: Text(
+              "Iniciar",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 32,
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+              ),
+            ),
+          );
+        }
+      },
+    );
+  }
+}
+
 class VoiceButton extends ConsumerStatefulWidget {
   const VoiceButton({Key? key}) : super(key: key);
 
@@ -103,6 +149,7 @@ class VoiceButton extends ConsumerStatefulWidget {
 }
 
 class _VoiceButtonState extends ConsumerState<VoiceButton> {
+  List<String> notas = [];
   @override
   void initState() {
     super.initState();
@@ -112,6 +159,49 @@ class _VoiceButtonState extends ConsumerState<VoiceButton> {
   @override
   Widget build(BuildContext context) {
     final speechstate = ref.watch(speechProvider);
+
+    ref.listen<SpeechState>(speechProvider, (previous, next) {
+      next.maybeWhen(
+        orElse: () => null,
+        listening: (string) {
+          final notasString = string.trim();
+          if (notasString.isNotEmpty) {
+            final newNotas = notasString.split(" ");
+            if (newNotas != notas) {
+              //! Más larga
+              if (newNotas.length > notas.length) {
+                print("MAYOR");
+                if (notas.isNotEmpty) {
+                  newNotas.removeRange(0, notas.length);
+                }
+                for (final nota in newNotas) {
+                  print(nota);
+                  ref.read(lecturaLibreProvider.notifier).setEnterNote(
+                        BotonNota.notas[BotonNota.nombreNotas.indexOf(nota)],
+                        voz: true,
+                      );
+                }
+                notas = [...notas, ...newNotas];
+              } else if (newNotas.length < notas.length) {
+                print("MENOR");
+                //! reset
+                notas = newNotas;
+                for (final nota in notas) {
+                  print(nota);
+                  ref.read(lecturaLibreProvider.notifier).setEnterNote(
+                        BotonNota.notas[BotonNota.nombreNotas.indexOf(nota)],
+                        voz: true,
+                      );
+                }
+              }
+            }
+          } else {
+            notas = [];
+          }
+        },
+      );
+    });
+
     return speechstate.maybeWhen(
       orElse: () => const IconButton(
         onPressed: null,
@@ -119,6 +209,7 @@ class _VoiceButtonState extends ConsumerState<VoiceButton> {
       ),
       noFile: () => IconButton(
         onPressed: () {
+          ref.read(downloadSpeechProvider.notifier).reset();
           AutoRouter.of(context).push(const SpeechDownloadRoute());
         },
         icon: const Icon(
@@ -136,7 +227,7 @@ class _VoiceButtonState extends ConsumerState<VoiceButton> {
       ),
       listening: (text) => IconButton(
         onPressed: () {
-          ref.read(speechProvider.notifier).load();
+          ref.read(speechProvider.notifier).stop();
         },
         icon: const Icon(
           Icons.record_voice_over_outlined,

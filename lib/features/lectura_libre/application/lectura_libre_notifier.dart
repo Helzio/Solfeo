@@ -138,9 +138,7 @@ class LecturaLibreNotifier extends StateNotifier<LecturaLibreState> {
     state = state.copyWith(mutted: !state.mutted);
   }
 
-  void setEnterNote(
-    Nota note,
-  ) {
+  void setEnterNote(Nota note, {bool voz = false}) {
     //? Iniciar crono
     if (state.index == 0) {
       if (state.startTime == null) {
@@ -166,12 +164,13 @@ class LecturaLibreNotifier extends StateNotifier<LecturaLibreState> {
           state.index,
         ],
       );
-
-      return;
+      if (!voz) {
+        return;
+      }
     }
 
     //? Play note
-    if (!state.mutted) {
+    if (!state.mutted && !voz) {
       switch (note.tono) {
         case Tono.Do:
           _soundpool.play(notaDo);
