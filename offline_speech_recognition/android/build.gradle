@@ -1,0 +1,47 @@
+group 'com.ethanou.offline_speech_recognition'
+version '1.0'
+
+buildscript {
+    repositories {
+        google()
+        jcenter()
+        maven {
+            url  "https://dl.bintray.com/alphacep/vosk"
+        }
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.5.4'
+    }
+}
+
+rootProject.allprojects {
+    repositories {
+        google()
+        jcenter()
+        maven {
+            url  "https://dl.bintray.com/alphacep/vosk"
+        }
+    }
+}
+
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 31
+
+    defaultConfig {
+        minSdkVersion 21
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    lintOptions {
+        disable 'InvalidPackage'
+    }
+}
+
+dependencies {
+    implementation 'androidx.core:core:1.1.0'
+    testImplementation 'junit:junit:4.13'
+    implementation 'net.java.dev.jna:jna:5.8.0@aar'
+    implementation group: 'com.alphacephei', name: 'vosk-android', version: '0.3.32'
+}

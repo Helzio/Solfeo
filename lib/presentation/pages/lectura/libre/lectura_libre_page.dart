@@ -26,6 +26,7 @@ class _LecturaLibrePageState extends ConsumerState<LecturaLibrePage> {
 
   @override
   Widget build(BuildContext context) {
+
     return RawKeyboardListener(
       focusNode: focusNode,
       autofocus: true,
@@ -80,35 +81,39 @@ class _LecturaLibrePageState extends ConsumerState<LecturaLibrePage> {
           }
         }
       },
-      child: Scaffold(
-        backgroundColor: Colors.grey.shade100,
-        body: Column(
-          children: [
-            if (!kIsWeb)
-              AppBar(
-                title: const Text(
-                  "Entrenamiento libre",
+      child: Stack(
+        children: [
+          Scaffold(
+            backgroundColor: Colors.grey.shade100,
+            body: Column(
+              children: [
+                if (!kIsWeb)
+                  AppBar(
+                    title: const Text(
+                      "Entrenamiento libre",
+                    ),
+                    backgroundColor: Colors.grey.shade900,
+                  ),
+                const ScoreWidget(),
+                const Expanded(
+                  flex: 50,
+                  child: PentagramaLecturaLibre(),
                 ),
-                backgroundColor: Colors.grey.shade900,
-              ),
-            const ScoreWidget(),
-            const Expanded(
-              flex: 50,
-              child: PentagramaLecturaLibre(),
-            ),
-            const Divider(),
-            Expanded(
-              flex: 50,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Botonera(
-                  color: Colors.grey.shade100,
-                  colorSecundary: Colors.grey.shade800,
+                const Divider(),
+                Expanded(
+                  flex: 50,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Botonera(
+                      color: Colors.grey.shade100,
+                      colorSecundary: Colors.grey.shade800,
+                    ),
+                  ),
                 ),
-              ),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

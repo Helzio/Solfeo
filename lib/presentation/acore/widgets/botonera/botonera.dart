@@ -1,7 +1,10 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:solfeo/features/lectura_libre/providers/lectura_libre_provider.dart';
 import 'package:solfeo/features/pentagrama/domain/entities/pentagrama.dart';
+import 'package:solfeo/features/speech/speech/providers/speech_providers.dart';
+import 'package:solfeo/routes/app_route.gr.dart';
 
 enum Size { small, normal, big }
 
@@ -75,14 +78,71 @@ class _BotoneraState extends State<Botonera> {
             colorSecundary: widget.colorSecundary,
           ),
         ), */
-        const Align(
+        Align(
           alignment: Alignment.topRight,
           child: Padding(
-            padding: EdgeInsets.only(right: 16.0),
-            child: MuteButton(),
+            padding: const EdgeInsets.only(right: 8.0),
+            child: Column(
+              children: const [
+                MuteButton(),
+                VoiceButton(),
+              ],
+            ),
           ),
         ),
       ],
+    );
+  }
+}
+
+class VoiceButton extends ConsumerStatefulWidget {
+  const VoiceButton({Key? key}) : super(key: key);
+
+  @override
+  ConsumerState<VoiceButton> createState() => _VoiceButtonState();
+}
+
+class _VoiceButtonState extends ConsumerState<VoiceButton> {
+  @override
+  void initState() {
+    super.initState();
+    Future.microtask(() => ref.read(speechProvider.notifier).load());
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final speechstate = ref.watch(speechProvider);
+    return speechstate.maybeWhen(
+      orElse: () => const IconButton(
+        onPressed: null,
+        icon: Icon(Icons.record_voice_over_outlined),
+      ),
+      noFile: () => IconButton(
+        onPressed: () {
+          AutoRouter.of(context).push(const SpeechDownloadRoute());
+        },
+        icon: const Icon(
+          Icons.voice_over_off_outlined,
+          color: Colors.red,
+        ),
+      ),
+      loaded: () => IconButton(
+        onPressed: () {
+          ref.read(speechProvider.notifier).start();
+        },
+        icon: const Icon(
+          Icons.record_voice_over_outlined,
+        ),
+      ),
+      listening: (text) => IconButton(
+        onPressed: () {
+          ref.read(speechProvider.notifier).load();
+        },
+        icon: const Icon(
+          Icons.record_voice_over_outlined,
+          color: Colors.green,
+        ),
+      ),
     );
   }
 }
@@ -99,9 +159,7 @@ class MuteButton extends ConsumerWidget {
         ref.read(lecturaLibreProvider.notifier).toogleMutted();
       },
       icon: Icon(
-        !mutted
-            ? Icons.record_voice_over_outlined
-            : Icons.voice_over_off_outlined,
+        !mutted ? Icons.volume_off_outlined : Icons.volume_up_outlined,
       ),
     );
   }
