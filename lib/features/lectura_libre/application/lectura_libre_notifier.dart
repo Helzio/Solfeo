@@ -1,7 +1,12 @@
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:solfeo/features/lectura_libre/infrastructure/local/lectura_libre_local.dart';
 import 'package:solfeo/features/pentagrama/domain/entities/pentagrama.dart';
+import 'package:soundpool/soundpool.dart';
 part 'lectura_libre_notifier.freezed.dart';
+
+const _key = "lectura_libre";
 
 @freezed
 class LecturaLibreState with _$LecturaLibreState {
@@ -25,11 +30,17 @@ class LecturaLibreState with _$LecturaLibreState {
     required int totalTime,
     required Pentagrama pentagrama,
     required Set<Nota> greenNotes,
+    required bool mutted,
   }) = _LecturaLibreState;
 
-  factory LecturaLibreState.initial() => LecturaLibreState(
+  factory LecturaLibreState.initial(
+    int nivel, {
+    required bool mutted,
+    required int totalTime,
+  }) =>
+      LecturaLibreState(
         index: 0,
-        level: 1,
+        level: nivel,
         speed: 0,
         errorCount: 0,
         listErrorIndex: [],
@@ -39,18 +50,35 @@ class LecturaLibreState with _$LecturaLibreState {
         isRunning: false,
         startTime: null,
         ellapsedTime: 0,
-        totalTime: 0,
+        totalTime: totalTime,
         score: 0,
         lastScore: 0,
         lastAccuracy: 0,
         lastSpeed: 0,
+        mutted: mutted,
         greenNotes: {},
-        pentagrama: Pentagrama.lecturaLibre(nivel: 1),
+        pentagrama: Pentagrama.lecturaLibre(nivel: nivel),
       );
 }
 
 class LecturaLibreNotifier extends StateNotifier<LecturaLibreState> {
-  LecturaLibreNotifier() : super(LecturaLibreState.initial());
+  final Soundpool _soundpool = Soundpool.fromOptions();
+  int notaDo = -1;
+  int notaRe = -1;
+  int notaMi = -1;
+  int notaFa = -1;
+  int notaSol = -1;
+  int notaLa = -1;
+  int notaSi = -1;
+  final LecturaLibreLocal _local;
+  LecturaLibreNotifier(this._local)
+      : super(
+          LecturaLibreState.initial(
+            _local.getNivel(_key),
+            mutted: _local.getMutted(_key),
+            totalTime: _local.getTotalTime(_key),
+          ),
+        );
 
   void generateNotes() {
     state = state.copyWith(
@@ -66,27 +94,61 @@ class LecturaLibreNotifier extends StateNotifier<LecturaLibreState> {
     );
   }
 
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
+  Future<void> loadSounds() async {
+    final assetDo = await rootBundle.load("assets/sounds/do.mp3");
+    final assetRe = await rootBundle.load("assets/sounds/re.mp3");
+    final assetMi = await rootBundle.load("assets/sounds/mi.mp3");
+    final assetFa = await rootBundle.load("assets/sounds/fa.mp3");
+    final assetSol = await rootBundle.load("assets/sounds/sol.mp3");
+    final assetLa = await rootBundle.load("assets/sounds/la.mp3");
+    final assetSi = await rootBundle.load("assets/sounds/si.mp3");
+    notaDo = await _soundpool.load(assetDo);
+    notaRe = await _soundpool.load(assetRe);
+    notaMi = await _soundpool.load(assetMi);
+    notaFa = await _soundpool.load(assetFa);
+    notaSol = await _soundpool.load(assetSol);
+    notaLa = await _soundpool.load(assetLa);
+    notaSi = await _soundpool.load(assetSi);
+  }
+
   void comprobarAvance() {
     if (state.accuracy >= 50 && state.speed > 30) {
-      state = state.copyWith(totalTime: state.totalTime + state.ellapsedTime);
+      final newTotalTime = state.totalTime + state.ellapsedTime;
+      _local.saveTotalTime(newTotalTime, _key);
+      state = state.copyWith(totalTime: newTotalTime);
     }
 
     if ((state.accuracy >= 89 && state.speed > 100) && state.level <= 9) {
+      _local.saveNivel(state.level + 1, _key);
+      _local.savePrecision(state.accuracy, _key);
+      _local.saveVelocidad(state.speed, _key);
       state = state.copyWith(
         level: state.level + 1,
       );
     }
   }
 
+  void toogleMutted() {
+    _local.saveMutted(_key, mutted: !state.mutted);
+    state = state.copyWith(mutted: !state.mutted);
+  }
+
   void setEnterNote(
     Nota note,
   ) {
+    //? Iniciar crono
     if (state.index == 0) {
       if (state.startTime == null) {
         state = state.copyWith(startTime: DateTime.now());
       }
     }
 
+    //! Nota incorrecta
     if (state.pentagrama.notas[state.index].tono != note.tono) {
       if (state.listErrorIndex.contains(state.index)) {
         return;
@@ -108,6 +170,34 @@ class LecturaLibreNotifier extends StateNotifier<LecturaLibreState> {
       return;
     }
 
+    //? Play note
+    if (!state.mutted) {
+      switch (note.tono) {
+        case Tono.Do:
+          _soundpool.play(notaDo);
+          break;
+        case Tono.Re:
+          _soundpool.play(notaRe);
+          break;
+        case Tono.Mi:
+          _soundpool.play(notaMi);
+          break;
+        case Tono.Fa:
+          _soundpool.play(notaFa);
+          break;
+        case Tono.Sol:
+          _soundpool.play(notaSol);
+          break;
+        case Tono.La:
+          _soundpool.play(notaLa);
+          break;
+        case Tono.Si:
+          _soundpool.play(notaSi);
+          break;
+      }
+    }
+
+    //? Ultima nota stop crono
     if (state.index == state.pentagrama.notas.length - 1) {
       final ellapsedTime = DateTime.now().millisecondsSinceEpoch -
           state.startTime!.millisecondsSinceEpoch;

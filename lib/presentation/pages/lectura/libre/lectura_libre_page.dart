@@ -21,6 +21,7 @@ class _LecturaLibrePageState extends ConsumerState<LecturaLibrePage> {
   @override
   void initState() {
     super.initState();
+    ref.read(lecturaLibreProvider.notifier).loadSounds();
   }
 
   @override

@@ -75,7 +75,34 @@ class _BotoneraState extends State<Botonera> {
             colorSecundary: widget.colorSecundary,
           ),
         ), */
+        const Align(
+          alignment: Alignment.topRight,
+          child: Padding(
+            padding: EdgeInsets.only(right: 16.0),
+            child: MuteButton(),
+          ),
+        ),
       ],
+    );
+  }
+}
+
+class MuteButton extends ConsumerWidget {
+  const MuteButton({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final mutted =
+        ref.watch(lecturaLibreProvider.select((value) => value.mutted));
+    return IconButton(
+      onPressed: () {
+        ref.read(lecturaLibreProvider.notifier).toogleMutted();
+      },
+      icon: Icon(
+        !mutted
+            ? Icons.record_voice_over_outlined
+            : Icons.voice_over_off_outlined,
+      ),
     );
   }
 }
