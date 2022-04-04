@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:offline_speech_recognition/model/speech_partial.dart';
+import 'package:solfeo/features/lectura_ejercicio/providers/lectura_ejercicio_providers.dart';
 import 'package:solfeo/features/lectura_libre/providers/lectura_libre_provider.dart';
 import 'package:solfeo/features/pentagrama/domain/entities/pentagrama.dart';
 import 'package:solfeo/features/speech/download/providers/download_speech_providers.dart';
@@ -11,7 +12,7 @@ import 'package:solfeo/routes/app_route.gr.dart';
 
 enum Size { small, normal, big }
 
-class Botonera extends StatefulWidget {
+class Botonera extends ConsumerStatefulWidget {
   final Color color;
   final Color colorSecundary;
   const Botonera({
@@ -21,56 +22,71 @@ class Botonera extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<Botonera> createState() => _BotoneraState();
+  ConsumerState<Botonera> createState() => _BotoneraState();
 }
 
-class _BotoneraState extends State<Botonera> {
+class _BotoneraState extends ConsumerState<Botonera> {
   final isThemeWhite = true;
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      alignment: Alignment.center,
-      children: [
-        Circulo(
-          colorSecundary: widget.colorSecundary,
+    return Scaffold(
+      backgroundColor: Colors.transparent,
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.only(),
+        child: FloatingActionButton(
+          backgroundColor: Colors.white,
+          onPressed: () {
+            ref.read(lecturaEjercicioProvider.notifier).generateNotes();
+          },
+          child: Icon(
+            Icons.refresh,
+            color: Colors.grey.shade800,
+          ),
         ),
-        BotonNota(
-          nota: 0,
-          color: widget.color,
-          colorSecundary: widget.colorSecundary,
-        ),
-        BotonNota(
-          nota: 1,
-          color: widget.color,
-          colorSecundary: widget.colorSecundary,
-        ),
-        BotonNota(
-          nota: 2,
-          color: widget.color,
-          colorSecundary: widget.colorSecundary,
-        ),
-        BotonNota(
-          nota: 3,
-          color: widget.color,
-          colorSecundary: widget.colorSecundary,
-        ),
-        BotonNota(
-          nota: 4,
-          color: widget.color,
-          colorSecundary: widget.colorSecundary,
-        ),
-        BotonNota(
-          nota: 5,
-          color: widget.color,
-          colorSecundary: widget.colorSecundary,
-        ),
-        BotonNota(
-          nota: 6,
-          color: widget.color,
-          colorSecundary: widget.colorSecundary,
-        ),
-        /* Container(
+      ),
+      body: Stack(
+        alignment: Alignment.center,
+        children: [
+          Circulo(
+            colorSecundary: widget.colorSecundary,
+          ),
+          BotonNota(
+            nota: 0,
+            color: widget.color,
+            colorSecundary: widget.colorSecundary,
+          ),
+          BotonNota(
+            nota: 1,
+            color: widget.color,
+            colorSecundary: widget.colorSecundary,
+          ),
+          BotonNota(
+            nota: 2,
+            color: widget.color,
+            colorSecundary: widget.colorSecundary,
+          ),
+          BotonNota(
+            nota: 3,
+            color: widget.color,
+            colorSecundary: widget.colorSecundary,
+          ),
+          BotonNota(
+            nota: 4,
+            color: widget.color,
+            colorSecundary: widget.colorSecundary,
+          ),
+          BotonNota(
+            nota: 5,
+            color: widget.color,
+            colorSecundary: widget.colorSecundary,
+          ),
+          BotonNota(
+            nota: 6,
+            color: widget.color,
+            colorSecundary: widget.colorSecundary,
+          ),
+          /* Container(
           height: 48,
           width: 48,
           decoration: const BoxDecoration(
@@ -82,20 +98,21 @@ class _BotoneraState extends State<Botonera> {
           ),
         ), */
 
-        const SpeechText(),
-        Align(
-          alignment: Alignment.topRight,
-          child: Padding(
-            padding: const EdgeInsets.only(right: 8.0),
-            child: Column(
-              children: const [
-                MuteButton(),
-                VoiceButton(),
-              ],
+          const SpeechText(),
+          Align(
+            alignment: Alignment.topRight,
+            child: Padding(
+              padding: const EdgeInsets.only(right: 8.0),
+              child: Column(
+                children: const [
+                  MuteButton(),
+                  VoiceButton(),
+                ],
+              ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

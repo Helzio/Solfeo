@@ -258,15 +258,186 @@ List<Compas> generarCompasesLecturaLibre({required int nivel}) {
 List<Compas> generarCompasesLecturaEjercicio({required int nivel}) {
   final List<Compas> compases = [];
   compases.add(
-      Compas(
-        numerador: 1,
-        denominador: 1,
-        notas: [
-          Nota.corchea(Tono.Sol, Ocatava.Cuarta),
-          Nota.corchea(Tono.Do, Ocatava.Quinta),
-        ],
-      ),
-    );
+    Compas(
+      numerador: 1,
+      denominador: 1,
+      notas: [
+        Nota.corchea(Tono.Sol, Ocatava.Cuarta),
+        Nota.corchea(Tono.Do, Ocatava.Quinta),
+      ],
+    ),
+  );
+  compases.add(
+    Compas(
+      numerador: 1,
+      denominador: 1,
+      notas: [
+        //Nota.corchea(Tono.Si, Ocatava.Cuarta),
+        Nota.corchea(Tono.Si, Ocatava.Cuarta),
+        Nota.corchea(Tono.Do, Ocatava.Quinta),
+      ],
+    ),
+  );
+  compases.add(
+    Compas(
+      numerador: 1,
+      denominador: 1,
+      notas: [
+        Nota.corchea(Tono.Re, Ocatava.Quinta),
+        Nota.corchea(Tono.Si, Ocatava.Cuarta),
+      ],
+    ),
+  );
+  compases.add(
+    Compas(
+      numerador: 1,
+      denominador: 1,
+      notas: [
+        Nota.corchea(Tono.Do, Ocatava.Quinta),
+        Nota.corchea(Tono.Mi, Ocatava.Quinta),
+      ],
+    ),
+  );
+  compases.add(
+    Compas(
+      numerador: 1,
+      denominador: 1,
+      notas: [
+        Nota.corchea(Tono.Sol, Ocatava.Quinta),
+        Nota.corchea(Tono.Fa, Ocatava.Quinta),
+      ],
+    ),
+  );
+  compases.add(
+    Compas(
+      numerador: 1,
+      denominador: 1,
+      notas: [
+        Nota.corchea(Tono.Re, Ocatava.Quinta),
+        Nota.corchea(Tono.Sol, Ocatava.Quinta),
+      ],
+    ),
+  );
+  compases.add(
+    Compas(
+      numerador: 1,
+      denominador: 1,
+      notas: [
+        Nota.corchea(Tono.Mi, Ocatava.Quinta),
+        Nota.corchea(Tono.La, Ocatava.Quinta),
+      ],
+    ),
+  );
+  compases.add(
+    Compas(
+      numerador: 1,
+      denominador: 1,
+      notas: [
+        Nota.corchea(Tono.Fa, Ocatava.Quinta),
+        Nota.corchea(Tono.Re, Ocatava.Quinta),
+      ],
+    ),
+  );
+  compases.add(
+    Compas(
+      numerador: 1,
+      denominador: 1,
+      notas: [
+        Nota.corchea(Tono.Si, Ocatava.Cuarta),
+        Nota.corchea(Tono.Mi, Ocatava.Quinta),
+      ],
+    ),
+  );
+  compases.add(
+    Compas(
+      numerador: 1,
+      denominador: 1,
+      notas: [
+        Nota.corchea(Tono.Re, Ocatava.Quinta),
+        Nota.corchea(Tono.Si, Ocatava.Cuarta),
+      ],
+    ),
+  );
+  compases.add(
+    Compas(
+      numerador: 1,
+      denominador: 1,
+      notas: [
+        Nota.corchea(Tono.Sol, Ocatava.Cuarta),
+        Nota.corchea(Tono.Do, Ocatava.Quinta),
+      ],
+    ),
+  );
+  compases.add(
+    Compas(
+      numerador: 1,
+      denominador: 1,
+      notas: [
+        Nota.corchea(Tono.Si, Ocatava.Cuarta),
+        Nota.corchea(Tono.Re, Ocatava.Quinta),
+      ],
+    ),
+  );
+  compases.add(
+    Compas(
+      numerador: 1,
+      denominador: 1,
+      notas: [
+        Nota.corchea(Tono.Re, Ocatava.Quinta),
+        Nota.corchea(Tono.Sol, Ocatava.Quinta),
+      ],
+    ),
+  );
+  compases.add(
+    Compas(
+      numerador: 1,
+      denominador: 1,
+      notas: [
+        Nota.corchea(Tono.Mi, Ocatava.Quinta),
+        Nota.corchea(Tono.Do, Ocatava.Quinta),
+      ],
+    ),
+  );
+  compases.add(
+    Compas(
+      numerador: 1,
+      denominador: 1,
+      notas: [
+        Nota.corchea(Tono.Do, Ocatava.Sexta),
+        Nota.corchea(Tono.Si, Ocatava.Quinta),
+      ],
+    ),
+  );
+  compases.add(
+    Compas(
+      numerador: 1,
+      denominador: 1,
+      notas: [
+        Nota.corchea(Tono.Re, Ocatava.Sexta),
+        Nota.corchea(Tono.La, Ocatava.Quinta),
+      ],
+    ),
+  );
+  compases.add(
+    Compas(
+      numerador: 1,
+      denominador: 1,
+      notas: [
+        Nota.corchea(Tono.Sol, Ocatava.Quinta),
+        Nota.corchea(Tono.Mi, Ocatava.Quinta),
+      ],
+    ),
+  );
+  compases.add(
+    Compas(
+      numerador: 1,
+      denominador: 1,
+      notas: [
+        Nota.corchea(Tono.La, Ocatava.Quinta),
+        Nota.corchea(Tono.Fa, Ocatava.Quinta),
+      ],
+    ),
+  );
   return compases;
 }
 
@@ -344,98 +515,224 @@ class Nota with _$Nota {
       );
 }
 
+int getTono(
+  Tono tono,
+  Ocatava ocatava,
+) {
+  switch (tono) {
+    case Tono.Do:
+      if (ocatava == Ocatava.Tercera) {
+        return -11;
+      } else if (ocatava == Ocatava.Cuarta) {
+        return -4;
+      } else if (ocatava == Ocatava.Quinta) {
+        return 3;
+      } else {
+        return 10;
+      }
+    case Tono.Re:
+      if (ocatava == Ocatava.Tercera) {
+        return -10;
+      } else if (ocatava == Ocatava.Cuarta) {
+        return -3;
+      } else if (ocatava == Ocatava.Quinta) {
+        return 4;
+      } else {
+        return 11;
+      }
+
+    case Tono.Mi:
+      if (ocatava == Ocatava.Tercera) {
+        return -9;
+      } else if (ocatava == Ocatava.Cuarta) {
+        return -2;
+      } else if (ocatava == Ocatava.Quinta) {
+        return 5;
+      } else {
+        return 12;
+      }
+
+    case Tono.Fa:
+      if (ocatava == Ocatava.Tercera) {
+        return -8;
+      } else if (ocatava == Ocatava.Cuarta) {
+        return -1;
+      } else if (ocatava == Ocatava.Quinta) {
+        return 6;
+      } else {
+        return 13;
+      }
+
+    case Tono.Sol:
+      if (ocatava == Ocatava.Tercera) {
+        return -7;
+      } else if (ocatava == Ocatava.Cuarta) {
+        return 0;
+      } else if (ocatava == Ocatava.Quinta) {
+        return 7;
+      } else {
+        return 14;
+      }
+    case Tono.La:
+      if (ocatava == Ocatava.Tercera) {
+        return -6;
+      } else if (ocatava == Ocatava.Cuarta) {
+        return 1;
+      } else if (ocatava == Ocatava.Quinta) {
+        return 8;
+      } else {
+        return 15;
+      }
+
+    case Tono.Si:
+      if (ocatava == Ocatava.Tercera) {
+        return -5;
+      } else if (ocatava == Ocatava.Cuarta) {
+        return 2;
+      } else if (ocatava == Ocatava.Quinta) {
+        return 9;
+      } else {
+        return 16;
+      }
+  }
+}
+
 String getNotaPosicion({
   Clave clave = Clave.Sol,
   required Tono tono,
   Ocatava octava = Ocatava.Cuarta,
   Valor valor = Valor.Negra,
+  bool agrupacionDown = false,
+  bool agrupacionUp = false,
 }) {
   switch (tono) {
     case Tono.Do:
       if (octava == Ocatava.Cuarta) {
-        return "$down6$barra$down6${getNoteString(valor: valor)}";
+        return "$down6$barra$down6${getNoteString(
+          valor: valor,
+          down: agrupacionDown,
+        )}";
       } else if (octava == Ocatava.Quinta) {
-        return up1 + getNoteString(valor: valor);
+        return up1 +
+            getNoteString(
+              valor: valor,
+              down: agrupacionDown,
+            );
       } else if (octava == Ocatava.Sexta) {
         return "$up6$barra$up8$barra$up8${getNoteString(
           valor: valor,
-          down: true,
+          down: agrupacionDown
+              ? true
+              : agrupacionUp
+                  ? false
+                  : true,
         )}";
       } else {
-        return getNoteString(valor: valor);
+        return getNoteString(valor: valor, down: agrupacionDown);
       }
     case Tono.Re:
       if (octava == Ocatava.Cuarta) {
-        return "$down5${getNoteString(valor: valor)}";
+        return "$down5${getNoteString(valor: valor, down: agrupacionDown ? true : agrupacionUp ? false : false)}";
       } else if (octava == Ocatava.Quinta) {
         return "$up2${getNoteString(
           valor: valor,
-          down: true,
+          down: agrupacionDown
+              ? true
+              : agrupacionUp
+                  ? false
+                  : true,
         )}";
       } else if (octava == Ocatava.Sexta) {
         return "$up4$barra$up6$barra$up7${getNoteString(
           valor: valor,
-          down: true,
+          down: agrupacionDown
+              ? true
+              : agrupacionUp
+                  ? false
+                  : true,
         )}";
       } else {
-        return getNoteString(valor: valor);
+        return getNoteString(valor: valor, down: agrupacionDown);
       }
     case Tono.Mi:
       if (octava == Ocatava.Cuarta) {
-        return "$down4${getNoteString(valor: valor)}";
+        return "$down4${getNoteString(valor: valor, down: agrupacionDown ? true : agrupacionUp ? false : false)}";
       } else if (octava == Ocatava.Quinta) {
-        return "$up3${getNoteString(valor: valor)}";
+        return "$up3${getNoteString(valor: valor, down: agrupacionDown ? true : agrupacionUp ? false : false)}";
       } else {
-        return getNoteString(valor: valor);
+        return getNoteString(valor: valor, down: agrupacionDown);
       }
     case Tono.Fa:
       if (octava == Ocatava.Cuarta) {
-        return "$down3${getNoteString(valor: valor)}";
+        return "$down3${getNoteString(valor: valor, down: agrupacionDown ? true : agrupacionUp ? false : false)}";
       } else if (octava == Ocatava.Quinta) {
         return "$up4${getNoteString(
           valor: valor,
-          down: true,
+          down: agrupacionDown
+              ? true
+              : agrupacionUp
+                  ? false
+                  : true,
         )}";
       } else {
-        return getNoteString(valor: valor);
+        return getNoteString(valor: valor, down: agrupacionDown);
       }
     case Tono.Sol:
       if (octava == Ocatava.Cuarta) {
-        return "\uEB99${getNoteString(valor: valor)}";
+        return "\uEB99${getNoteString(valor: valor, down: agrupacionDown ? true : agrupacionUp ? false : false)}";
       } else if (octava == Ocatava.Quinta) {
         return up5 +
             getNoteString(
               valor: valor,
-              down: true,
+              down: agrupacionDown
+                  ? true
+                  : agrupacionUp
+                      ? false
+                      : true,
             );
       } else {
-        return getNoteString(valor: valor);
+        return getNoteString(valor: valor, down: agrupacionDown);
       }
     case Tono.La:
       if (octava == Ocatava.Cuarta) {
-        return "\uEB98${getNoteString(valor: valor)}";
+        return "\uEB98${getNoteString(valor: valor, down: agrupacionDown ? true : agrupacionUp ? false : false)}";
       } else if (octava == Ocatava.Quinta) {
         return "$up6$barra$up6${getNoteString(
           valor: valor,
-          down: true,
+          down: agrupacionDown
+              ? true
+              : agrupacionUp
+                  ? false
+                  : true,
         )}";
       } else if (octava == Ocatava.Tercera) {
-        return "$down6$barra$down8$barra$down8${getNoteString(valor: valor)}";
+        return "$down6$barra$down8$barra$down8${getNoteString(valor: valor, down: agrupacionDown ? true : agrupacionUp ? false : false)}";
       } else {
-        return getNoteString(valor: valor);
+        return getNoteString(valor: valor, down: agrupacionDown);
       }
     case Tono.Si:
       if (octava == Ocatava.Cuarta) {
-        return getNoteString(valor: valor);
+        return getNoteString(valor: valor, down: agrupacionDown);
       } else if (octava == Ocatava.Tercera) {
-        return "$down6$barra$down7${getNoteString(valor: valor)}";
+        return "$down6$barra$down7${getNoteString(valor: valor, down: agrupacionDown ? true : agrupacionUp ? false : false)}";
       } else if (octava == Ocatava.Quinta) {
         return "$up6$barra$up7${getNoteString(
           valor: valor,
-          down: true,
+          down: agrupacionDown
+              ? true
+              : agrupacionUp
+                  ? false
+                  : true,
         )}";
       } else {
-        return getNoteString(valor: valor);
+        return getNoteString(
+          valor: valor,
+          down: agrupacionDown
+              ? true
+              : agrupacionUp
+                  ? false
+                  : false,
+        );
       }
   }
 }

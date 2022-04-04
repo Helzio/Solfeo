@@ -28,7 +28,6 @@ class _LecturaEjercicioPageState extends ConsumerState<LecturaEjercicioPage> {
 
   @override
   Widget build(BuildContext context) {
-
     return RawKeyboardListener(
       focusNode: focusNode,
       autofocus: true,
@@ -96,7 +95,9 @@ class _LecturaEjercicioPageState extends ConsumerState<LecturaEjercicioPage> {
                     ),
                     backgroundColor: Colors.grey.shade900,
                   ),
-                const ScoreWidget(),
+                const ScoreWidget(
+                  showNivel: false,
+                ),
                 const Expanded(
                   flex: 50,
                   child: PentagramaLecturaEjercicio(),
