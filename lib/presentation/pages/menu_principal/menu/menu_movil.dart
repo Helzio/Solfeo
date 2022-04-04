@@ -251,7 +251,9 @@ class _MenuMovilState extends State<MenuMovil> {
                         fontSize: 12,
                       ),
                     ),
-                    onTap: () {},
+                    onTap: () {
+                      AutoRouter.of(context).push(const EjerciciosListRoute());
+                    },
                     trailing: const Icon(
                       Icons.arrow_forward_ios,
                       size: 20,

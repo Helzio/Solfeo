@@ -89,6 +89,18 @@ class Pentagrama with _$Pentagrama {
     );
   }
 
+  factory Pentagrama.lecturaEjercicio({required int nivel}) {
+    return Pentagrama(
+      clave: Clave.Sol,
+      numerador: 1,
+      denominador: 2,
+      compases: generarCompasesLecturaEjercicio(nivel: nivel),
+      armadura: Armadura.Do,
+      Anacruza: false,
+      tempo: 50,
+    );
+  }
+
   int get numeroNotas {
     int x = 0;
     for (final compas in compases) {
@@ -243,6 +255,21 @@ List<Compas> generarCompasesLecturaLibre({required int nivel}) {
   return compases;
 }
 
+List<Compas> generarCompasesLecturaEjercicio({required int nivel}) {
+  final List<Compas> compases = [];
+  compases.add(
+      Compas(
+        numerador: 1,
+        denominador: 1,
+        notas: [
+          Nota.corchea(Tono.Sol, Ocatava.Cuarta),
+          Nota.corchea(Tono.Do, Ocatava.Quinta),
+        ],
+      ),
+    );
+  return compases;
+}
+
 @freezed
 class Compas with _$Compas {
   const Compas._();
@@ -294,6 +321,21 @@ class Nota with _$Nota {
         tono: tono,
         ocatava: ocatava,
         valor: Valor.Negra,
+        silencio: false,
+        puntillosRepeticion: null,
+        casillaDeRepeticion: 0,
+        puntillo: false,
+        calderon: false,
+      );
+
+  factory Nota.corchea(
+    Tono tono,
+    Ocatava ocatava,
+  ) =>
+      Nota(
+        tono: tono,
+        ocatava: ocatava,
+        valor: Valor.Corchea,
         silencio: false,
         puntillosRepeticion: null,
         casillaDeRepeticion: 0,

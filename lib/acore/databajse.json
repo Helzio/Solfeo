@@ -1,0 +1,37 @@
+{
+  "Estudiante" : {
+    "nombre": "Oscar Méndez",
+    "correo" : "checkhelzio@gmail.com",
+    "imagen" : "https://scontent.fgdl1-4.fna.fbcdn.net/v/t39.30808-6/269982262_10209642748421076_5791888956522992241_n.jpg?_nc_cat=109&ccb=1-5&_nc_sid=09cbfe&_nc_eui2=AeHvYbd2S7kBtZQ_hMXZ8O4-PutGADEcY4Q-60YAMRxjhOa67O_0dd1c3NWrOn9CQac&_nc_ohc=_PErL6Ov7AMAX-NQKoc&_nc_pt=1&_nc_ht=scontent.fgdl1-4.fna&oh=00_AT9kKmq23ez-bdRBYiKIPQVEI3JA-XlCjUnGp5WCF6TTCQ&oe=62499D93",
+    "puntuacion_lectura" : {
+      "velocidad" : 90.5,
+      "velocidad_anterior" : 73.8,
+      "precision" : 100,
+      "precision_anterior" : 88.5,
+      "nivel" : 1
+    },
+    "puntuacion_ejercicios" : {
+      "ejercicio_1" : {
+        "velocidad" : 83.5,
+        "velocidad_anterior" : 77.8,
+        "precision" : 90,
+        "precision_anterior" : 33.5
+      },
+      "ejercicio_2" : {
+        "velocidad" : 81.4,
+        "velocidad_anterior" : 79.8,
+        "precision" : 99.1,
+        "precision_anterior" : 90.5
+      },
+      "meta_diaria" : {
+        "tiempo_en_milisegundos" : 600000
+      },
+      "ajustes" : {
+        "tema_oscuro" : false,
+        "tamano_texto" : 12,
+        "idioma_notas" : 0
+      }
+    }
+  }
+}
+
