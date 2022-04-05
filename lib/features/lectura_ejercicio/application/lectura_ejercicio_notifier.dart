@@ -5,7 +5,6 @@ import 'package:solfeo/features/pentagrama/domain/entities/pentagrama.dart';
 import 'package:soundpool/soundpool.dart';
 part 'lectura_ejercicio_notifier.freezed.dart';
 
-const _key = "lectura_ejercicio";
 
 @freezed
 class LecturaEjercicioState with _$LecturaEjercicioState {

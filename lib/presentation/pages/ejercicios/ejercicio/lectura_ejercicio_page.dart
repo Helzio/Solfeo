@@ -2,12 +2,10 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:solfeo/features/lectura_ejercicio/providers/lectura_ejercicio_providers.dart';
-import 'package:solfeo/features/lectura_libre/providers/lectura_libre_provider.dart';
 import 'package:solfeo/features/pentagrama/domain/entities/pentagrama.dart';
 import 'package:solfeo/presentation/acore/widgets/botonera/botonera.dart';
 import 'package:solfeo/presentation/acore/widgets/score/score_widget.dart';
 import 'package:solfeo/presentation/pages/ejercicios/ejercicio/widgets/pentagrama_lectura_ejercicio.dart';
-import 'package:solfeo/presentation/pages/lectura/libre/widgets/pentagrama_lectura_libre.dart';
 
 class LecturaEjercicioPage extends ConsumerStatefulWidget {
   const LecturaEjercicioPage({Key? key}) : super(key: key);

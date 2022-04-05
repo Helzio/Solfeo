@@ -61,12 +61,6 @@ class _PentagramaEjerciciosWidgetState
       }
     }
 
-    print("numeroPentagramas");
-    print(pentagramasSueltos.length);
-    print(
-      pentagramasSueltos[0].length,
-    );
-
     return SingleChildScrollView(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -106,8 +100,6 @@ class _PentagramaEjerciciosWidgetState
                           ...List.generate(
                             pentagramasSueltos[pentagramaIndex].length,
                             (index) {
-                              print("index");
-                              print(index);
                               return PentagramaCompas(
                                 textSize: textSize,
                                 compas: pentagramasSueltos[pentagramaIndex]

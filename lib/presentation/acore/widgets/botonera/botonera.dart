@@ -184,12 +184,11 @@ class _VoiceButtonState extends ConsumerState<VoiceButton> {
             if (newNotas != notas) {
               //! Más larga
               if (newNotas.length > notas.length) {
-                print("MAYOR");
+              
                 if (notas.isNotEmpty) {
                   newNotas.removeRange(0, notas.length);
                 }
                 for (final nota in newNotas) {
-                  print(nota);
                   ref.read(lecturaLibreProvider.notifier).setEnterNote(
                         BotonNota.notas[BotonNota.nombreNotas.indexOf(nota)],
                         voz: true,
@@ -197,11 +196,9 @@ class _VoiceButtonState extends ConsumerState<VoiceButton> {
                 }
                 notas = [...notas, ...newNotas];
               } else if (newNotas.length < notas.length) {
-                print("MENOR");
                 //! reset
                 notas = newNotas;
                 for (final nota in notas) {
-                  print(nota);
                   ref.read(lecturaLibreProvider.notifier).setEnterNote(
                         BotonNota.notas[BotonNota.nombreNotas.indexOf(nota)],
                         voz: true,
