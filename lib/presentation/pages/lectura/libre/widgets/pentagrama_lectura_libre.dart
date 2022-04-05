@@ -12,22 +12,6 @@ class PentagramaLecturaLibre extends ConsumerWidget {
         ref.watch(lecturaLibreProvider.select((value) => value.pentagrama));
     return Scaffold(
       backgroundColor: Colors.transparent,
-      floatingActionButton: Padding(
-        padding: const EdgeInsets.only(
-          right: 8.0,
-          bottom: 8,
-        ),
-        child: FloatingActionButton(
-          backgroundColor: Colors.white,
-          onPressed: () {
-            ref.read(lecturaLibreProvider.notifier).generateNotes();
-          },
-          child: Icon(
-            Icons.refresh,
-            color: Colors.grey.shade800,
-          ),
-        ),
-      ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24.0),
         child: LayoutBuilder(

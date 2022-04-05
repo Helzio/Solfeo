@@ -32,17 +32,14 @@ class _BotoneraState extends ConsumerState<Botonera> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.transparent,
-      floatingActionButton: Padding(
-        padding: const EdgeInsets.only(),
-        child: FloatingActionButton(
-          backgroundColor: Colors.white,
-          onPressed: () {
-            ref.read(lecturaEjercicioProvider.notifier).generateNotes();
-          },
-          child: Icon(
-            Icons.refresh,
-            color: Colors.grey.shade800,
-          ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.white,
+        onPressed: () {
+          ref.read(lecturaEjercicioProvider.notifier).generateNotes();
+        },
+        child: Icon(
+          Icons.refresh,
+          color: Colors.grey.shade800,
         ),
       ),
       body: Stack(
@@ -143,7 +140,7 @@ class SpeechText extends ConsumerWidget {
         } else {
           return const Center(
             child: Text(
-              "Iniciar",
+              "",
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 32,

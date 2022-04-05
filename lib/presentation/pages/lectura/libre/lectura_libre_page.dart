@@ -26,7 +26,6 @@ class _LecturaLibrePageState extends ConsumerState<LecturaLibrePage> {
 
   @override
   Widget build(BuildContext context) {
-
     return RawKeyboardListener(
       focusNode: focusNode,
       autofocus: true,
@@ -94,7 +93,9 @@ class _LecturaLibrePageState extends ConsumerState<LecturaLibrePage> {
                     ),
                     backgroundColor: Colors.grey.shade900,
                   ),
-                const ScoreWidget(),
+                const ScoreWidget(
+                  showMetaDiaria: false,
+                ),
                 const Expanded(
                   flex: 50,
                   child: PentagramaLecturaLibre(),

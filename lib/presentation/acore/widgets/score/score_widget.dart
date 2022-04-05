@@ -7,7 +7,12 @@ import 'package:solfeo/presentation/acore/widgets/score/chips/level_chip.dart';
 
 class ScoreWidget extends ConsumerWidget {
   final bool showNivel;
-  const ScoreWidget({Key? key, this.showNivel = true}) : super(key: key);
+  final bool showMetaDiaria;
+  const ScoreWidget({
+    Key? key,
+    this.showNivel = true,
+    this.showMetaDiaria = true,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -326,49 +331,51 @@ class ScoreWidget extends ConsumerWidget {
           const SizedBox(
             height: 4,
           ),
-          const Padding(
-            padding: EdgeInsets.symmetric(vertical: 6.0),
-            child: Guia(Colors.black),
-          ),
-          Row(
-            children: [
-              SizedBox(
-                width: 80,
-                child: RichText(
-                  text: TextSpan(
-                    text: "Meta diaria:  ",
-                    style: TextStyle(
-                      fontSize: 13,
-                      color: Colors.grey.shade600,
+          if (showMetaDiaria)
+            const Padding(
+              padding: EdgeInsets.symmetric(vertical: 6.0),
+              child: Guia(Colors.black),
+            ),
+          if (showMetaDiaria)
+            Row(
+              children: [
+                SizedBox(
+                  width: 80,
+                  child: RichText(
+                    text: TextSpan(
+                      text: "Meta diaria:  ",
+                      style: TextStyle(
+                        fontSize: 13,
+                        color: Colors.grey.shade600,
+                      ),
                     ),
                   ),
                 ),
-              ),
-              RichText(
-                text: TextSpan(
-                  text:
-                      "${(totalTime / 1000 / 60).toStringAsFixed(1)}/10 minutos",
-                  style: TextStyle(
-                    fontSize: 11,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.grey.shade800,
+                RichText(
+                  text: TextSpan(
+                    text:
+                        "${(totalTime / 1000 / 60).toStringAsFixed(1)}/10 minutos",
+                    style: TextStyle(
+                      fontSize: 11,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.grey.shade800,
+                    ),
                   ),
                 ),
-              ),
-              const SizedBox(
-                width: 8,
-              ),
-              Expanded(
-                child: Container(
-                  padding: const EdgeInsets.all(1),
-                  child: LinearProgressIndicator(
-                    backgroundColor: Colors.grey.shade300,
-                    value: totalTime / 600000,
+                const SizedBox(
+                  width: 8,
+                ),
+                Expanded(
+                  child: Container(
+                    padding: const EdgeInsets.all(1),
+                    child: LinearProgressIndicator(
+                      backgroundColor: Colors.grey.shade300,
+                      value: totalTime / 600000,
+                    ),
                   ),
                 ),
-              ),
-            ],
-          ),
+              ],
+            ),
           const Padding(
             padding: EdgeInsets.symmetric(vertical: 6.0),
             child: Guia(Colors.black),
