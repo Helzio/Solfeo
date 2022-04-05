@@ -70,36 +70,8 @@ class _MenuMovilState extends State<MenuMovil> {
                     const SizedBox(
                       width: 24,
                     ),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Text(
-                            "Score: 1433",
-                            style: TextStyle(
-                              fontSize: 18,
-                              color: Color(0xff2E3E5C),
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 4,
-                          ),
-                          const LinearProgressIndicator(
-                            value: .33,
-                          ),
-                          const SizedBox(
-                            height: 4,
-                          ),
-                          Align(
-                            alignment: Alignment.topLeft,
-                            child: Text(
-                              "Meta diaría: 5/15 min.",
-                              style: Theme.of(context).textTheme.caption,
-                            ),
-                          ),
-                        ],
-                      ),
+                    const Expanded(
+                      child: MetaDiariaWidget(),
                     ),
                   ],
                 ),
@@ -405,6 +377,45 @@ class _MenuMovilState extends State<MenuMovil> {
           ),
         ],
       ),
+    );
+  }
+}
+
+class MetaDiariaWidget extends StatelessWidget {
+  const MetaDiariaWidget({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Text(
+          "Meta diaria",
+          style: TextStyle(
+            fontSize: 18,
+            color: Color(0xff2E3E5C),
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+        const SizedBox(
+          height: 4,
+        ),
+        const LinearProgressIndicator(
+          value: .33,
+        ),
+        const SizedBox(
+          height: 4,
+        ),
+        Align(
+          alignment: Alignment.topRight,
+          child: Text(
+            "5/15 min.",
+            style: Theme.of(context).textTheme.caption,
+          ),
+        ),
+      ],
     );
   }
 }

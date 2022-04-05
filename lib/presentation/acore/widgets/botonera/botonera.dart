@@ -32,8 +32,8 @@ class _BotoneraState extends ConsumerState<Botonera> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.transparent,
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.white,
+      floatingActionButton: FloatingActionButton.small(
+        backgroundColor: widget.color,
         onPressed: () {
           ref.read(lecturaEjercicioProvider.notifier).generateNotes();
         },
@@ -184,7 +184,6 @@ class _VoiceButtonState extends ConsumerState<VoiceButton> {
             if (newNotas != notas) {
               //! Más larga
               if (newNotas.length > notas.length) {
-              
                 if (notas.isNotEmpty) {
                   newNotas.removeRange(0, notas.length);
                 }
