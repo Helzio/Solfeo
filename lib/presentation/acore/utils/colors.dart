@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+const primaryColor = Color.fromARGB(255, 0, 108, 125);
 const accentColor = Color(0xffEA7C69);
 const baseDark2 = Color(0xff1F1D2B);
 

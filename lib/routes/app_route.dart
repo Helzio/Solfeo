@@ -3,6 +3,7 @@ import 'package:solfeo/presentation/pages/ejercicios/ejercicio/lectura_ejercicio
 import 'package:solfeo/presentation/pages/ejercicios/list/ejercicios_list_page.dart';
 import 'package:solfeo/presentation/pages/lectura/libre/lectura_libre_page.dart';
 import 'package:solfeo/presentation/pages/menu_principal/menu_principal_page.dart';
+import 'package:solfeo/presentation/pages/onboard/onboard_page.dart';
 import 'package:solfeo/presentation/pages/speech/download/speech_download_page.dart';
 import 'package:solfeo/presentation/pages/splash/splash_page.dart';
 
@@ -12,6 +13,11 @@ import 'package:solfeo/presentation/pages/splash/splash_page.dart';
       page: SplashPage,
       transitionsBuilder: TransitionsBuilders.fadeIn,
       path: "/",
+    ),
+    CustomRoute(
+      page: OnboardPage,
+      transitionsBuilder: TransitionsBuilders.fadeIn,
+      path: "/welcome",
     ),
     CustomRoute(
       page: MenuPrincipalPage,

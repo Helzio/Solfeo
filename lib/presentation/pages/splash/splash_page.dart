@@ -9,7 +9,7 @@ class SplashPage extends StatelessWidget {
   Widget build(BuildContext context) {
     Future.delayed(const Duration(milliseconds: 300)).then(
       (value) => AutoRouter.of(context).replace(
-        const MenuPrincipalRoute(),
+        const OnboardRoute(),
       ),
     );
     return Container(

@@ -145,7 +145,7 @@ class _MenuMovilState extends State<MenuMovil> {
                       size: 20,
                     ),
                   ),
-                  ListTile(
+                  /* ListTile(
                     leading: Container(
                       width: 36,
                       height: 36,
@@ -201,6 +201,7 @@ class _MenuMovilState extends State<MenuMovil> {
                       size: 20,
                     ),
                   ),
+                  */
                   ListTile(
                     leading: Container(
                       width: 36,
@@ -231,16 +232,16 @@ class _MenuMovilState extends State<MenuMovil> {
                       size: 20,
                     ),
                   ),
-                  const Padding(
+                  /* const Padding(
                     padding: EdgeInsets.symmetric(horizontal: 24),
                     child: Divider(
                       height: 32,
                     ),
-                  ),
-                  const SizedBox(
+                  ), */
+                  /* const SizedBox(
                     height: 16,
-                  ),
-                  const Padding(
+                  ), */
+                  /* const Padding(
                     padding: EdgeInsets.symmetric(horizontal: 24),
                     child: Text(
                       "Entrenamiento de ritmo",
@@ -338,6 +339,7 @@ class _MenuMovilState extends State<MenuMovil> {
                       size: 20,
                     ),
                   ),
+                   */
                   const Padding(
                     padding: EdgeInsets.symmetric(horizontal: 24),
                     child: Divider(
