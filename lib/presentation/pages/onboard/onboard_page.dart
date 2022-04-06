@@ -1,8 +1,10 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:solfeo/presentation/acore/utils/colors.dart';
+import 'package:solfeo/routes/app_route.gr.dart';
 
 class OnboardPage extends ConsumerWidget {
   const OnboardPage({Key? key}) : super(key: key);
@@ -50,7 +52,6 @@ class OnboardPage extends ConsumerWidget {
               "¡Te damos la bienvenida a Solfa! Tu entrenador de solfeo",
               style: TextStyle(
                 fontSize: 20,
-                fontWeight: FontWeight.bold,
                 color: Colors.black,
               ),
             ),
@@ -66,7 +67,9 @@ class OnboardPage extends ConsumerWidget {
             SizedBox(
               height: 48,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  AutoRouter.of(context).push(const MenuPrincipalRoute());
+                },
                 style: ElevatedButton.styleFrom(
                   primary: primaryColor,
                   shape: const StadiumBorder(),
