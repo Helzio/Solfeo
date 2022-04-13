@@ -30,9 +30,11 @@ class _LoginPageState extends ConsumerState<LoginPage> {
           systemOverlayStyle: SystemUiOverlayStyle.dark,
         ),
         body: Padding(
-          padding: const EdgeInsets.symmetric(
-            vertical: 32.0,
-            horizontal: 40,
+          padding: const EdgeInsets.only(
+            bottom: 24.0,
+            left: 40,
+            right: 40,
+            top: 16,
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -75,6 +77,9 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                   fontSize: 14,
                   color: Colors.black87,
                 ),
+              ),
+              const SizedBox(
+                height: 8,
               ),
               Expanded(
                 child: Lottie.asset(
@@ -227,7 +232,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                 ),
               ),
               const SizedBox(
-                height: 12,
+                height: 8,
               ),
               const Align(
                 child: Text("- o -"),
@@ -275,6 +280,32 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                             color: Colors.white,
                           ),
                         ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 24,
+              ),
+              Align(
+                child: RichText(
+                  text: const TextSpan(
+                    text: "Al iniciar sesión aceptas nuestra ",
+                    style: TextStyle(
+                      fontSize: 10,
+                      color: Colors.black87,
+                    ),
+                    children: [
+                      TextSpan(
+                        text: "política de uso y privacidad",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          decoration: TextDecoration.underline,
+                        ),
+                      ),
+                      TextSpan(
+                        text: ".",
                       ),
                     ],
                   ),
