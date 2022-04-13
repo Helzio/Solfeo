@@ -1,0 +1,310 @@
+@startuml
+set namespaceSeparator ::
+
+class "solfeo::features::partitura_scroll::application::partitura_scroll_notifier.dart::PartituraScrollState" {
+}
+
+class "solfeo::features::partitura_scroll::application::partitura_scroll_notifier.dart::PartituraScrollNotifier" {
+  +void addCurrentNote()
+  +void reset()
+}
+
+"state_notifier::state_notifier.dart::StateNotifier" <|-- "solfeo::features::partitura_scroll::application::partitura_scroll_notifier.dart::PartituraScrollNotifier"
+
+abstract class "solfeo::features::partitura_scroll::application::partitura_scroll_notifier.dart::$PartituraScrollStateCopyWith" {
+  +$Res call()
+}
+
+class "solfeo::features::pentagrama::domain::entities::pentagrama.dart::Pentagrama" {
+  +int numeroNotas
+  +List<Nota> notas
+}
+
+class "solfeo::features::pentagrama::domain::entities::pentagrama.dart::Compas" {
+}
+
+class "solfeo::features::pentagrama::domain::entities::pentagrama.dart::Acorde" {
+}
+
+class "solfeo::features::pentagrama::domain::entities::pentagrama.dart::Nota" {
+}
+
+class "solfeo::features::pentagrama::domain::entities::pentagrama.dart::Clave" {
+  +int index
+  {static} +List<Clave> values
+  {static} +Clave Sol
+  {static} +Clave Fa
+  {static} +Clave Do
+}
+
+"solfeo::features::pentagrama::domain::entities::pentagrama.dart::Clave" o-- "solfeo::features::pentagrama::domain::entities::pentagrama.dart::Clave"
+"dart::core::Enum" <|-- "solfeo::features::pentagrama::domain::entities::pentagrama.dart::Clave"
+
+class "solfeo::features::pentagrama::domain::entities::pentagrama.dart::Tono" {
+  +int index
+  {static} +List<Tono> values
+  {static} +Tono Do
+  {static} +Tono Re
+  {static} +Tono Mi
+  {static} +Tono Fa
+  {static} +Tono Sol
+  {static} +Tono La
+  {static} +Tono Si
+}
+
+"solfeo::features::pentagrama::domain::entities::pentagrama.dart::Tono" o-- "solfeo::features::pentagrama::domain::entities::pentagrama.dart::Tono"
+"dart::core::Enum" <|-- "solfeo::features::pentagrama::domain::entities::pentagrama.dart::Tono"
+
+class "solfeo::features::pentagrama::domain::entities::pentagrama.dart::Armadura" {
+  +int index
+  {static} +List<Armadura> values
+  {static} +Armadura Do
+  {static} +Armadura Re
+  {static} +Armadura Mi
+  {static} +Armadura Fa
+  {static} +Armadura Sol
+  {static} +Armadura La
+  {static} +Armadura Si
+}
+
+"solfeo::features::pentagrama::domain::entities::pentagrama.dart::Armadura" o-- "solfeo::features::pentagrama::domain::entities::pentagrama.dart::Armadura"
+"dart::core::Enum" <|-- "solfeo::features::pentagrama::domain::entities::pentagrama.dart::Armadura"
+
+class "solfeo::features::pentagrama::domain::entities::pentagrama.dart::Valor" {
+  +int index
+  {static} +List<Valor> values
+  {static} +Valor Redonda
+  {static} +Valor Blanca
+  {static} +Valor Negra
+  {static} +Valor Corchea
+  {static} +Valor SemiCorchea
+}
+
+"solfeo::features::pentagrama::domain::entities::pentagrama.dart::Valor" o-- "solfeo::features::pentagrama::domain::entities::pentagrama.dart::Valor"
+"dart::core::Enum" <|-- "solfeo::features::pentagrama::domain::entities::pentagrama.dart::Valor"
+
+class "solfeo::features::pentagrama::domain::entities::pentagrama.dart::Ocatava" {
+  +int index
+  {static} +List<Ocatava> values
+  {static} +Ocatava Primera
+  {static} +Ocatava Segunda
+  {static} +Ocatava Tercera
+  {static} +Ocatava Cuarta
+  {static} +Ocatava Quinta
+  {static} +Ocatava Sexta
+  {static} +Ocatava Septima
+  {static} +Ocatava Octava
+}
+
+"solfeo::features::pentagrama::domain::entities::pentagrama.dart::Ocatava" o-- "solfeo::features::pentagrama::domain::entities::pentagrama.dart::Ocatava"
+"dart::core::Enum" <|-- "solfeo::features::pentagrama::domain::entities::pentagrama.dart::Ocatava"
+
+class "solfeo::features::pentagrama::domain::entities::pentagrama.dart::Alteracion" {
+  +int index
+  {static} +List<Alteracion> values
+  {static} +Alteracion Sostenido
+  {static} +Alteracion Bemol
+  {static} +Alteracion Becuadro
+}
+
+"solfeo::features::pentagrama::domain::entities::pentagrama.dart::Alteracion" o-- "solfeo::features::pentagrama::domain::entities::pentagrama.dart::Alteracion"
+"dart::core::Enum" <|-- "solfeo::features::pentagrama::domain::entities::pentagrama.dart::Alteracion"
+
+class "solfeo::features::pentagrama::domain::entities::pentagrama.dart::PuntillosRepeticion" {
+  +int index
+  {static} +List<PuntillosRepeticion> values
+  {static} +PuntillosRepeticion Inicio
+  {static} +PuntillosRepeticion Fin
+}
+
+"solfeo::features::pentagrama::domain::entities::pentagrama.dart::PuntillosRepeticion" o-- "solfeo::features::pentagrama::domain::entities::pentagrama.dart::PuntillosRepeticion"
+"dart::core::Enum" <|-- "solfeo::features::pentagrama::domain::entities::pentagrama.dart::PuntillosRepeticion"
+
+class "solfeo::features::pentagrama::domain::entities::pentagrama.dart::Ligadura" {
+  +int index
+  {static} +List<Ligadura> values
+  {static} +Ligadura Inicio
+  {static} +Ligadura Fin
+}
+
+"solfeo::features::pentagrama::domain::entities::pentagrama.dart::Ligadura" o-- "solfeo::features::pentagrama::domain::entities::pentagrama.dart::Ligadura"
+"dart::core::Enum" <|-- "solfeo::features::pentagrama::domain::entities::pentagrama.dart::Ligadura"
+
+abstract class "solfeo::features::pentagrama::domain::entities::pentagrama.dart::$PentagramaCopyWith" {
+  +$Res call()
+}
+
+abstract class "solfeo::features::pentagrama::domain::entities::pentagrama.dart::$CompasCopyWith" {
+  +$Res call()
+}
+
+abstract class "solfeo::features::pentagrama::domain::entities::pentagrama.dart::$AcordeCopyWith" {
+  +$Res call()
+}
+
+abstract class "solfeo::features::pentagrama::domain::entities::pentagrama.dart::$NotaCopyWith" {
+  +$Res call()
+}
+
+class "solfeo::features::speech::speech::application::speech_notifier.dart::SpeechState" {
+}
+
+class "solfeo::features::speech::speech::application::speech_notifier.dart::SpeechNotifier" {
+  +Future<dynamic> load()
+  +Future<void> start()
+  +Future<void> stop()
+  +Future<void> destroy()
+  +Stream<SpeechPartial>? onPartial()
+  +Stream<SpeechResult>? onResult()
+}
+
+"state_notifier::state_notifier.dart::StateNotifier" <|-- "solfeo::features::speech::speech::application::speech_notifier.dart::SpeechNotifier"
+
+abstract class "solfeo::features::speech::speech::application::speech_notifier.dart::$SpeechStateCopyWith" {
+}
+
+class "solfeo::features::speech::download::application::download_speech_notifer.dart::DownloadSpeechState" {
+}
+
+class "solfeo::features::speech::download::application::download_speech_notifer.dart::DownloadSpeechNotifier" {
+  +void reset()
+  +Future<void> downloadLanguage()
+}
+
+"state_notifier::state_notifier.dart::StateNotifier" <|-- "solfeo::features::speech::download::application::download_speech_notifer.dart::DownloadSpeechNotifier"
+
+abstract class "solfeo::features::speech::download::application::download_speech_notifer.dart::$DownloadSpeechStateCopyWith" {
+}
+
+class "solfeo::features::speech::download::infrastructure::repositories::download_speech_repository.dart::DownloadSpeechRepository" {
+  +Future<Either<DownloadSpeechFailure, Unit>> downloadSpeech()
+}
+
+class "solfeo::features::speech::download::infrastructure::remote::download_speech_remote.dart::DownloadSpeechRemote" {
+  {static} +String directory
+  {static} +Future<dynamic> deleteLanguage()
+  +Future<Unit> downloadSpeech()
+}
+
+class "solfeo::features::speech::download::domain::failures::download_speech_failure.dart::DownloadSpeechFailure" {
+}
+
+abstract class "solfeo::features::speech::download::domain::failures::download_speech_failure.dart::$DownloadSpeechFailureCopyWith" {
+}
+
+class "solfeo::features::speech::acore::domain::entities::spech_language_path.dart::SpeechLanguage" {
+  +int index
+  {static} +List<SpeechLanguage> values
+  {static} +SpeechLanguage english
+  {static} +SpeechLanguage indianEnglish
+  {static} +SpeechLanguage chinese
+  {static} +SpeechLanguage russian
+  {static} +SpeechLanguage french
+  {static} +SpeechLanguage german
+  {static} +SpeechLanguage spanish
+  {static} +SpeechLanguage portuguese
+  {static} +SpeechLanguage turkish
+  {static} +SpeechLanguage vietnamese
+  {static} +SpeechLanguage italian
+  {static} +SpeechLanguage catalan
+  {static} +SpeechLanguage farsi
+}
+
+"solfeo::features::speech::acore::domain::entities::spech_language_path.dart::SpeechLanguage" o-- "solfeo::features::speech::acore::domain::entities::spech_language_path.dart::SpeechLanguage"
+"dart::core::Enum" <|-- "solfeo::features::speech::acore::domain::entities::spech_language_path.dart::SpeechLanguage"
+
+class "solfeo::features::play_notes::application::sound_notifier.dart::SoundState" {
+}
+
+abstract class "solfeo::features::play_notes::application::sound_notifier.dart::$SoundStateCopyWith" {
+  +$Res call()
+}
+
+class "solfeo::features::lectura_libre::application::lectura_libre_notifier.dart::LecturaLibreState" {
+}
+
+class "solfeo::features::lectura_libre::application::lectura_libre_notifier.dart::LecturaLibreNotifier" {
+  +int notaDo
+  +int notaRe
+  +int notaMi
+  +int notaFa
+  +int notaSol
+  +int notaLa
+  +int notaSi
+  +void generateNotes()
+  +void dispose()
+  +Future<void> loadSounds()
+  +void comprobarAvance()
+  +void toogleMutted()
+  +void setEnterNote()
+  +void addLevel()
+  +void addGreenNote()
+  +void addAllGreenNotes()
+  +void clearGreenNotes()
+  +void removeGreenNote()
+  +void removeLevel()
+}
+
+"state_notifier::state_notifier.dart::StateNotifier" <|-- "solfeo::features::lectura_libre::application::lectura_libre_notifier.dart::LecturaLibreNotifier"
+
+abstract class "solfeo::features::lectura_libre::application::lectura_libre_notifier.dart::$LecturaLibreStateCopyWith" {
+  +$NotaCopyWith<$Res>? enterNote
+  +$PentagramaCopyWith<$Res> pentagrama
+  +$Res call()
+}
+
+"solfeo::features::lectura_libre::application::lectura_libre_notifier.dart::$LecturaLibreStateCopyWith" o-- "solfeo::features::pentagrama::domain::entities::pentagrama.dart::$NotaCopyWith<$Res>"
+"solfeo::features::lectura_libre::application::lectura_libre_notifier.dart::$LecturaLibreStateCopyWith" o-- "solfeo::features::pentagrama::domain::entities::pentagrama.dart::$PentagramaCopyWith<$Res>"
+
+class "solfeo::features::lectura_libre::infrastructure::local::lectura_libre_local.dart::LecturaLibreLocal" {
+  +int getNivel()
+  +int getTotalTime()
+  +bool getMutted()
+  +double getPrecision()
+  +double getVelocidad()
+  +Future<bool> saveNivel()
+  +Future<bool> saveTotalTime()
+  +Future<bool> saveMutted()
+  +Future<bool> savePrecision()
+  +Future<bool> saveVelocidad()
+  +Future<bool> clear()
+}
+
+class "solfeo::features::lectura_ejercicio::application::lectura_ejercicio_notifier.dart::LecturaEjercicioState" {
+}
+
+class "solfeo::features::lectura_ejercicio::application::lectura_ejercicio_notifier.dart::LecturaEjercicioNotifier" {
+  +int notaDo
+  +int notaRe
+  +int notaMi
+  +int notaFa
+  +int notaSol
+  +int notaLa
+  +int notaSi
+  +void generateNotes()
+  +void dispose()
+  +Future<void> loadSounds()
+  +void comprobarAvance()
+  +void toogleMutted()
+  +void setEnterNote()
+  +void addLevel()
+  +void addGreenNote()
+  +void addAllGreenNotes()
+  +void clearGreenNotes()
+  +void removeGreenNote()
+  +void removeLevel()
+}
+
+"state_notifier::state_notifier.dart::StateNotifier" <|-- "solfeo::features::lectura_ejercicio::application::lectura_ejercicio_notifier.dart::LecturaEjercicioNotifier"
+
+abstract class "solfeo::features::lectura_ejercicio::application::lectura_ejercicio_notifier.dart::$LecturaEjercicioStateCopyWith" {
+  +$NotaCopyWith<$Res>? enterNote
+  +$PentagramaCopyWith<$Res> pentagrama
+  +$Res call()
+}
+
+"solfeo::features::lectura_ejercicio::application::lectura_ejercicio_notifier.dart::$LecturaEjercicioStateCopyWith" o-- "solfeo::features::pentagrama::domain::entities::pentagrama.dart::$NotaCopyWith<$Res>"
+"solfeo::features::lectura_ejercicio::application::lectura_ejercicio_notifier.dart::$LecturaEjercicioStateCopyWith" o-- "solfeo::features::pentagrama::domain::entities::pentagrama.dart::$PentagramaCopyWith<$Res>"
+
+
+@enduml

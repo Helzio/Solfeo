@@ -272,7 +272,8 @@ class PentagramaNota extends ConsumerWidget {
     final stateIndex =
         ref.watch(lecturaEjercicioProvider.select((value) => value.index));
     final listErrorIndex = ref.watch(
-        lecturaEjercicioProvider.select((value) => value.listErrorIndex));
+      lecturaEjercicioProvider.select((value) => value.listErrorIndex),
+    );
     final greenNotes =
         ref.watch(lecturaEjercicioProvider.select((value) => value.greenNotes));
     final greenNote = greenNotes.contains(nota);
@@ -337,7 +338,6 @@ class PentagramaCompas extends ConsumerWidget {
     BuildContext context,
     WidgetRef ref,
   ) {
-    print("pentagrama compas");
     final unidad = textSize * pentagramaRatio * .8 / 4;
     final stateIndex =
         ref.watch(lecturaEjercicioProvider.select((value) => value.index));

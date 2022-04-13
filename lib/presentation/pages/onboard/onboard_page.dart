@@ -90,7 +90,9 @@ class OnboardPage extends ConsumerWidget {
               children: [
                 const Text("¿Ya tienes una cuenta de Solfa?"),
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    AutoRouter.of(context).push(const LoginRoute());
+                  },
                   child: const Text(
                     "Iniciar sesión",
                     style: TextStyle(
