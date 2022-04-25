@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1046474183879",
+    "project_id": "solfa-f0d79",
+    "storage_bucket": "solfa-f0d79.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1046474183879:android:9707ae715f6a97d1f39ae2",
+        "android_client_info": {
+          "package_name": "ccv.checkhelzio.solfeo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1046474183879-4t5lh48ook0n0bmhdvub5rar9em8plqa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCY7iqbqSfFruh0pz0JMMn1wJpLmcwrsdQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1046474183879-4t5lh48ook0n0bmhdvub5rar9em8plqa.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

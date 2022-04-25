@@ -1,6 +1,9 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_signin_button/button_view.dart';
+import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:lottie/lottie.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:solfeo/presentation/acore/utils/colors.dart';
@@ -40,12 +43,26 @@ class _LoginPageState extends ConsumerState<LoginPage> {
               SizedBox(
                 height: 48,
                 child: Row(
-                  children: const [
-                    Text(
-                      "Bienvenido de nuevo",
+                  children: [
+                    const Text(
+                      "Iniciar sesion con ",
                       style: TextStyle(
                         fontSize: 20,
                         color: primaryColor,
+                      ),
+                    ),
+                    DefaultTextStyle(
+                      style: const TextStyle(
+                        fontSize: 20,
+                        color: primaryColor,
+                      ),
+                      child: AnimatedTextKit(
+                        repeatForever: true,
+                        animatedTexts: [
+                          RotateAnimatedText('Google'),
+                          RotateAnimatedText('Facebook'),
+                          RotateAnimatedText('Apple'),
+                        ],
                       ),
                     ),
                   ],
@@ -55,7 +72,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                 height: 8,
               ),
               const Text(
-                "Al iniciar sesión con Google, Facebook o Apple se cargará tu progreso en la nube.",
+                "Al iniciar sesión con Google, Facebook o Apple se guardará tu progreso en la nube.",
                 style: TextStyle(
                   fontSize: 14,
                   color: Colors.black87,
