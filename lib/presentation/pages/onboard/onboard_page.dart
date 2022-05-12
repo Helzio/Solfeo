@@ -14,12 +14,12 @@ class OnboardPage extends ConsumerWidget {
     return Scaffold(
       backgroundColor: Colors.grey.shade300,
       body: Padding(
-        padding: const EdgeInsets.all(24.0),
+        padding: const EdgeInsets.symmetric(vertical: 24.0, horizontal: 40),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             const SizedBox(
-              height: 16,
+              height: 32,
             ),
             Transform.translate(
               offset: const Offset(-14, 0),
@@ -58,7 +58,6 @@ class OnboardPage extends ConsumerWidget {
             Expanded(
               child: Lottie.asset(
                 'assets/animations/music_class.json',
-                onLoaded: (composition) {},
               ),
             ),
             const SizedBox(
@@ -68,7 +67,7 @@ class OnboardPage extends ConsumerWidget {
               height: 48,
               child: ElevatedButton(
                 onPressed: () {
-                  AutoRouter.of(context).push(const MenuPrincipalRoute());
+                  AutoRouter.of(context).push(const RegisterRoute());
                 },
                 style: ElevatedButton.styleFrom(
                   primary: primaryColor,
@@ -88,7 +87,12 @@ class OnboardPage extends ConsumerWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text("¿Ya tienes una cuenta de Solfa?"),
+                const Text(
+                  "¿Ya tienes una cuenta de Solfa?",
+                  style: TextStyle(
+                    fontSize: 12,
+                  ),
+                ),
                 TextButton(
                   onPressed: () {
                     AutoRouter.of(context).push(const LoginRoute());
@@ -97,10 +101,15 @@ class OnboardPage extends ConsumerWidget {
                     "Iniciar sesión",
                     style: TextStyle(
                       color: primaryColor,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 12,
                     ),
                   ),
                 )
               ],
+            ),
+            const SizedBox(
+              height: 4,
             ),
           ],
         ),

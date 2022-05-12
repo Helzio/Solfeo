@@ -145,7 +145,7 @@ class _MenuMovilState extends State<MenuMovil> {
                       size: 20,
                     ),
                   ),
-                  /* ListTile(
+                  ListTile(
                     leading: Container(
                       width: 36,
                       height: 36,
@@ -201,7 +201,6 @@ class _MenuMovilState extends State<MenuMovil> {
                       size: 20,
                     ),
                   ),
-                  */
                   ListTile(
                     leading: Container(
                       width: 36,
@@ -232,16 +231,16 @@ class _MenuMovilState extends State<MenuMovil> {
                       size: 20,
                     ),
                   ),
-                  /* const Padding(
+                  const Padding(
                     padding: EdgeInsets.symmetric(horizontal: 24),
                     child: Divider(
                       height: 32,
                     ),
-                  ), */
-                  /* const SizedBox(
+                  ),
+                  const SizedBox(
                     height: 16,
-                  ), */
-                  /* const Padding(
+                  ),
+                  const Padding(
                     padding: EdgeInsets.symmetric(horizontal: 24),
                     child: Text(
                       "Entrenamiento de ritmo",
@@ -339,7 +338,6 @@ class _MenuMovilState extends State<MenuMovil> {
                       size: 20,
                     ),
                   ),
-                   */
                   const Padding(
                     padding: EdgeInsets.symmetric(horizontal: 24),
                     child: Divider(
@@ -394,7 +392,7 @@ class MetaDiariaWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Text(
-          "Meta diaria",
+          "Bienvenido Invitado",
           style: TextStyle(
             fontSize: 18,
             color: Color(0xff2E3E5C),
@@ -405,17 +403,29 @@ class MetaDiariaWidget extends StatelessWidget {
           height: 4,
         ),
         const LinearProgressIndicator(
-          value: .33,
+          value: .0,
         ),
         const SizedBox(
           height: 4,
         ),
-        Align(
-          alignment: Alignment.topRight,
-          child: Text(
-            "5/15 min.",
-            style: Theme.of(context).textTheme.caption,
-          ),
+        Row(
+          children: [
+            Align(
+              alignment: Alignment.topRight,
+              child: Text(
+                "Progreso:",
+                style: Theme.of(context).textTheme.caption,
+              ),
+            ),
+            Expanded(child: Container()),
+            Align(
+              alignment: Alignment.topRight,
+              child: Text(
+                "0/10 min.",
+                style: Theme.of(context).textTheme.caption,
+              ),
+            ),
+          ],
         ),
       ],
     );

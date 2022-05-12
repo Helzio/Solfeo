@@ -8,23 +8,23 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 import 'package:solfeo/presentation/acore/utils/colors.dart';
 import 'package:solfeo/routes/app_route.gr.dart';
 
-class LoginPage extends ConsumerStatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+class RegisterPage extends ConsumerStatefulWidget {
+  const RegisterPage({Key? key}) : super(key: key);
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _LoginPageState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _RegisterPageState();
 }
 
-class _LoginPageState extends ConsumerState<LoginPage> {
+class _RegisterPageState extends ConsumerState<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Theme(
       data: ThemeData.light().copyWith(brightness: Brightness.dark),
       child: Scaffold(
-        backgroundColor: Theme.of(context).canvasColor,
+        backgroundColor: Colors.grey.shade300,
         appBar: AppBar(
           elevation: 0,
-          backgroundColor: Theme.of(context).canvasColor,
+          backgroundColor: Colors.grey.shade300,
           title: const Text(''),
           centerTitle: true,
           systemOverlayStyle: SystemUiOverlayStyle.dark,
@@ -72,7 +72,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                 const SizedBox(
                   height: 48,
                   child: Text(
-                    "Bienvenido de nuevo",
+                    "Crea una cuenta para guardar tus avances",
                     style: TextStyle(
                       fontSize: 20,
                       color: Colors.black,
@@ -80,17 +80,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                   ),
                 ),
                 const SizedBox(
-                  height: 8,
-                ),
-                const Text(
-                  "Al iniciar sesión con Google, Facebook o Apple se cargará tu progreso previamente guardado en la nube.",
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: Colors.black87,
-                  ),
-                ),
-                const SizedBox(
-                  height: 8,
+                  height: 32,
                 ),
                 Expanded(
                   child: Lottie.asset(
@@ -99,7 +89,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                   ),
                 ),
                 const SizedBox(
-                  height: 8,
+                  height: 24,
                 ),
                 SizedBox(
                   height: 48,
@@ -132,7 +122,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                         const Expanded(
                           flex: 75,
                           child: Text(
-                            "Iniciar sesión con google",
+                            "Registrarse con google",
                             style: TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.bold,
@@ -145,13 +135,13 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                   ),
                 ),
                 const SizedBox(
-                  height: 8,
+                  height: 12,
                 ),
                 const Align(
                   child: Text("- o -"),
                 ),
                 const SizedBox(
-                  height: 8,
+                  height: 12,
                 ),
                 SizedBox(
                   height: 48,
@@ -189,7 +179,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                         Expanded(
                           flex: 75,
                           child: Text(
-                            "Iniciar sesión como invitado",
+                            "Continuar como invitado",
                             style: TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.bold,
@@ -202,21 +192,22 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                   ),
                 ),
                 const SizedBox(
-                  height: 32,
+                  height: 24,
                 ),
                 Align(
                   child: RichText(
+                    textAlign: TextAlign.center,
                     text: const TextSpan(
-                      text: "Al iniciar sesión aceptas nuestra ",
+                      text: "Al usar Solfa aceptas nuestras ",
                       style: TextStyle(
-                        fontSize: 12,
+                        fontSize: 11,
                         color: Colors.black87,
                       ),
                       children: [
                         TextSpan(
-                          text: "política de uso y privacidad",
+                          text:
+                              "Condiciones de Uso y Política de uso de Privacidad",
                           style: TextStyle(
-                            fontWeight: FontWeight.bold,
                             decoration: TextDecoration.underline,
                           ),
                         ),
@@ -228,7 +219,35 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                   ),
                 ),
                 const SizedBox(
-                  height: 30,
+                  height: 16,
+                ),
+                const Divider(),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text(
+                      "¿Ya tienes una cuenta de Solfa?",
+                      style: TextStyle(
+                        fontSize: 12,
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        AutoRouter.of(context).push(const LoginRoute());
+                      },
+                      child: const Text(
+                        "Iniciar sesión",
+                        style: TextStyle(
+                          color: primaryColor,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 12,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 12,
                 ),
               ],
             ),

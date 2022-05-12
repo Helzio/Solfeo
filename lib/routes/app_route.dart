@@ -5,6 +5,7 @@ import 'package:solfeo/presentation/pages/lectura/libre/lectura_libre_page.dart'
 import 'package:solfeo/presentation/pages/login/login_page.dart';
 import 'package:solfeo/presentation/pages/menu_principal/menu_principal_page.dart';
 import 'package:solfeo/presentation/pages/onboard/onboard_page.dart';
+import 'package:solfeo/presentation/pages/register/register_page.dart';
 import 'package:solfeo/presentation/pages/speech/download/speech_download_page.dart';
 import 'package:solfeo/presentation/pages/splash/splash_page.dart';
 
@@ -24,6 +25,11 @@ import 'package:solfeo/presentation/pages/splash/splash_page.dart';
       page: LoginPage,
       transitionsBuilder: TransitionsBuilders.fadeIn,
       path: "/login",
+    ),
+    CustomRoute(
+      page: RegisterPage,
+      transitionsBuilder: TransitionsBuilders.fadeIn,
+      path: "/register",
     ),
     CustomRoute(
       page: MenuPrincipalPage,

@@ -89,7 +89,7 @@ class _LecturaLibrePageState extends ConsumerState<LecturaLibrePage> {
                 if (!kIsWeb)
                   AppBar(
                     title: const Text(
-                      "Entrenamiento libre",
+                      "Entrenamiento libre de lectura",
                     ),
                     backgroundColor: Colors.grey.shade900,
                   ),
