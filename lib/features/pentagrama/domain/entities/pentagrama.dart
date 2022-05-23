@@ -621,92 +621,68 @@ String getNotaPosicion({
       } else if (octava == Ocatava.Sexta) {
         return "$up6$barra$up8$barra$up8${getNoteString(
           valor: valor,
-          down: agrupacionDown
-              ? true
-              : agrupacionUp
-                  ? false
-                  : true,
+          down: agrupacionDown || !agrupacionUp,
         )}";
       } else {
         return getNoteString(valor: valor, down: agrupacionDown);
       }
     case Tono.Re:
       if (octava == Ocatava.Cuarta) {
-        return "$down5${getNoteString(valor: valor, down: agrupacionDown ? true : agrupacionUp ? false : false)}";
+        return "$down5${getNoteString(valor: valor, down: agrupacionDown)}";
       } else if (octava == Ocatava.Quinta) {
         return "$up2${getNoteString(
           valor: valor,
-          down: agrupacionDown
-              ? true
-              : agrupacionUp
-                  ? false
-                  : true,
+          down: agrupacionDown || !agrupacionUp,
         )}";
       } else if (octava == Ocatava.Sexta) {
         return "$up4$barra$up6$barra$up7${getNoteString(
           valor: valor,
-          down: agrupacionDown
-              ? true
-              : agrupacionUp
-                  ? false
-                  : true,
+          down: agrupacionDown || !agrupacionUp,
         )}";
       } else {
         return getNoteString(valor: valor, down: agrupacionDown);
       }
     case Tono.Mi:
       if (octava == Ocatava.Cuarta) {
-        return "$down4${getNoteString(valor: valor, down: agrupacionDown ? true : agrupacionUp ? false : false)}";
+        return "$down4${getNoteString(valor: valor, down: agrupacionDown)}";
       } else if (octava == Ocatava.Quinta) {
-        return "$up3${getNoteString(valor: valor, down: agrupacionDown ? true : agrupacionUp ? false : false)}";
+        return "$up3${getNoteString(valor: valor, down: agrupacionDown)}";
       } else {
         return getNoteString(valor: valor, down: agrupacionDown);
       }
     case Tono.Fa:
       if (octava == Ocatava.Cuarta) {
-        return "$down3${getNoteString(valor: valor, down: agrupacionDown ? true : agrupacionUp ? false : false)}";
+        return "$down3${getNoteString(valor: valor, down: agrupacionDown)}";
       } else if (octava == Ocatava.Quinta) {
         return "$up4${getNoteString(
           valor: valor,
-          down: agrupacionDown
-              ? true
-              : agrupacionUp
-                  ? false
-                  : true,
+          down: agrupacionDown || !agrupacionUp,
         )}";
       } else {
         return getNoteString(valor: valor, down: agrupacionDown);
       }
     case Tono.Sol:
       if (octava == Ocatava.Cuarta) {
-        return "\uEB99${getNoteString(valor: valor, down: agrupacionDown ? true : agrupacionUp ? false : false)}";
+        return "\uEB99${getNoteString(valor: valor, down: agrupacionDown)}";
       } else if (octava == Ocatava.Quinta) {
         return up5 +
             getNoteString(
               valor: valor,
-              down: agrupacionDown
-                  ? true
-                  : agrupacionUp
-                      ? false
-                      : true,
+              down: agrupacionDown || !agrupacionUp,
             );
       } else {
         return getNoteString(valor: valor, down: agrupacionDown);
       }
     case Tono.La:
       if (octava == Ocatava.Cuarta) {
-        return "\uEB98${getNoteString(valor: valor, down: agrupacionDown ? true : agrupacionUp ? false : false)}";
+        return "\uEB98${getNoteString(valor: valor, down: agrupacionDown)}";
       } else if (octava == Ocatava.Quinta) {
         return "$up6$barra$up6${getNoteString(
           valor: valor,
-          down: agrupacionDown
-              ? true
-              : agrupacionUp
-                  ? false
-                  : true,
+          down: agrupacionDown || !agrupacionUp,
         )}";
       } else if (octava == Ocatava.Tercera) {
-        return "$down6$barra$down8$barra$down8${getNoteString(valor: valor, down: agrupacionDown ? true : agrupacionUp ? false : false)}";
+        return "$down6$barra$down8$barra$down8${getNoteString(valor: valor, down: agrupacionDown)}";
       } else {
         return getNoteString(valor: valor, down: agrupacionDown);
       }
@@ -714,24 +690,16 @@ String getNotaPosicion({
       if (octava == Ocatava.Cuarta) {
         return getNoteString(valor: valor, down: agrupacionDown);
       } else if (octava == Ocatava.Tercera) {
-        return "$down6$barra$down7${getNoteString(valor: valor, down: agrupacionDown ? true : agrupacionUp ? false : false)}";
+        return "$down6$barra$down7${getNoteString(valor: valor, down: agrupacionDown)}";
       } else if (octava == Ocatava.Quinta) {
         return "$up6$barra$up7${getNoteString(
           valor: valor,
-          down: agrupacionDown
-              ? true
-              : agrupacionUp
-                  ? false
-                  : true,
+          down: agrupacionDown || !agrupacionUp,
         )}";
       } else {
         return getNoteString(
           valor: valor,
-          down: agrupacionDown
-              ? true
-              : agrupacionUp
-                  ? false
-                  : false,
+          down: agrupacionDown,
         );
       }
   }

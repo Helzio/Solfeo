@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'download_speech_notifer.dart';
+part of 'login_notifier.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,29 +15,32 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$DownloadSpeechState {
+mixin _$LoginState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(double progress) loading,
-    required TResult Function() loaded,
-    required TResult Function(DownloadSpeechFailure failure) failure,
+    required TResult Function() loading,
+    required TResult Function() logged,
+    required TResult Function() notLogged,
+    required TResult Function(LoginFailure failure) failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(double progress)? loading,
-    TResult Function()? loaded,
-    TResult Function(DownloadSpeechFailure failure)? failure,
+    TResult Function()? loading,
+    TResult Function()? logged,
+    TResult Function()? notLogged,
+    TResult Function(LoginFailure failure)? failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(double progress)? loading,
-    TResult Function()? loaded,
-    TResult Function(DownloadSpeechFailure failure)? failure,
+    TResult Function()? loading,
+    TResult Function()? logged,
+    TResult Function()? notLogged,
+    TResult Function(LoginFailure failure)? failure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -45,7 +48,8 @@ mixin _$DownloadSpeechState {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
+    required TResult Function(_Logged value) logged,
+    required TResult Function(_NotLogged value) notLogged,
     required TResult Function(_Failure value) failure,
   }) =>
       throw _privateConstructorUsedError;
@@ -53,7 +57,8 @@ mixin _$DownloadSpeechState {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
+    TResult Function(_Logged value)? logged,
+    TResult Function(_NotLogged value)? notLogged,
     TResult Function(_Failure value)? failure,
   }) =>
       throw _privateConstructorUsedError;
@@ -61,7 +66,8 @@ mixin _$DownloadSpeechState {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
+    TResult Function(_Logged value)? logged,
+    TResult Function(_NotLogged value)? notLogged,
     TResult Function(_Failure value)? failure,
     required TResult orElse(),
   }) =>
@@ -69,20 +75,19 @@ mixin _$DownloadSpeechState {
 }
 
 /// @nodoc
-abstract class $DownloadSpeechStateCopyWith<$Res> {
-  factory $DownloadSpeechStateCopyWith(
-          DownloadSpeechState value, $Res Function(DownloadSpeechState) then) =
-      _$DownloadSpeechStateCopyWithImpl<$Res>;
+abstract class $LoginStateCopyWith<$Res> {
+  factory $LoginStateCopyWith(
+          LoginState value, $Res Function(LoginState) then) =
+      _$LoginStateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$DownloadSpeechStateCopyWithImpl<$Res>
-    implements $DownloadSpeechStateCopyWith<$Res> {
-  _$DownloadSpeechStateCopyWithImpl(this._value, this._then);
+class _$LoginStateCopyWithImpl<$Res> implements $LoginStateCopyWith<$Res> {
+  _$LoginStateCopyWithImpl(this._value, this._then);
 
-  final DownloadSpeechState _value;
+  final LoginState _value;
   // ignore: unused_field
-  final $Res Function(DownloadSpeechState) _then;
+  final $Res Function(LoginState) _then;
 }
 
 /// @nodoc
@@ -93,8 +98,7 @@ abstract class _$$_InitialCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_InitialCopyWithImpl<$Res>
-    extends _$DownloadSpeechStateCopyWithImpl<$Res>
+class __$$_InitialCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
     implements _$$_InitialCopyWith<$Res> {
   __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
       : super(_value, (v) => _then(v as _$_Initial));
@@ -110,7 +114,7 @@ class _$_Initial extends _Initial {
 
   @override
   String toString() {
-    return 'DownloadSpeechState.initial()';
+    return 'LoginState.initial()';
   }
 
   @override
@@ -126,9 +130,10 @@ class _$_Initial extends _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(double progress) loading,
-    required TResult Function() loaded,
-    required TResult Function(DownloadSpeechFailure failure) failure,
+    required TResult Function() loading,
+    required TResult Function() logged,
+    required TResult Function() notLogged,
+    required TResult Function(LoginFailure failure) failure,
   }) {
     return initial();
   }
@@ -137,9 +142,10 @@ class _$_Initial extends _Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(double progress)? loading,
-    TResult Function()? loaded,
-    TResult Function(DownloadSpeechFailure failure)? failure,
+    TResult Function()? loading,
+    TResult Function()? logged,
+    TResult Function()? notLogged,
+    TResult Function(LoginFailure failure)? failure,
   }) {
     return initial?.call();
   }
@@ -148,9 +154,10 @@ class _$_Initial extends _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(double progress)? loading,
-    TResult Function()? loaded,
-    TResult Function(DownloadSpeechFailure failure)? failure,
+    TResult Function()? loading,
+    TResult Function()? logged,
+    TResult Function()? notLogged,
+    TResult Function(LoginFailure failure)? failure,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -164,7 +171,8 @@ class _$_Initial extends _Initial {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
+    required TResult Function(_Logged value) logged,
+    required TResult Function(_NotLogged value) notLogged,
     required TResult Function(_Failure value) failure,
   }) {
     return initial(this);
@@ -175,7 +183,8 @@ class _$_Initial extends _Initial {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
+    TResult Function(_Logged value)? logged,
+    TResult Function(_NotLogged value)? notLogged,
     TResult Function(_Failure value)? failure,
   }) {
     return initial?.call(this);
@@ -186,7 +195,8 @@ class _$_Initial extends _Initial {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
+    TResult Function(_Logged value)? logged,
+    TResult Function(_NotLogged value)? notLogged,
     TResult Function(_Failure value)? failure,
     required TResult orElse(),
   }) {
@@ -197,7 +207,7 @@ class _$_Initial extends _Initial {
   }
 }
 
-abstract class _Initial extends DownloadSpeechState {
+abstract class _Initial extends LoginState {
   const factory _Initial() = _$_Initial;
   const _Initial._() : super._();
 }
@@ -207,95 +217,73 @@ abstract class _$$_LoadingCopyWith<$Res> {
   factory _$$_LoadingCopyWith(
           _$_Loading value, $Res Function(_$_Loading) then) =
       __$$_LoadingCopyWithImpl<$Res>;
-  $Res call({double progress});
 }
 
 /// @nodoc
-class __$$_LoadingCopyWithImpl<$Res>
-    extends _$DownloadSpeechStateCopyWithImpl<$Res>
+class __$$_LoadingCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
     implements _$$_LoadingCopyWith<$Res> {
   __$$_LoadingCopyWithImpl(_$_Loading _value, $Res Function(_$_Loading) _then)
       : super(_value, (v) => _then(v as _$_Loading));
 
   @override
   _$_Loading get _value => super._value as _$_Loading;
-
-  @override
-  $Res call({
-    Object? progress = freezed,
-  }) {
-    return _then(_$_Loading(
-      progress == freezed
-          ? _value.progress
-          : progress // ignore: cast_nullable_to_non_nullable
-              as double,
-    ));
-  }
 }
 
 /// @nodoc
 
 class _$_Loading extends _Loading {
-  const _$_Loading(this.progress) : super._();
-
-  @override
-  final double progress;
+  const _$_Loading() : super._();
 
   @override
   String toString() {
-    return 'DownloadSpeechState.loading(progress: $progress)';
+    return 'LoginState.loading()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_Loading &&
-            const DeepCollectionEquality().equals(other.progress, progress));
+        (other.runtimeType == runtimeType && other is _$_Loading);
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(progress));
-
-  @JsonKey(ignore: true)
-  @override
-  _$$_LoadingCopyWith<_$_Loading> get copyWith =>
-      __$$_LoadingCopyWithImpl<_$_Loading>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(double progress) loading,
-    required TResult Function() loaded,
-    required TResult Function(DownloadSpeechFailure failure) failure,
+    required TResult Function() loading,
+    required TResult Function() logged,
+    required TResult Function() notLogged,
+    required TResult Function(LoginFailure failure) failure,
   }) {
-    return loading(progress);
+    return loading();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(double progress)? loading,
-    TResult Function()? loaded,
-    TResult Function(DownloadSpeechFailure failure)? failure,
+    TResult Function()? loading,
+    TResult Function()? logged,
+    TResult Function()? notLogged,
+    TResult Function(LoginFailure failure)? failure,
   }) {
-    return loading?.call(progress);
+    return loading?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(double progress)? loading,
-    TResult Function()? loaded,
-    TResult Function(DownloadSpeechFailure failure)? failure,
+    TResult Function()? loading,
+    TResult Function()? logged,
+    TResult Function()? notLogged,
+    TResult Function(LoginFailure failure)? failure,
     required TResult orElse(),
   }) {
     if (loading != null) {
-      return loading(progress);
+      return loading();
     }
     return orElse();
   }
@@ -305,7 +293,8 @@ class _$_Loading extends _Loading {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
+    required TResult Function(_Logged value) logged,
+    required TResult Function(_NotLogged value) notLogged,
     required TResult Function(_Failure value) failure,
   }) {
     return loading(this);
@@ -316,7 +305,8 @@ class _$_Loading extends _Loading {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
+    TResult Function(_Logged value)? logged,
+    TResult Function(_NotLogged value)? notLogged,
     TResult Function(_Failure value)? failure,
   }) {
     return loading?.call(this);
@@ -327,7 +317,8 @@ class _$_Loading extends _Loading {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
+    TResult Function(_Logged value)? logged,
+    TResult Function(_NotLogged value)? notLogged,
     TResult Function(_Failure value)? failure,
     required TResult orElse(),
   }) {
@@ -338,47 +329,41 @@ class _$_Loading extends _Loading {
   }
 }
 
-abstract class _Loading extends DownloadSpeechState {
-  const factory _Loading(final double progress) = _$_Loading;
+abstract class _Loading extends LoginState {
+  const factory _Loading() = _$_Loading;
   const _Loading._() : super._();
-
-  double get progress => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  _$$_LoadingCopyWith<_$_Loading> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_LoadedCopyWith<$Res> {
-  factory _$$_LoadedCopyWith(_$_Loaded value, $Res Function(_$_Loaded) then) =
-      __$$_LoadedCopyWithImpl<$Res>;
+abstract class _$$_LoggedCopyWith<$Res> {
+  factory _$$_LoggedCopyWith(_$_Logged value, $Res Function(_$_Logged) then) =
+      __$$_LoggedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_LoadedCopyWithImpl<$Res>
-    extends _$DownloadSpeechStateCopyWithImpl<$Res>
-    implements _$$_LoadedCopyWith<$Res> {
-  __$$_LoadedCopyWithImpl(_$_Loaded _value, $Res Function(_$_Loaded) _then)
-      : super(_value, (v) => _then(v as _$_Loaded));
+class __$$_LoggedCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
+    implements _$$_LoggedCopyWith<$Res> {
+  __$$_LoggedCopyWithImpl(_$_Logged _value, $Res Function(_$_Logged) _then)
+      : super(_value, (v) => _then(v as _$_Logged));
 
   @override
-  _$_Loaded get _value => super._value as _$_Loaded;
+  _$_Logged get _value => super._value as _$_Logged;
 }
 
 /// @nodoc
 
-class _$_Loaded extends _Loaded {
-  const _$_Loaded() : super._();
+class _$_Logged extends _Logged {
+  const _$_Logged() : super._();
 
   @override
   String toString() {
-    return 'DownloadSpeechState.loaded()';
+    return 'LoginState.logged()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Loaded);
+        (other.runtimeType == runtimeType && other is _$_Logged);
   }
 
   @override
@@ -388,35 +373,38 @@ class _$_Loaded extends _Loaded {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(double progress) loading,
-    required TResult Function() loaded,
-    required TResult Function(DownloadSpeechFailure failure) failure,
+    required TResult Function() loading,
+    required TResult Function() logged,
+    required TResult Function() notLogged,
+    required TResult Function(LoginFailure failure) failure,
   }) {
-    return loaded();
+    return logged();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(double progress)? loading,
-    TResult Function()? loaded,
-    TResult Function(DownloadSpeechFailure failure)? failure,
+    TResult Function()? loading,
+    TResult Function()? logged,
+    TResult Function()? notLogged,
+    TResult Function(LoginFailure failure)? failure,
   }) {
-    return loaded?.call();
+    return logged?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(double progress)? loading,
-    TResult Function()? loaded,
-    TResult Function(DownloadSpeechFailure failure)? failure,
+    TResult Function()? loading,
+    TResult Function()? logged,
+    TResult Function()? notLogged,
+    TResult Function(LoginFailure failure)? failure,
     required TResult orElse(),
   }) {
-    if (loaded != null) {
-      return loaded();
+    if (logged != null) {
+      return logged();
     }
     return orElse();
   }
@@ -426,10 +414,11 @@ class _$_Loaded extends _Loaded {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
+    required TResult Function(_Logged value) logged,
+    required TResult Function(_NotLogged value) notLogged,
     required TResult Function(_Failure value) failure,
   }) {
-    return loaded(this);
+    return logged(this);
   }
 
   @override
@@ -437,10 +426,11 @@ class _$_Loaded extends _Loaded {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
+    TResult Function(_Logged value)? logged,
+    TResult Function(_NotLogged value)? notLogged,
     TResult Function(_Failure value)? failure,
   }) {
-    return loaded?.call(this);
+    return logged?.call(this);
   }
 
   @override
@@ -448,20 +438,144 @@ class _$_Loaded extends _Loaded {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
+    TResult Function(_Logged value)? logged,
+    TResult Function(_NotLogged value)? notLogged,
     TResult Function(_Failure value)? failure,
     required TResult orElse(),
   }) {
-    if (loaded != null) {
-      return loaded(this);
+    if (logged != null) {
+      return logged(this);
     }
     return orElse();
   }
 }
 
-abstract class _Loaded extends DownloadSpeechState {
-  const factory _Loaded() = _$_Loaded;
-  const _Loaded._() : super._();
+abstract class _Logged extends LoginState {
+  const factory _Logged() = _$_Logged;
+  const _Logged._() : super._();
+}
+
+/// @nodoc
+abstract class _$$_NotLoggedCopyWith<$Res> {
+  factory _$$_NotLoggedCopyWith(
+          _$_NotLogged value, $Res Function(_$_NotLogged) then) =
+      __$$_NotLoggedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_NotLoggedCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
+    implements _$$_NotLoggedCopyWith<$Res> {
+  __$$_NotLoggedCopyWithImpl(
+      _$_NotLogged _value, $Res Function(_$_NotLogged) _then)
+      : super(_value, (v) => _then(v as _$_NotLogged));
+
+  @override
+  _$_NotLogged get _value => super._value as _$_NotLogged;
+}
+
+/// @nodoc
+
+class _$_NotLogged extends _NotLogged {
+  const _$_NotLogged() : super._();
+
+  @override
+  String toString() {
+    return 'LoginState.notLogged()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_NotLogged);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function() logged,
+    required TResult Function() notLogged,
+    required TResult Function(LoginFailure failure) failure,
+  }) {
+    return notLogged();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? logged,
+    TResult Function()? notLogged,
+    TResult Function(LoginFailure failure)? failure,
+  }) {
+    return notLogged?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? logged,
+    TResult Function()? notLogged,
+    TResult Function(LoginFailure failure)? failure,
+    required TResult orElse(),
+  }) {
+    if (notLogged != null) {
+      return notLogged();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Logged value) logged,
+    required TResult Function(_NotLogged value) notLogged,
+    required TResult Function(_Failure value) failure,
+  }) {
+    return notLogged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Logged value)? logged,
+    TResult Function(_NotLogged value)? notLogged,
+    TResult Function(_Failure value)? failure,
+  }) {
+    return notLogged?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Logged value)? logged,
+    TResult Function(_NotLogged value)? notLogged,
+    TResult Function(_Failure value)? failure,
+    required TResult orElse(),
+  }) {
+    if (notLogged != null) {
+      return notLogged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _NotLogged extends LoginState {
+  const factory _NotLogged() = _$_NotLogged;
+  const _NotLogged._() : super._();
 }
 
 /// @nodoc
@@ -469,14 +583,13 @@ abstract class _$$_FailureCopyWith<$Res> {
   factory _$$_FailureCopyWith(
           _$_Failure value, $Res Function(_$_Failure) then) =
       __$$_FailureCopyWithImpl<$Res>;
-  $Res call({DownloadSpeechFailure failure});
+  $Res call({LoginFailure failure});
 
-  $DownloadSpeechFailureCopyWith<$Res> get failure;
+  $LoginFailureCopyWith<$Res> get failure;
 }
 
 /// @nodoc
-class __$$_FailureCopyWithImpl<$Res>
-    extends _$DownloadSpeechStateCopyWithImpl<$Res>
+class __$$_FailureCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
     implements _$$_FailureCopyWith<$Res> {
   __$$_FailureCopyWithImpl(_$_Failure _value, $Res Function(_$_Failure) _then)
       : super(_value, (v) => _then(v as _$_Failure));
@@ -492,13 +605,13 @@ class __$$_FailureCopyWithImpl<$Res>
       failure == freezed
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
-              as DownloadSpeechFailure,
+              as LoginFailure,
     ));
   }
 
   @override
-  $DownloadSpeechFailureCopyWith<$Res> get failure {
-    return $DownloadSpeechFailureCopyWith<$Res>(_value.failure, (value) {
+  $LoginFailureCopyWith<$Res> get failure {
+    return $LoginFailureCopyWith<$Res>(_value.failure, (value) {
       return _then(_value.copyWith(failure: value));
     });
   }
@@ -510,11 +623,11 @@ class _$_Failure extends _Failure {
   const _$_Failure(this.failure) : super._();
 
   @override
-  final DownloadSpeechFailure failure;
+  final LoginFailure failure;
 
   @override
   String toString() {
-    return 'DownloadSpeechState.failure(failure: $failure)';
+    return 'LoginState.failure(failure: $failure)';
   }
 
   @override
@@ -538,9 +651,10 @@ class _$_Failure extends _Failure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(double progress) loading,
-    required TResult Function() loaded,
-    required TResult Function(DownloadSpeechFailure failure) failure,
+    required TResult Function() loading,
+    required TResult Function() logged,
+    required TResult Function() notLogged,
+    required TResult Function(LoginFailure failure) failure,
   }) {
     return failure(this.failure);
   }
@@ -549,9 +663,10 @@ class _$_Failure extends _Failure {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(double progress)? loading,
-    TResult Function()? loaded,
-    TResult Function(DownloadSpeechFailure failure)? failure,
+    TResult Function()? loading,
+    TResult Function()? logged,
+    TResult Function()? notLogged,
+    TResult Function(LoginFailure failure)? failure,
   }) {
     return failure?.call(this.failure);
   }
@@ -560,9 +675,10 @@ class _$_Failure extends _Failure {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(double progress)? loading,
-    TResult Function()? loaded,
-    TResult Function(DownloadSpeechFailure failure)? failure,
+    TResult Function()? loading,
+    TResult Function()? logged,
+    TResult Function()? notLogged,
+    TResult Function(LoginFailure failure)? failure,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -576,7 +692,8 @@ class _$_Failure extends _Failure {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
+    required TResult Function(_Logged value) logged,
+    required TResult Function(_NotLogged value) notLogged,
     required TResult Function(_Failure value) failure,
   }) {
     return failure(this);
@@ -587,7 +704,8 @@ class _$_Failure extends _Failure {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
+    TResult Function(_Logged value)? logged,
+    TResult Function(_NotLogged value)? notLogged,
     TResult Function(_Failure value)? failure,
   }) {
     return failure?.call(this);
@@ -598,7 +716,8 @@ class _$_Failure extends _Failure {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
+    TResult Function(_Logged value)? logged,
+    TResult Function(_NotLogged value)? notLogged,
     TResult Function(_Failure value)? failure,
     required TResult orElse(),
   }) {
@@ -609,11 +728,11 @@ class _$_Failure extends _Failure {
   }
 }
 
-abstract class _Failure extends DownloadSpeechState {
-  const factory _Failure(final DownloadSpeechFailure failure) = _$_Failure;
+abstract class _Failure extends LoginState {
+  const factory _Failure(final LoginFailure failure) = _$_Failure;
   const _Failure._() : super._();
 
-  DownloadSpeechFailure get failure => throw _privateConstructorUsedError;
+  LoginFailure get failure => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   _$$_FailureCopyWith<_$_Failure> get copyWith =>
       throw _privateConstructorUsedError;

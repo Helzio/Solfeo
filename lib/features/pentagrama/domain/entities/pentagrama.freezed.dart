@@ -12,34 +12,7 @@ part of 'pentagrama.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$PentagramaTearOff {
-  const _$PentagramaTearOff();
-
-  _Pentagrama call(
-      {required Clave clave,
-      required int numerador,
-      required int denominador,
-      required List<Compas> compases,
-      required Armadura armadura,
-      required bool Anacruza,
-      required int tempo}) {
-    return _Pentagrama(
-      clave: clave,
-      numerador: numerador,
-      denominador: denominador,
-      compases: compases,
-      armadura: armadura,
-      Anacruza: Anacruza,
-      tempo: tempo,
-    );
-  }
-}
-
-/// @nodoc
-const $Pentagrama = _$PentagramaTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$Pentagrama {
@@ -123,10 +96,11 @@ class _$PentagramaCopyWithImpl<$Res> implements $PentagramaCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$PentagramaCopyWith<$Res> implements $PentagramaCopyWith<$Res> {
-  factory _$PentagramaCopyWith(
-          _Pentagrama value, $Res Function(_Pentagrama) then) =
-      __$PentagramaCopyWithImpl<$Res>;
+abstract class _$$_PentagramaCopyWith<$Res>
+    implements $PentagramaCopyWith<$Res> {
+  factory _$$_PentagramaCopyWith(
+          _$_Pentagrama value, $Res Function(_$_Pentagrama) then) =
+      __$$_PentagramaCopyWithImpl<$Res>;
   @override
   $Res call(
       {Clave clave,
@@ -139,14 +113,14 @@ abstract class _$PentagramaCopyWith<$Res> implements $PentagramaCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$PentagramaCopyWithImpl<$Res> extends _$PentagramaCopyWithImpl<$Res>
-    implements _$PentagramaCopyWith<$Res> {
-  __$PentagramaCopyWithImpl(
-      _Pentagrama _value, $Res Function(_Pentagrama) _then)
-      : super(_value, (v) => _then(v as _Pentagrama));
+class __$$_PentagramaCopyWithImpl<$Res> extends _$PentagramaCopyWithImpl<$Res>
+    implements _$$_PentagramaCopyWith<$Res> {
+  __$$_PentagramaCopyWithImpl(
+      _$_Pentagrama _value, $Res Function(_$_Pentagrama) _then)
+      : super(_value, (v) => _then(v as _$_Pentagrama));
 
   @override
-  _Pentagrama get _value => super._value as _Pentagrama;
+  _$_Pentagrama get _value => super._value as _$_Pentagrama;
 
   @override
   $Res call({
@@ -158,7 +132,7 @@ class __$PentagramaCopyWithImpl<$Res> extends _$PentagramaCopyWithImpl<$Res>
     Object? Anacruza = freezed,
     Object? tempo = freezed,
   }) {
-    return _then(_Pentagrama(
+    return _then(_$_Pentagrama(
       clave: clave == freezed
           ? _value.clave
           : clave // ignore: cast_nullable_to_non_nullable
@@ -172,7 +146,7 @@ class __$PentagramaCopyWithImpl<$Res> extends _$PentagramaCopyWithImpl<$Res>
           : denominador // ignore: cast_nullable_to_non_nullable
               as int,
       compases: compases == freezed
-          ? _value.compases
+          ? _value._compases
           : compases // ignore: cast_nullable_to_non_nullable
               as List<Compas>,
       armadura: armadura == freezed
@@ -198,11 +172,12 @@ class _$_Pentagrama extends _Pentagrama {
       {required this.clave,
       required this.numerador,
       required this.denominador,
-      required this.compases,
+      required final List<Compas> compases,
       required this.armadura,
       required this.Anacruza,
       required this.tempo})
-      : super._();
+      : _compases = compases,
+        super._();
 
   @override
   final Clave clave;
@@ -210,8 +185,13 @@ class _$_Pentagrama extends _Pentagrama {
   final int numerador;
   @override
   final int denominador;
+  final List<Compas> _compases;
   @override
-  final List<Compas> compases;
+  List<Compas> get compases {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_compases);
+  }
+
   @override
   final Armadura armadura;
   @override
@@ -228,12 +208,12 @@ class _$_Pentagrama extends _Pentagrama {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _Pentagrama &&
+            other is _$_Pentagrama &&
             const DeepCollectionEquality().equals(other.clave, clave) &&
             const DeepCollectionEquality().equals(other.numerador, numerador) &&
             const DeepCollectionEquality()
                 .equals(other.denominador, denominador) &&
-            const DeepCollectionEquality().equals(other.compases, compases) &&
+            const DeepCollectionEquality().equals(other._compases, _compases) &&
             const DeepCollectionEquality().equals(other.armadura, armadura) &&
             const DeepCollectionEquality().equals(other.Anacruza, Anacruza) &&
             const DeepCollectionEquality().equals(other.tempo, tempo));
@@ -245,66 +225,47 @@ class _$_Pentagrama extends _Pentagrama {
       const DeepCollectionEquality().hash(clave),
       const DeepCollectionEquality().hash(numerador),
       const DeepCollectionEquality().hash(denominador),
-      const DeepCollectionEquality().hash(compases),
+      const DeepCollectionEquality().hash(_compases),
       const DeepCollectionEquality().hash(armadura),
       const DeepCollectionEquality().hash(Anacruza),
       const DeepCollectionEquality().hash(tempo));
 
   @JsonKey(ignore: true)
   @override
-  _$PentagramaCopyWith<_Pentagrama> get copyWith =>
-      __$PentagramaCopyWithImpl<_Pentagrama>(this, _$identity);
+  _$$_PentagramaCopyWith<_$_Pentagrama> get copyWith =>
+      __$$_PentagramaCopyWithImpl<_$_Pentagrama>(this, _$identity);
 }
 
 abstract class _Pentagrama extends Pentagrama {
   const factory _Pentagrama(
-      {required Clave clave,
-      required int numerador,
-      required int denominador,
-      required List<Compas> compases,
-      required Armadura armadura,
-      required bool Anacruza,
-      required int tempo}) = _$_Pentagrama;
+      {required final Clave clave,
+      required final int numerador,
+      required final int denominador,
+      required final List<Compas> compases,
+      required final Armadura armadura,
+      required final bool Anacruza,
+      required final int tempo}) = _$_Pentagrama;
   const _Pentagrama._() : super._();
 
   @override
-  Clave get clave;
+  Clave get clave => throw _privateConstructorUsedError;
   @override
-  int get numerador;
+  int get numerador => throw _privateConstructorUsedError;
   @override
-  int get denominador;
+  int get denominador => throw _privateConstructorUsedError;
   @override
-  List<Compas> get compases;
+  List<Compas> get compases => throw _privateConstructorUsedError;
   @override
-  Armadura get armadura;
+  Armadura get armadura => throw _privateConstructorUsedError;
   @override
-  bool get Anacruza;
+  bool get Anacruza => throw _privateConstructorUsedError;
   @override
-  int get tempo;
+  int get tempo => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$PentagramaCopyWith<_Pentagrama> get copyWith =>
+  _$$_PentagramaCopyWith<_$_Pentagrama> get copyWith =>
       throw _privateConstructorUsedError;
 }
-
-/// @nodoc
-class _$CompasTearOff {
-  const _$CompasTearOff();
-
-  _Compas call(
-      {required int numerador,
-      required int denominador,
-      required List<Nota> notas}) {
-    return _Compas(
-      numerador: numerador,
-      denominador: denominador,
-      notas: notas,
-    );
-  }
-}
-
-/// @nodoc
-const $Compas = _$CompasTearOff();
 
 /// @nodoc
 mixin _$Compas {
@@ -355,21 +316,21 @@ class _$CompasCopyWithImpl<$Res> implements $CompasCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$CompasCopyWith<$Res> implements $CompasCopyWith<$Res> {
-  factory _$CompasCopyWith(_Compas value, $Res Function(_Compas) then) =
-      __$CompasCopyWithImpl<$Res>;
+abstract class _$$_CompasCopyWith<$Res> implements $CompasCopyWith<$Res> {
+  factory _$$_CompasCopyWith(_$_Compas value, $Res Function(_$_Compas) then) =
+      __$$_CompasCopyWithImpl<$Res>;
   @override
   $Res call({int numerador, int denominador, List<Nota> notas});
 }
 
 /// @nodoc
-class __$CompasCopyWithImpl<$Res> extends _$CompasCopyWithImpl<$Res>
-    implements _$CompasCopyWith<$Res> {
-  __$CompasCopyWithImpl(_Compas _value, $Res Function(_Compas) _then)
-      : super(_value, (v) => _then(v as _Compas));
+class __$$_CompasCopyWithImpl<$Res> extends _$CompasCopyWithImpl<$Res>
+    implements _$$_CompasCopyWith<$Res> {
+  __$$_CompasCopyWithImpl(_$_Compas _value, $Res Function(_$_Compas) _then)
+      : super(_value, (v) => _then(v as _$_Compas));
 
   @override
-  _Compas get _value => super._value as _Compas;
+  _$_Compas get _value => super._value as _$_Compas;
 
   @override
   $Res call({
@@ -377,7 +338,7 @@ class __$CompasCopyWithImpl<$Res> extends _$CompasCopyWithImpl<$Res>
     Object? denominador = freezed,
     Object? notas = freezed,
   }) {
-    return _then(_Compas(
+    return _then(_$_Compas(
       numerador: numerador == freezed
           ? _value.numerador
           : numerador // ignore: cast_nullable_to_non_nullable
@@ -387,7 +348,7 @@ class __$CompasCopyWithImpl<$Res> extends _$CompasCopyWithImpl<$Res>
           : denominador // ignore: cast_nullable_to_non_nullable
               as int,
       notas: notas == freezed
-          ? _value.notas
+          ? _value._notas
           : notas // ignore: cast_nullable_to_non_nullable
               as List<Nota>,
     ));
@@ -398,15 +359,22 @@ class __$CompasCopyWithImpl<$Res> extends _$CompasCopyWithImpl<$Res>
 
 class _$_Compas extends _Compas {
   const _$_Compas(
-      {required this.numerador, required this.denominador, required this.notas})
-      : super._();
+      {required this.numerador,
+      required this.denominador,
+      required final List<Nota> notas})
+      : _notas = notas,
+        super._();
 
   @override
   final int numerador;
   @override
   final int denominador;
+  final List<Nota> _notas;
   @override
-  final List<Nota> notas;
+  List<Nota> get notas {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_notas);
+  }
 
   @override
   String toString() {
@@ -417,11 +385,11 @@ class _$_Compas extends _Compas {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _Compas &&
+            other is _$_Compas &&
             const DeepCollectionEquality().equals(other.numerador, numerador) &&
             const DeepCollectionEquality()
                 .equals(other.denominador, denominador) &&
-            const DeepCollectionEquality().equals(other.notas, notas));
+            const DeepCollectionEquality().equals(other._notas, _notas));
   }
 
   @override
@@ -429,45 +397,32 @@ class _$_Compas extends _Compas {
       runtimeType,
       const DeepCollectionEquality().hash(numerador),
       const DeepCollectionEquality().hash(denominador),
-      const DeepCollectionEquality().hash(notas));
+      const DeepCollectionEquality().hash(_notas));
 
   @JsonKey(ignore: true)
   @override
-  _$CompasCopyWith<_Compas> get copyWith =>
-      __$CompasCopyWithImpl<_Compas>(this, _$identity);
+  _$$_CompasCopyWith<_$_Compas> get copyWith =>
+      __$$_CompasCopyWithImpl<_$_Compas>(this, _$identity);
 }
 
 abstract class _Compas extends Compas {
   const factory _Compas(
-      {required int numerador,
-      required int denominador,
-      required List<Nota> notas}) = _$_Compas;
+      {required final int numerador,
+      required final int denominador,
+      required final List<Nota> notas}) = _$_Compas;
   const _Compas._() : super._();
 
   @override
-  int get numerador;
+  int get numerador => throw _privateConstructorUsedError;
   @override
-  int get denominador;
+  int get denominador => throw _privateConstructorUsedError;
   @override
-  List<Nota> get notas;
+  List<Nota> get notas => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$CompasCopyWith<_Compas> get copyWith => throw _privateConstructorUsedError;
+  _$$_CompasCopyWith<_$_Compas> get copyWith =>
+      throw _privateConstructorUsedError;
 }
-
-/// @nodoc
-class _$AcordeTearOff {
-  const _$AcordeTearOff();
-
-  _Acorde call({required List<Nota> notas}) {
-    return _Acorde(
-      notas: notas,
-    );
-  }
-}
-
-/// @nodoc
-const $Acorde = _$AcordeTearOff();
 
 /// @nodoc
 mixin _$Acorde {
@@ -506,29 +461,29 @@ class _$AcordeCopyWithImpl<$Res> implements $AcordeCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$AcordeCopyWith<$Res> implements $AcordeCopyWith<$Res> {
-  factory _$AcordeCopyWith(_Acorde value, $Res Function(_Acorde) then) =
-      __$AcordeCopyWithImpl<$Res>;
+abstract class _$$_AcordeCopyWith<$Res> implements $AcordeCopyWith<$Res> {
+  factory _$$_AcordeCopyWith(_$_Acorde value, $Res Function(_$_Acorde) then) =
+      __$$_AcordeCopyWithImpl<$Res>;
   @override
   $Res call({List<Nota> notas});
 }
 
 /// @nodoc
-class __$AcordeCopyWithImpl<$Res> extends _$AcordeCopyWithImpl<$Res>
-    implements _$AcordeCopyWith<$Res> {
-  __$AcordeCopyWithImpl(_Acorde _value, $Res Function(_Acorde) _then)
-      : super(_value, (v) => _then(v as _Acorde));
+class __$$_AcordeCopyWithImpl<$Res> extends _$AcordeCopyWithImpl<$Res>
+    implements _$$_AcordeCopyWith<$Res> {
+  __$$_AcordeCopyWithImpl(_$_Acorde _value, $Res Function(_$_Acorde) _then)
+      : super(_value, (v) => _then(v as _$_Acorde));
 
   @override
-  _Acorde get _value => super._value as _Acorde;
+  _$_Acorde get _value => super._value as _$_Acorde;
 
   @override
   $Res call({
     Object? notas = freezed,
   }) {
-    return _then(_Acorde(
+    return _then(_$_Acorde(
       notas: notas == freezed
-          ? _value.notas
+          ? _value._notas
           : notas // ignore: cast_nullable_to_non_nullable
               as List<Nota>,
     ));
@@ -538,10 +493,16 @@ class __$AcordeCopyWithImpl<$Res> extends _$AcordeCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Acorde extends _Acorde {
-  const _$_Acorde({required this.notas}) : super._();
+  const _$_Acorde({required final List<Nota> notas})
+      : _notas = notas,
+        super._();
 
+  final List<Nota> _notas;
   @override
-  final List<Nota> notas;
+  List<Nota> get notas {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_notas);
+  }
 
   @override
   String toString() {
@@ -552,59 +513,31 @@ class _$_Acorde extends _Acorde {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _Acorde &&
-            const DeepCollectionEquality().equals(other.notas, notas));
+            other is _$_Acorde &&
+            const DeepCollectionEquality().equals(other._notas, _notas));
   }
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(notas));
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_notas));
 
   @JsonKey(ignore: true)
   @override
-  _$AcordeCopyWith<_Acorde> get copyWith =>
-      __$AcordeCopyWithImpl<_Acorde>(this, _$identity);
+  _$$_AcordeCopyWith<_$_Acorde> get copyWith =>
+      __$$_AcordeCopyWithImpl<_$_Acorde>(this, _$identity);
 }
 
 abstract class _Acorde extends Acorde {
-  const factory _Acorde({required List<Nota> notas}) = _$_Acorde;
+  const factory _Acorde({required final List<Nota> notas}) = _$_Acorde;
   const _Acorde._() : super._();
 
   @override
-  List<Nota> get notas;
+  List<Nota> get notas => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$AcordeCopyWith<_Acorde> get copyWith => throw _privateConstructorUsedError;
+  _$$_AcordeCopyWith<_$_Acorde> get copyWith =>
+      throw _privateConstructorUsedError;
 }
-
-/// @nodoc
-class _$NotaTearOff {
-  const _$NotaTearOff();
-
-  _Nota call(
-      {required Tono tono,
-      required Ocatava ocatava,
-      required Valor valor,
-      required bool silencio,
-      required PuntillosRepeticion? puntillosRepeticion,
-      required int casillaDeRepeticion,
-      required bool puntillo,
-      required bool calderon}) {
-    return _Nota(
-      tono: tono,
-      ocatava: ocatava,
-      valor: valor,
-      silencio: silencio,
-      puntillosRepeticion: puntillosRepeticion,
-      casillaDeRepeticion: casillaDeRepeticion,
-      puntillo: puntillo,
-      calderon: calderon,
-    );
-  }
-}
-
-/// @nodoc
-const $Nota = _$NotaTearOff();
 
 /// @nodoc
 mixin _$Nota {
@@ -694,9 +627,9 @@ class _$NotaCopyWithImpl<$Res> implements $NotaCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$NotaCopyWith<$Res> implements $NotaCopyWith<$Res> {
-  factory _$NotaCopyWith(_Nota value, $Res Function(_Nota) then) =
-      __$NotaCopyWithImpl<$Res>;
+abstract class _$$_NotaCopyWith<$Res> implements $NotaCopyWith<$Res> {
+  factory _$$_NotaCopyWith(_$_Nota value, $Res Function(_$_Nota) then) =
+      __$$_NotaCopyWithImpl<$Res>;
   @override
   $Res call(
       {Tono tono,
@@ -710,13 +643,13 @@ abstract class _$NotaCopyWith<$Res> implements $NotaCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$NotaCopyWithImpl<$Res> extends _$NotaCopyWithImpl<$Res>
-    implements _$NotaCopyWith<$Res> {
-  __$NotaCopyWithImpl(_Nota _value, $Res Function(_Nota) _then)
-      : super(_value, (v) => _then(v as _Nota));
+class __$$_NotaCopyWithImpl<$Res> extends _$NotaCopyWithImpl<$Res>
+    implements _$$_NotaCopyWith<$Res> {
+  __$$_NotaCopyWithImpl(_$_Nota _value, $Res Function(_$_Nota) _then)
+      : super(_value, (v) => _then(v as _$_Nota));
 
   @override
-  _Nota get _value => super._value as _Nota;
+  _$_Nota get _value => super._value as _$_Nota;
 
   @override
   $Res call({
@@ -729,7 +662,7 @@ class __$NotaCopyWithImpl<$Res> extends _$NotaCopyWithImpl<$Res>
     Object? puntillo = freezed,
     Object? calderon = freezed,
   }) {
-    return _then(_Nota(
+    return _then(_$_Nota(
       tono: tono == freezed
           ? _value.tono
           : tono // ignore: cast_nullable_to_non_nullable
@@ -806,7 +739,7 @@ class _$_Nota extends _Nota {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _Nota &&
+            other is _$_Nota &&
             const DeepCollectionEquality().equals(other.tono, tono) &&
             const DeepCollectionEquality().equals(other.ocatava, ocatava) &&
             const DeepCollectionEquality().equals(other.valor, valor) &&
@@ -833,39 +766,40 @@ class _$_Nota extends _Nota {
 
   @JsonKey(ignore: true)
   @override
-  _$NotaCopyWith<_Nota> get copyWith =>
-      __$NotaCopyWithImpl<_Nota>(this, _$identity);
+  _$$_NotaCopyWith<_$_Nota> get copyWith =>
+      __$$_NotaCopyWithImpl<_$_Nota>(this, _$identity);
 }
 
 abstract class _Nota extends Nota {
   const factory _Nota(
-      {required Tono tono,
-      required Ocatava ocatava,
-      required Valor valor,
-      required bool silencio,
-      required PuntillosRepeticion? puntillosRepeticion,
-      required int casillaDeRepeticion,
-      required bool puntillo,
-      required bool calderon}) = _$_Nota;
+      {required final Tono tono,
+      required final Ocatava ocatava,
+      required final Valor valor,
+      required final bool silencio,
+      required final PuntillosRepeticion? puntillosRepeticion,
+      required final int casillaDeRepeticion,
+      required final bool puntillo,
+      required final bool calderon}) = _$_Nota;
   const _Nota._() : super._();
 
   @override
-  Tono get tono;
+  Tono get tono => throw _privateConstructorUsedError;
   @override
-  Ocatava get ocatava;
+  Ocatava get ocatava => throw _privateConstructorUsedError;
   @override
-  Valor get valor;
+  Valor get valor => throw _privateConstructorUsedError;
   @override
-  bool get silencio;
+  bool get silencio => throw _privateConstructorUsedError;
   @override
-  PuntillosRepeticion? get puntillosRepeticion;
+  PuntillosRepeticion? get puntillosRepeticion =>
+      throw _privateConstructorUsedError;
   @override
-  int get casillaDeRepeticion;
+  int get casillaDeRepeticion => throw _privateConstructorUsedError;
   @override
-  bool get puntillo;
+  bool get puntillo => throw _privateConstructorUsedError;
   @override
-  bool get calderon;
+  bool get calderon => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$NotaCopyWith<_Nota> get copyWith => throw _privateConstructorUsedError;
+  _$$_NotaCopyWith<_$_Nota> get copyWith => throw _privateConstructorUsedError;
 }

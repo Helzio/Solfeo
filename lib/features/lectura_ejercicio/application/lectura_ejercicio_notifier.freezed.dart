@@ -12,58 +12,7 @@ part of 'lectura_ejercicio_notifier.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$LecturaEjercicioStateTearOff {
-  const _$LecturaEjercicioStateTearOff();
-
-  _LecturaEjercicioState call(
-      {required int index,
-      required int level,
-      required double speed,
-      required double lastSpeed,
-      required double accuracy,
-      required double lastAccuracy,
-      required double score,
-      required double lastScore,
-      required Nota? enterNote,
-      required Map<Nota, int> errors,
-      required int errorCount,
-      required List<int> listErrorIndex,
-      required bool isRunning,
-      required DateTime? startTime,
-      required int ellapsedTime,
-      required int totalTime,
-      required Pentagrama pentagrama,
-      required Set<Nota> greenNotes,
-      required bool mutted}) {
-    return _LecturaEjercicioState(
-      index: index,
-      level: level,
-      speed: speed,
-      lastSpeed: lastSpeed,
-      accuracy: accuracy,
-      lastAccuracy: lastAccuracy,
-      score: score,
-      lastScore: lastScore,
-      enterNote: enterNote,
-      errors: errors,
-      errorCount: errorCount,
-      listErrorIndex: listErrorIndex,
-      isRunning: isRunning,
-      startTime: startTime,
-      ellapsedTime: ellapsedTime,
-      totalTime: totalTime,
-      pentagrama: pentagrama,
-      greenNotes: greenNotes,
-      mutted: mutted,
-    );
-  }
-}
-
-/// @nodoc
-const $LecturaEjercicioState = _$LecturaEjercicioStateTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$LecturaEjercicioState {
@@ -253,11 +202,11 @@ class _$LecturaEjercicioStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$LecturaEjercicioStateCopyWith<$Res>
+abstract class _$$_LecturaEjercicioStateCopyWith<$Res>
     implements $LecturaEjercicioStateCopyWith<$Res> {
-  factory _$LecturaEjercicioStateCopyWith(_LecturaEjercicioState value,
-          $Res Function(_LecturaEjercicioState) then) =
-      __$LecturaEjercicioStateCopyWithImpl<$Res>;
+  factory _$$_LecturaEjercicioStateCopyWith(_$_LecturaEjercicioState value,
+          $Res Function(_$_LecturaEjercicioState) then) =
+      __$$_LecturaEjercicioStateCopyWithImpl<$Res>;
   @override
   $Res call(
       {int index,
@@ -287,15 +236,16 @@ abstract class _$LecturaEjercicioStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$LecturaEjercicioStateCopyWithImpl<$Res>
+class __$$_LecturaEjercicioStateCopyWithImpl<$Res>
     extends _$LecturaEjercicioStateCopyWithImpl<$Res>
-    implements _$LecturaEjercicioStateCopyWith<$Res> {
-  __$LecturaEjercicioStateCopyWithImpl(_LecturaEjercicioState _value,
-      $Res Function(_LecturaEjercicioState) _then)
-      : super(_value, (v) => _then(v as _LecturaEjercicioState));
+    implements _$$_LecturaEjercicioStateCopyWith<$Res> {
+  __$$_LecturaEjercicioStateCopyWithImpl(_$_LecturaEjercicioState _value,
+      $Res Function(_$_LecturaEjercicioState) _then)
+      : super(_value, (v) => _then(v as _$_LecturaEjercicioState));
 
   @override
-  _LecturaEjercicioState get _value => super._value as _LecturaEjercicioState;
+  _$_LecturaEjercicioState get _value =>
+      super._value as _$_LecturaEjercicioState;
 
   @override
   $Res call({
@@ -319,7 +269,7 @@ class __$LecturaEjercicioStateCopyWithImpl<$Res>
     Object? greenNotes = freezed,
     Object? mutted = freezed,
   }) {
-    return _then(_LecturaEjercicioState(
+    return _then(_$_LecturaEjercicioState(
       index: index == freezed
           ? _value.index
           : index // ignore: cast_nullable_to_non_nullable
@@ -357,7 +307,7 @@ class __$LecturaEjercicioStateCopyWithImpl<$Res>
           : enterNote // ignore: cast_nullable_to_non_nullable
               as Nota?,
       errors: errors == freezed
-          ? _value.errors
+          ? _value._errors
           : errors // ignore: cast_nullable_to_non_nullable
               as Map<Nota, int>,
       errorCount: errorCount == freezed
@@ -365,7 +315,7 @@ class __$LecturaEjercicioStateCopyWithImpl<$Res>
           : errorCount // ignore: cast_nullable_to_non_nullable
               as int,
       listErrorIndex: listErrorIndex == freezed
-          ? _value.listErrorIndex
+          ? _value._listErrorIndex
           : listErrorIndex // ignore: cast_nullable_to_non_nullable
               as List<int>,
       isRunning: isRunning == freezed
@@ -389,7 +339,7 @@ class __$LecturaEjercicioStateCopyWithImpl<$Res>
           : pentagrama // ignore: cast_nullable_to_non_nullable
               as Pentagrama,
       greenNotes: greenNotes == freezed
-          ? _value.greenNotes
+          ? _value._greenNotes
           : greenNotes // ignore: cast_nullable_to_non_nullable
               as Set<Nota>,
       mutted: mutted == freezed
@@ -413,17 +363,20 @@ class _$_LecturaEjercicioState extends _LecturaEjercicioState {
       required this.score,
       required this.lastScore,
       required this.enterNote,
-      required this.errors,
+      required final Map<Nota, int> errors,
       required this.errorCount,
-      required this.listErrorIndex,
+      required final List<int> listErrorIndex,
       required this.isRunning,
       required this.startTime,
       required this.ellapsedTime,
       required this.totalTime,
       required this.pentagrama,
-      required this.greenNotes,
+      required final Set<Nota> greenNotes,
       required this.mutted})
-      : super._();
+      : _errors = errors,
+        _listErrorIndex = listErrorIndex,
+        _greenNotes = greenNotes,
+        super._();
 
   @override
   final int index;
@@ -443,12 +396,22 @@ class _$_LecturaEjercicioState extends _LecturaEjercicioState {
   final double lastScore;
   @override
   final Nota? enterNote;
+  final Map<Nota, int> _errors;
   @override
-  final Map<Nota, int> errors;
+  Map<Nota, int> get errors {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_errors);
+  }
+
   @override
   final int errorCount;
+  final List<int> _listErrorIndex;
   @override
-  final List<int> listErrorIndex;
+  List<int> get listErrorIndex {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_listErrorIndex);
+  }
+
   @override
   final bool isRunning;
   @override
@@ -459,8 +422,13 @@ class _$_LecturaEjercicioState extends _LecturaEjercicioState {
   final int totalTime;
   @override
   final Pentagrama pentagrama;
+  final Set<Nota> _greenNotes;
   @override
-  final Set<Nota> greenNotes;
+  Set<Nota> get greenNotes {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableSetView(_greenNotes);
+  }
+
   @override
   final bool mutted;
 
@@ -473,7 +441,7 @@ class _$_LecturaEjercicioState extends _LecturaEjercicioState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _LecturaEjercicioState &&
+            other is _$_LecturaEjercicioState &&
             const DeepCollectionEquality().equals(other.index, index) &&
             const DeepCollectionEquality().equals(other.level, level) &&
             const DeepCollectionEquality().equals(other.speed, speed) &&
@@ -484,11 +452,11 @@ class _$_LecturaEjercicioState extends _LecturaEjercicioState {
             const DeepCollectionEquality().equals(other.score, score) &&
             const DeepCollectionEquality().equals(other.lastScore, lastScore) &&
             const DeepCollectionEquality().equals(other.enterNote, enterNote) &&
-            const DeepCollectionEquality().equals(other.errors, errors) &&
+            const DeepCollectionEquality().equals(other._errors, _errors) &&
             const DeepCollectionEquality()
                 .equals(other.errorCount, errorCount) &&
             const DeepCollectionEquality()
-                .equals(other.listErrorIndex, listErrorIndex) &&
+                .equals(other._listErrorIndex, _listErrorIndex) &&
             const DeepCollectionEquality().equals(other.isRunning, isRunning) &&
             const DeepCollectionEquality().equals(other.startTime, startTime) &&
             const DeepCollectionEquality()
@@ -497,7 +465,7 @@ class _$_LecturaEjercicioState extends _LecturaEjercicioState {
             const DeepCollectionEquality()
                 .equals(other.pentagrama, pentagrama) &&
             const DeepCollectionEquality()
-                .equals(other.greenNotes, greenNotes) &&
+                .equals(other._greenNotes, _greenNotes) &&
             const DeepCollectionEquality().equals(other.mutted, mutted));
   }
 
@@ -513,88 +481,88 @@ class _$_LecturaEjercicioState extends _LecturaEjercicioState {
         const DeepCollectionEquality().hash(score),
         const DeepCollectionEquality().hash(lastScore),
         const DeepCollectionEquality().hash(enterNote),
-        const DeepCollectionEquality().hash(errors),
+        const DeepCollectionEquality().hash(_errors),
         const DeepCollectionEquality().hash(errorCount),
-        const DeepCollectionEquality().hash(listErrorIndex),
+        const DeepCollectionEquality().hash(_listErrorIndex),
         const DeepCollectionEquality().hash(isRunning),
         const DeepCollectionEquality().hash(startTime),
         const DeepCollectionEquality().hash(ellapsedTime),
         const DeepCollectionEquality().hash(totalTime),
         const DeepCollectionEquality().hash(pentagrama),
-        const DeepCollectionEquality().hash(greenNotes),
+        const DeepCollectionEquality().hash(_greenNotes),
         const DeepCollectionEquality().hash(mutted)
       ]);
 
   @JsonKey(ignore: true)
   @override
-  _$LecturaEjercicioStateCopyWith<_LecturaEjercicioState> get copyWith =>
-      __$LecturaEjercicioStateCopyWithImpl<_LecturaEjercicioState>(
+  _$$_LecturaEjercicioStateCopyWith<_$_LecturaEjercicioState> get copyWith =>
+      __$$_LecturaEjercicioStateCopyWithImpl<_$_LecturaEjercicioState>(
           this, _$identity);
 }
 
 abstract class _LecturaEjercicioState extends LecturaEjercicioState {
   const factory _LecturaEjercicioState(
-      {required int index,
-      required int level,
-      required double speed,
-      required double lastSpeed,
-      required double accuracy,
-      required double lastAccuracy,
-      required double score,
-      required double lastScore,
-      required Nota? enterNote,
-      required Map<Nota, int> errors,
-      required int errorCount,
-      required List<int> listErrorIndex,
-      required bool isRunning,
-      required DateTime? startTime,
-      required int ellapsedTime,
-      required int totalTime,
-      required Pentagrama pentagrama,
-      required Set<Nota> greenNotes,
-      required bool mutted}) = _$_LecturaEjercicioState;
+      {required final int index,
+      required final int level,
+      required final double speed,
+      required final double lastSpeed,
+      required final double accuracy,
+      required final double lastAccuracy,
+      required final double score,
+      required final double lastScore,
+      required final Nota? enterNote,
+      required final Map<Nota, int> errors,
+      required final int errorCount,
+      required final List<int> listErrorIndex,
+      required final bool isRunning,
+      required final DateTime? startTime,
+      required final int ellapsedTime,
+      required final int totalTime,
+      required final Pentagrama pentagrama,
+      required final Set<Nota> greenNotes,
+      required final bool mutted}) = _$_LecturaEjercicioState;
   const _LecturaEjercicioState._() : super._();
 
   @override
-  int get index;
+  int get index => throw _privateConstructorUsedError;
   @override
-  int get level;
+  int get level => throw _privateConstructorUsedError;
   @override
-  double get speed;
+  double get speed => throw _privateConstructorUsedError;
   @override
-  double get lastSpeed;
+  double get lastSpeed => throw _privateConstructorUsedError;
   @override
-  double get accuracy;
+  double get accuracy => throw _privateConstructorUsedError;
   @override
-  double get lastAccuracy;
+  double get lastAccuracy => throw _privateConstructorUsedError;
   @override
-  double get score;
+  double get score => throw _privateConstructorUsedError;
   @override
-  double get lastScore;
+  double get lastScore => throw _privateConstructorUsedError;
   @override
-  Nota? get enterNote;
+  Nota? get enterNote => throw _privateConstructorUsedError;
   @override
-  Map<Nota, int> get errors;
+  Map<Nota, int> get errors => throw _privateConstructorUsedError;
   @override
-  int get errorCount;
+  int get errorCount => throw _privateConstructorUsedError;
   @override
-  List<int> get listErrorIndex;
+  List<int> get listErrorIndex => throw _privateConstructorUsedError;
   @override
-  bool get isRunning;
+  bool get isRunning => throw _privateConstructorUsedError;
   @override
-  DateTime? get startTime;
+  DateTime? get startTime => throw _privateConstructorUsedError;
   @override
-  int get ellapsedTime;
+  int get ellapsedTime => throw _privateConstructorUsedError;
   @override
-  int get totalTime;
+  int get totalTime => throw _privateConstructorUsedError;
   @override
-  Pentagrama get pentagrama;
+  Pentagrama get pentagrama => throw _privateConstructorUsedError;
   @override
-  Set<Nota> get greenNotes;
+  Set<Nota> get greenNotes => throw _privateConstructorUsedError;
   @override
-  bool get mutted;
+  bool get mutted => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$LecturaEjercicioStateCopyWith<_LecturaEjercicioState> get copyWith =>
+  _$$_LecturaEjercicioStateCopyWith<_$_LecturaEjercicioState> get copyWith =>
       throw _privateConstructorUsedError;
 }

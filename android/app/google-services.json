@@ -29,6 +29,13 @@
             {
               "client_id": "1046474183879-4t5lh48ook0n0bmhdvub5rar9em8plqa.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "1046474183879-fea0a88cc443adqmtr6ohudvchju7bms.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "ccv.checkhelzio.solfeo"
+              }
             }
           ]
         }

@@ -12,22 +12,7 @@ part of 'sound_notifier.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$SoundStateTearOff {
-  const _$SoundStateTearOff();
-
-  _SoundState call({required int time, required int soundId}) {
-    return _SoundState(
-      time: time,
-      soundId: soundId,
-    );
-  }
-}
-
-/// @nodoc
-const $SoundState = _$SoundStateTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$SoundState {
@@ -74,30 +59,31 @@ class _$SoundStateCopyWithImpl<$Res> implements $SoundStateCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$SoundStateCopyWith<$Res> implements $SoundStateCopyWith<$Res> {
-  factory _$SoundStateCopyWith(
-          _SoundState value, $Res Function(_SoundState) then) =
-      __$SoundStateCopyWithImpl<$Res>;
+abstract class _$$_SoundStateCopyWith<$Res>
+    implements $SoundStateCopyWith<$Res> {
+  factory _$$_SoundStateCopyWith(
+          _$_SoundState value, $Res Function(_$_SoundState) then) =
+      __$$_SoundStateCopyWithImpl<$Res>;
   @override
   $Res call({int time, int soundId});
 }
 
 /// @nodoc
-class __$SoundStateCopyWithImpl<$Res> extends _$SoundStateCopyWithImpl<$Res>
-    implements _$SoundStateCopyWith<$Res> {
-  __$SoundStateCopyWithImpl(
-      _SoundState _value, $Res Function(_SoundState) _then)
-      : super(_value, (v) => _then(v as _SoundState));
+class __$$_SoundStateCopyWithImpl<$Res> extends _$SoundStateCopyWithImpl<$Res>
+    implements _$$_SoundStateCopyWith<$Res> {
+  __$$_SoundStateCopyWithImpl(
+      _$_SoundState _value, $Res Function(_$_SoundState) _then)
+      : super(_value, (v) => _then(v as _$_SoundState));
 
   @override
-  _SoundState get _value => super._value as _SoundState;
+  _$_SoundState get _value => super._value as _$_SoundState;
 
   @override
   $Res call({
     Object? time = freezed,
     Object? soundId = freezed,
   }) {
-    return _then(_SoundState(
+    return _then(_$_SoundState(
       time: time == freezed
           ? _value.time
           : time // ignore: cast_nullable_to_non_nullable
@@ -129,7 +115,7 @@ class _$_SoundState extends _SoundState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _SoundState &&
+            other is _$_SoundState &&
             const DeepCollectionEquality().equals(other.time, time) &&
             const DeepCollectionEquality().equals(other.soundId, soundId));
   }
@@ -142,21 +128,21 @@ class _$_SoundState extends _SoundState {
 
   @JsonKey(ignore: true)
   @override
-  _$SoundStateCopyWith<_SoundState> get copyWith =>
-      __$SoundStateCopyWithImpl<_SoundState>(this, _$identity);
+  _$$_SoundStateCopyWith<_$_SoundState> get copyWith =>
+      __$$_SoundStateCopyWithImpl<_$_SoundState>(this, _$identity);
 }
 
 abstract class _SoundState extends SoundState {
-  const factory _SoundState({required int time, required int soundId}) =
-      _$_SoundState;
+  const factory _SoundState(
+      {required final int time, required final int soundId}) = _$_SoundState;
   const _SoundState._() : super._();
 
   @override
-  int get time;
+  int get time => throw _privateConstructorUsedError;
   @override
-  int get soundId;
+  int get soundId => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$SoundStateCopyWith<_SoundState> get copyWith =>
+  _$$_SoundStateCopyWith<_$_SoundState> get copyWith =>
       throw _privateConstructorUsedError;
 }

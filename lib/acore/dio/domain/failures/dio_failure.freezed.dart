@@ -12,23 +12,7 @@ part of 'dio_failure.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$DioFailureTearOff {
-  const _$DioFailureTearOff();
-
-  _Internet internet() {
-    return const _Internet();
-  }
-
-  _Server server() {
-    return const _Server();
-  }
-}
-
-/// @nodoc
-const $DioFailure = _$DioFailureTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$DioFailure {
@@ -89,19 +73,21 @@ class _$DioFailureCopyWithImpl<$Res> implements $DioFailureCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$InternetCopyWith<$Res> {
-  factory _$InternetCopyWith(_Internet value, $Res Function(_Internet) then) =
-      __$InternetCopyWithImpl<$Res>;
+abstract class _$$_InternetCopyWith<$Res> {
+  factory _$$_InternetCopyWith(
+          _$_Internet value, $Res Function(_$_Internet) then) =
+      __$$_InternetCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$InternetCopyWithImpl<$Res> extends _$DioFailureCopyWithImpl<$Res>
-    implements _$InternetCopyWith<$Res> {
-  __$InternetCopyWithImpl(_Internet _value, $Res Function(_Internet) _then)
-      : super(_value, (v) => _then(v as _Internet));
+class __$$_InternetCopyWithImpl<$Res> extends _$DioFailureCopyWithImpl<$Res>
+    implements _$$_InternetCopyWith<$Res> {
+  __$$_InternetCopyWithImpl(
+      _$_Internet _value, $Res Function(_$_Internet) _then)
+      : super(_value, (v) => _then(v as _$_Internet));
 
   @override
-  _Internet get _value => super._value as _Internet;
+  _$_Internet get _value => super._value as _$_Internet;
 }
 
 /// @nodoc
@@ -117,7 +103,7 @@ class _$_Internet extends _Internet {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _Internet);
+        (other.runtimeType == runtimeType && other is _$_Internet);
   }
 
   @override
@@ -192,19 +178,19 @@ abstract class _Internet extends DioFailure {
 }
 
 /// @nodoc
-abstract class _$ServerCopyWith<$Res> {
-  factory _$ServerCopyWith(_Server value, $Res Function(_Server) then) =
-      __$ServerCopyWithImpl<$Res>;
+abstract class _$$_ServerCopyWith<$Res> {
+  factory _$$_ServerCopyWith(_$_Server value, $Res Function(_$_Server) then) =
+      __$$_ServerCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$ServerCopyWithImpl<$Res> extends _$DioFailureCopyWithImpl<$Res>
-    implements _$ServerCopyWith<$Res> {
-  __$ServerCopyWithImpl(_Server _value, $Res Function(_Server) _then)
-      : super(_value, (v) => _then(v as _Server));
+class __$$_ServerCopyWithImpl<$Res> extends _$DioFailureCopyWithImpl<$Res>
+    implements _$$_ServerCopyWith<$Res> {
+  __$$_ServerCopyWithImpl(_$_Server _value, $Res Function(_$_Server) _then)
+      : super(_value, (v) => _then(v as _$_Server));
 
   @override
-  _Server get _value => super._value as _Server;
+  _$_Server get _value => super._value as _$_Server;
 }
 
 /// @nodoc
@@ -220,7 +206,7 @@ class _$_Server extends _Server {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _Server);
+        (other.runtimeType == runtimeType && other is _$_Server);
   }
 
   @override

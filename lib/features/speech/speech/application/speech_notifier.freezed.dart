@@ -12,37 +12,7 @@ part of 'speech_notifier.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$SpeechStateTearOff {
-  const _$SpeechStateTearOff();
-
-  _Initial initial() {
-    return const _Initial();
-  }
-
-  _Loading loading() {
-    return const _Loading();
-  }
-
-  _NoFile noFile() {
-    return const _NoFile();
-  }
-
-  _Loaded loaded() {
-    return const _Loaded();
-  }
-
-  _Listening listening(String partial) {
-    return _Listening(
-      partial,
-    );
-  }
-}
-
-/// @nodoc
-const $SpeechState = _$SpeechStateTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$SpeechState {
@@ -121,19 +91,20 @@ class _$SpeechStateCopyWithImpl<$Res> implements $SpeechStateCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$InitialCopyWith<$Res> {
-  factory _$InitialCopyWith(_Initial value, $Res Function(_Initial) then) =
-      __$InitialCopyWithImpl<$Res>;
+abstract class _$$_InitialCopyWith<$Res> {
+  factory _$$_InitialCopyWith(
+          _$_Initial value, $Res Function(_$_Initial) then) =
+      __$$_InitialCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$InitialCopyWithImpl<$Res> extends _$SpeechStateCopyWithImpl<$Res>
-    implements _$InitialCopyWith<$Res> {
-  __$InitialCopyWithImpl(_Initial _value, $Res Function(_Initial) _then)
-      : super(_value, (v) => _then(v as _Initial));
+class __$$_InitialCopyWithImpl<$Res> extends _$SpeechStateCopyWithImpl<$Res>
+    implements _$$_InitialCopyWith<$Res> {
+  __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
+      : super(_value, (v) => _then(v as _$_Initial));
 
   @override
-  _Initial get _value => super._value as _Initial;
+  _$_Initial get _value => super._value as _$_Initial;
 }
 
 /// @nodoc
@@ -149,7 +120,7 @@ class _$_Initial extends _Initial {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _Initial);
+        (other.runtimeType == runtimeType && other is _$_Initial);
   }
 
   @override
@@ -242,19 +213,20 @@ abstract class _Initial extends SpeechState {
 }
 
 /// @nodoc
-abstract class _$LoadingCopyWith<$Res> {
-  factory _$LoadingCopyWith(_Loading value, $Res Function(_Loading) then) =
-      __$LoadingCopyWithImpl<$Res>;
+abstract class _$$_LoadingCopyWith<$Res> {
+  factory _$$_LoadingCopyWith(
+          _$_Loading value, $Res Function(_$_Loading) then) =
+      __$$_LoadingCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$LoadingCopyWithImpl<$Res> extends _$SpeechStateCopyWithImpl<$Res>
-    implements _$LoadingCopyWith<$Res> {
-  __$LoadingCopyWithImpl(_Loading _value, $Res Function(_Loading) _then)
-      : super(_value, (v) => _then(v as _Loading));
+class __$$_LoadingCopyWithImpl<$Res> extends _$SpeechStateCopyWithImpl<$Res>
+    implements _$$_LoadingCopyWith<$Res> {
+  __$$_LoadingCopyWithImpl(_$_Loading _value, $Res Function(_$_Loading) _then)
+      : super(_value, (v) => _then(v as _$_Loading));
 
   @override
-  _Loading get _value => super._value as _Loading;
+  _$_Loading get _value => super._value as _$_Loading;
 }
 
 /// @nodoc
@@ -270,7 +242,7 @@ class _$_Loading extends _Loading {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _Loading);
+        (other.runtimeType == runtimeType && other is _$_Loading);
   }
 
   @override
@@ -363,19 +335,19 @@ abstract class _Loading extends SpeechState {
 }
 
 /// @nodoc
-abstract class _$NoFileCopyWith<$Res> {
-  factory _$NoFileCopyWith(_NoFile value, $Res Function(_NoFile) then) =
-      __$NoFileCopyWithImpl<$Res>;
+abstract class _$$_NoFileCopyWith<$Res> {
+  factory _$$_NoFileCopyWith(_$_NoFile value, $Res Function(_$_NoFile) then) =
+      __$$_NoFileCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$NoFileCopyWithImpl<$Res> extends _$SpeechStateCopyWithImpl<$Res>
-    implements _$NoFileCopyWith<$Res> {
-  __$NoFileCopyWithImpl(_NoFile _value, $Res Function(_NoFile) _then)
-      : super(_value, (v) => _then(v as _NoFile));
+class __$$_NoFileCopyWithImpl<$Res> extends _$SpeechStateCopyWithImpl<$Res>
+    implements _$$_NoFileCopyWith<$Res> {
+  __$$_NoFileCopyWithImpl(_$_NoFile _value, $Res Function(_$_NoFile) _then)
+      : super(_value, (v) => _then(v as _$_NoFile));
 
   @override
-  _NoFile get _value => super._value as _NoFile;
+  _$_NoFile get _value => super._value as _$_NoFile;
 }
 
 /// @nodoc
@@ -391,7 +363,7 @@ class _$_NoFile extends _NoFile {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _NoFile);
+        (other.runtimeType == runtimeType && other is _$_NoFile);
   }
 
   @override
@@ -484,19 +456,19 @@ abstract class _NoFile extends SpeechState {
 }
 
 /// @nodoc
-abstract class _$LoadedCopyWith<$Res> {
-  factory _$LoadedCopyWith(_Loaded value, $Res Function(_Loaded) then) =
-      __$LoadedCopyWithImpl<$Res>;
+abstract class _$$_LoadedCopyWith<$Res> {
+  factory _$$_LoadedCopyWith(_$_Loaded value, $Res Function(_$_Loaded) then) =
+      __$$_LoadedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$LoadedCopyWithImpl<$Res> extends _$SpeechStateCopyWithImpl<$Res>
-    implements _$LoadedCopyWith<$Res> {
-  __$LoadedCopyWithImpl(_Loaded _value, $Res Function(_Loaded) _then)
-      : super(_value, (v) => _then(v as _Loaded));
+class __$$_LoadedCopyWithImpl<$Res> extends _$SpeechStateCopyWithImpl<$Res>
+    implements _$$_LoadedCopyWith<$Res> {
+  __$$_LoadedCopyWithImpl(_$_Loaded _value, $Res Function(_$_Loaded) _then)
+      : super(_value, (v) => _then(v as _$_Loaded));
 
   @override
-  _Loaded get _value => super._value as _Loaded;
+  _$_Loaded get _value => super._value as _$_Loaded;
 }
 
 /// @nodoc
@@ -512,7 +484,7 @@ class _$_Loaded extends _Loaded {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _Loaded);
+        (other.runtimeType == runtimeType && other is _$_Loaded);
   }
 
   @override
@@ -605,27 +577,28 @@ abstract class _Loaded extends SpeechState {
 }
 
 /// @nodoc
-abstract class _$ListeningCopyWith<$Res> {
-  factory _$ListeningCopyWith(
-          _Listening value, $Res Function(_Listening) then) =
-      __$ListeningCopyWithImpl<$Res>;
+abstract class _$$_ListeningCopyWith<$Res> {
+  factory _$$_ListeningCopyWith(
+          _$_Listening value, $Res Function(_$_Listening) then) =
+      __$$_ListeningCopyWithImpl<$Res>;
   $Res call({String partial});
 }
 
 /// @nodoc
-class __$ListeningCopyWithImpl<$Res> extends _$SpeechStateCopyWithImpl<$Res>
-    implements _$ListeningCopyWith<$Res> {
-  __$ListeningCopyWithImpl(_Listening _value, $Res Function(_Listening) _then)
-      : super(_value, (v) => _then(v as _Listening));
+class __$$_ListeningCopyWithImpl<$Res> extends _$SpeechStateCopyWithImpl<$Res>
+    implements _$$_ListeningCopyWith<$Res> {
+  __$$_ListeningCopyWithImpl(
+      _$_Listening _value, $Res Function(_$_Listening) _then)
+      : super(_value, (v) => _then(v as _$_Listening));
 
   @override
-  _Listening get _value => super._value as _Listening;
+  _$_Listening get _value => super._value as _$_Listening;
 
   @override
   $Res call({
     Object? partial = freezed,
   }) {
-    return _then(_Listening(
+    return _then(_$_Listening(
       partial == freezed
           ? _value.partial
           : partial // ignore: cast_nullable_to_non_nullable
@@ -651,7 +624,7 @@ class _$_Listening extends _Listening {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _Listening &&
+            other is _$_Listening &&
             const DeepCollectionEquality().equals(other.partial, partial));
   }
 
@@ -661,8 +634,8 @@ class _$_Listening extends _Listening {
 
   @JsonKey(ignore: true)
   @override
-  _$ListeningCopyWith<_Listening> get copyWith =>
-      __$ListeningCopyWithImpl<_Listening>(this, _$identity);
+  _$$_ListeningCopyWith<_$_Listening> get copyWith =>
+      __$$_ListeningCopyWithImpl<_$_Listening>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -746,11 +719,11 @@ class _$_Listening extends _Listening {
 }
 
 abstract class _Listening extends SpeechState {
-  const factory _Listening(String partial) = _$_Listening;
+  const factory _Listening(final String partial) = _$_Listening;
   const _Listening._() : super._();
 
-  String get partial;
+  String get partial => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  _$ListeningCopyWith<_Listening> get copyWith =>
+  _$$_ListeningCopyWith<_$_Listening> get copyWith =>
       throw _privateConstructorUsedError;
 }

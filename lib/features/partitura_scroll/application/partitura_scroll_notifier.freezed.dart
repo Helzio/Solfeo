@@ -12,23 +12,7 @@ part of 'partitura_scroll_notifier.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$PartituraScrollStateTearOff {
-  const _$PartituraScrollStateTearOff();
-
-  _PartituraScrollState call(
-      {required int currentNote, required List<String> notas}) {
-    return _PartituraScrollState(
-      currentNote: currentNote,
-      notas: notas,
-    );
-  }
-}
-
-/// @nodoc
-const $PartituraScrollState = _$PartituraScrollStateTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$PartituraScrollState {
@@ -76,38 +60,38 @@ class _$PartituraScrollStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$PartituraScrollStateCopyWith<$Res>
+abstract class _$$_PartituraScrollStateCopyWith<$Res>
     implements $PartituraScrollStateCopyWith<$Res> {
-  factory _$PartituraScrollStateCopyWith(_PartituraScrollState value,
-          $Res Function(_PartituraScrollState) then) =
-      __$PartituraScrollStateCopyWithImpl<$Res>;
+  factory _$$_PartituraScrollStateCopyWith(_$_PartituraScrollState value,
+          $Res Function(_$_PartituraScrollState) then) =
+      __$$_PartituraScrollStateCopyWithImpl<$Res>;
   @override
   $Res call({int currentNote, List<String> notas});
 }
 
 /// @nodoc
-class __$PartituraScrollStateCopyWithImpl<$Res>
+class __$$_PartituraScrollStateCopyWithImpl<$Res>
     extends _$PartituraScrollStateCopyWithImpl<$Res>
-    implements _$PartituraScrollStateCopyWith<$Res> {
-  __$PartituraScrollStateCopyWithImpl(
-      _PartituraScrollState _value, $Res Function(_PartituraScrollState) _then)
-      : super(_value, (v) => _then(v as _PartituraScrollState));
+    implements _$$_PartituraScrollStateCopyWith<$Res> {
+  __$$_PartituraScrollStateCopyWithImpl(_$_PartituraScrollState _value,
+      $Res Function(_$_PartituraScrollState) _then)
+      : super(_value, (v) => _then(v as _$_PartituraScrollState));
 
   @override
-  _PartituraScrollState get _value => super._value as _PartituraScrollState;
+  _$_PartituraScrollState get _value => super._value as _$_PartituraScrollState;
 
   @override
   $Res call({
     Object? currentNote = freezed,
     Object? notas = freezed,
   }) {
-    return _then(_PartituraScrollState(
+    return _then(_$_PartituraScrollState(
       currentNote: currentNote == freezed
           ? _value.currentNote
           : currentNote // ignore: cast_nullable_to_non_nullable
               as int,
       notas: notas == freezed
-          ? _value.notas
+          ? _value._notas
           : notas // ignore: cast_nullable_to_non_nullable
               as List<String>,
     ));
@@ -118,13 +102,18 @@ class __$PartituraScrollStateCopyWithImpl<$Res>
 
 class _$_PartituraScrollState extends _PartituraScrollState {
   const _$_PartituraScrollState(
-      {required this.currentNote, required this.notas})
-      : super._();
+      {required this.currentNote, required final List<String> notas})
+      : _notas = notas,
+        super._();
 
   @override
   final int currentNote;
+  final List<String> _notas;
   @override
-  final List<String> notas;
+  List<String> get notas {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_notas);
+  }
 
   @override
   String toString() {
@@ -135,37 +124,37 @@ class _$_PartituraScrollState extends _PartituraScrollState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _PartituraScrollState &&
+            other is _$_PartituraScrollState &&
             const DeepCollectionEquality()
                 .equals(other.currentNote, currentNote) &&
-            const DeepCollectionEquality().equals(other.notas, notas));
+            const DeepCollectionEquality().equals(other._notas, _notas));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(currentNote),
-      const DeepCollectionEquality().hash(notas));
+      const DeepCollectionEquality().hash(_notas));
 
   @JsonKey(ignore: true)
   @override
-  _$PartituraScrollStateCopyWith<_PartituraScrollState> get copyWith =>
-      __$PartituraScrollStateCopyWithImpl<_PartituraScrollState>(
+  _$$_PartituraScrollStateCopyWith<_$_PartituraScrollState> get copyWith =>
+      __$$_PartituraScrollStateCopyWithImpl<_$_PartituraScrollState>(
           this, _$identity);
 }
 
 abstract class _PartituraScrollState extends PartituraScrollState {
   const factory _PartituraScrollState(
-      {required int currentNote,
-      required List<String> notas}) = _$_PartituraScrollState;
+      {required final int currentNote,
+      required final List<String> notas}) = _$_PartituraScrollState;
   const _PartituraScrollState._() : super._();
 
   @override
-  int get currentNote;
+  int get currentNote => throw _privateConstructorUsedError;
   @override
-  List<String> get notas;
+  List<String> get notas => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$PartituraScrollStateCopyWith<_PartituraScrollState> get copyWith =>
+  _$$_PartituraScrollStateCopyWith<_$_PartituraScrollState> get copyWith =>
       throw _privateConstructorUsedError;
 }

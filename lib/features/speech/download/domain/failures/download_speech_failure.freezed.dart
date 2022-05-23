@@ -12,27 +12,7 @@ part of 'download_speech_failure.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$DownloadSpeechFailureTearOff {
-  const _$DownloadSpeechFailureTearOff();
-
-  _Internet internet() {
-    return const _Internet();
-  }
-
-  _Server server() {
-    return const _Server();
-  }
-
-  _Model model() {
-    return const _Model();
-  }
-}
-
-/// @nodoc
-const $DownloadSpeechFailure = _$DownloadSpeechFailureTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$DownloadSpeechFailure {
@@ -100,20 +80,22 @@ class _$DownloadSpeechFailureCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$InternetCopyWith<$Res> {
-  factory _$InternetCopyWith(_Internet value, $Res Function(_Internet) then) =
-      __$InternetCopyWithImpl<$Res>;
+abstract class _$$_InternetCopyWith<$Res> {
+  factory _$$_InternetCopyWith(
+          _$_Internet value, $Res Function(_$_Internet) then) =
+      __$$_InternetCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$InternetCopyWithImpl<$Res>
+class __$$_InternetCopyWithImpl<$Res>
     extends _$DownloadSpeechFailureCopyWithImpl<$Res>
-    implements _$InternetCopyWith<$Res> {
-  __$InternetCopyWithImpl(_Internet _value, $Res Function(_Internet) _then)
-      : super(_value, (v) => _then(v as _Internet));
+    implements _$$_InternetCopyWith<$Res> {
+  __$$_InternetCopyWithImpl(
+      _$_Internet _value, $Res Function(_$_Internet) _then)
+      : super(_value, (v) => _then(v as _$_Internet));
 
   @override
-  _Internet get _value => super._value as _Internet;
+  _$_Internet get _value => super._value as _$_Internet;
 }
 
 /// @nodoc
@@ -129,7 +111,7 @@ class _$_Internet extends _Internet {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _Internet);
+        (other.runtimeType == runtimeType && other is _$_Internet);
   }
 
   @override
@@ -210,20 +192,20 @@ abstract class _Internet extends DownloadSpeechFailure {
 }
 
 /// @nodoc
-abstract class _$ServerCopyWith<$Res> {
-  factory _$ServerCopyWith(_Server value, $Res Function(_Server) then) =
-      __$ServerCopyWithImpl<$Res>;
+abstract class _$$_ServerCopyWith<$Res> {
+  factory _$$_ServerCopyWith(_$_Server value, $Res Function(_$_Server) then) =
+      __$$_ServerCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$ServerCopyWithImpl<$Res>
+class __$$_ServerCopyWithImpl<$Res>
     extends _$DownloadSpeechFailureCopyWithImpl<$Res>
-    implements _$ServerCopyWith<$Res> {
-  __$ServerCopyWithImpl(_Server _value, $Res Function(_Server) _then)
-      : super(_value, (v) => _then(v as _Server));
+    implements _$$_ServerCopyWith<$Res> {
+  __$$_ServerCopyWithImpl(_$_Server _value, $Res Function(_$_Server) _then)
+      : super(_value, (v) => _then(v as _$_Server));
 
   @override
-  _Server get _value => super._value as _Server;
+  _$_Server get _value => super._value as _$_Server;
 }
 
 /// @nodoc
@@ -239,7 +221,7 @@ class _$_Server extends _Server {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _Server);
+        (other.runtimeType == runtimeType && other is _$_Server);
   }
 
   @override
@@ -320,20 +302,20 @@ abstract class _Server extends DownloadSpeechFailure {
 }
 
 /// @nodoc
-abstract class _$ModelCopyWith<$Res> {
-  factory _$ModelCopyWith(_Model value, $Res Function(_Model) then) =
-      __$ModelCopyWithImpl<$Res>;
+abstract class _$$_ModelCopyWith<$Res> {
+  factory _$$_ModelCopyWith(_$_Model value, $Res Function(_$_Model) then) =
+      __$$_ModelCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$ModelCopyWithImpl<$Res>
+class __$$_ModelCopyWithImpl<$Res>
     extends _$DownloadSpeechFailureCopyWithImpl<$Res>
-    implements _$ModelCopyWith<$Res> {
-  __$ModelCopyWithImpl(_Model _value, $Res Function(_Model) _then)
-      : super(_value, (v) => _then(v as _Model));
+    implements _$$_ModelCopyWith<$Res> {
+  __$$_ModelCopyWithImpl(_$_Model _value, $Res Function(_$_Model) _then)
+      : super(_value, (v) => _then(v as _$_Model));
 
   @override
-  _Model get _value => super._value as _Model;
+  _$_Model get _value => super._value as _$_Model;
 }
 
 /// @nodoc
@@ -349,7 +331,7 @@ class _$_Model extends _Model {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _Model);
+        (other.runtimeType == runtimeType && other is _$_Model);
   }
 
   @override
