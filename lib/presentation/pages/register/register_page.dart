@@ -5,7 +5,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:solfeo/features/google_singin/application/login_notifier.dart';
+import 'package:solfeo/features/google_singin/provider/login_provider.dart';
 import 'package:solfeo/presentation/acore/utils/colors.dart';
+import 'package:solfeo/presentation/acore/widgets/flash/error_flash.dart';
+import 'package:solfeo/presentation/pages/register/widgets/google_sign_in_button.dart';
 import 'package:solfeo/routes/app_route.gr.dart';
 
 class RegisterPage extends ConsumerStatefulWidget {
@@ -18,6 +22,21 @@ class RegisterPage extends ConsumerStatefulWidget {
 class _RegisterPageState extends ConsumerState<RegisterPage> {
   @override
   Widget build(BuildContext context) {
+    ref.listen<LoginState>(loginProvider, (_, state) {
+      state.maybeWhen(
+        orElse: () => null,
+        failure: (failure) => failure.maybeWhen(
+          unexpectedError: () =>
+              showErrorFlash(context, "Ha ocurrido un error inesperado"),
+          noInternetConnection: () =>
+              showErrorFlash(context, "No hay conexión a Internet"),
+          cancelledByUser: () => null,
+          userDisabled: () => showErrorFlash(context, "Cuenta desabilitada"),
+          orElse: () => null,
+        ),
+      );
+    });
+
     return Theme(
       data: ThemeData.light().copyWith(brightness: Brightness.dark),
       child: Scaffold(
@@ -91,49 +110,7 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
                 const SizedBox(
                   height: 24,
                 ),
-                SizedBox(
-                  height: 48,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.white,
-                      shape: const StadiumBorder(),
-                    ),
-                    onPressed: () {},
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Expanded(
-                          flex: 25,
-                          child: Align(
-                            alignment: Alignment.centerRight,
-                            child: SizedBox(
-                              width: 24,
-                              child: Image.asset(
-                                "assets/images/ic_google.png",
-                                height: 16,
-                                width: 16,
-                              ),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(
-                          width: 16,
-                        ),
-                        const Expanded(
-                          flex: 75,
-                          child: Text(
-                            "Registrarse con google",
-                            style: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black54,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
+                const GoogleSignInButton(),
                 const SizedBox(
                   height: 12,
                 ),

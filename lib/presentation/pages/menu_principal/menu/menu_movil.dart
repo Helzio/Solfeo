@@ -2,6 +2,9 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:solfeo/presentation/acore/utils/colors.dart';
+import 'package:solfeo/presentation/pages/menu_principal/menu/widgets/avatar_image.dart';
+import 'package:solfeo/presentation/pages/menu_principal/menu/widgets/logout_tile.dart';
+import 'package:solfeo/presentation/pages/menu_principal/menu/widgets/meta_diaria.dart';
 import 'package:solfeo/routes/app_route.gr.dart';
 
 class MenuMovil extends StatefulWidget {
@@ -61,16 +64,12 @@ class _MenuMovilState extends State<MenuMovil> {
                   height: 32,
                 ),
                 Row(
-                  children: [
-                    Image.asset(
-                      "assets/images/avatar.png",
-                      width: 80,
-                      height: 80,
-                    ),
-                    const SizedBox(
+                  children: const [
+                    AvatarImage(),
+                    SizedBox(
                       width: 24,
                     ),
-                    const Expanded(
+                    Expanded(
                       child: MetaDiariaWidget(),
                     ),
                   ],
@@ -344,30 +343,7 @@ class _MenuMovilState extends State<MenuMovil> {
                       height: 32,
                     ),
                   ),
-                  ListTile(
-                    leading: Container(
-                      width: 36,
-                      height: 36,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8),
-                        color: colorPastel11,
-                      ),
-                      child: const Icon(
-                        MdiIcons.logout,
-                        color: Colors.white,
-                      ),
-                    ),
-                    contentPadding: const EdgeInsets.symmetric(horizontal: 24),
-                    horizontalTitleGap: 16,
-                    title: const Text(
-                      "Cerrar sesión",
-                      style: TextStyle(
-                        color: Color(0xff2E3E5C),
-                        fontSize: 12,
-                      ),
-                    ),
-                    onTap: () async {},
-                  ),
+                  const LogoutTile(),
                   const SizedBox(
                     height: 16,
                   ),
@@ -377,57 +353,6 @@ class _MenuMovilState extends State<MenuMovil> {
           ),
         ],
       ),
-    );
-  }
-}
-
-class MetaDiariaWidget extends StatelessWidget {
-  const MetaDiariaWidget({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Text(
-          "Bienvenido Invitado",
-          style: TextStyle(
-            fontSize: 18,
-            color: Color(0xff2E3E5C),
-            fontWeight: FontWeight.w500,
-          ),
-        ),
-        const SizedBox(
-          height: 4,
-        ),
-        const LinearProgressIndicator(
-          value: .0,
-        ),
-        const SizedBox(
-          height: 4,
-        ),
-        Row(
-          children: [
-            Align(
-              alignment: Alignment.topRight,
-              child: Text(
-                "Progreso:",
-                style: Theme.of(context).textTheme.caption,
-              ),
-            ),
-            Expanded(child: Container()),
-            Align(
-              alignment: Alignment.topRight,
-              child: Text(
-                "0/10 min.",
-                style: Theme.of(context).textTheme.caption,
-              ),
-            ),
-          ],
-        ),
-      ],
     );
   }
 }

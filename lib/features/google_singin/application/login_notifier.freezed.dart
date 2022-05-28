@@ -20,7 +20,7 @@ mixin _$LoginState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function() logged,
+    required TResult Function(User user) logged,
     required TResult Function() notLogged,
     required TResult Function(LoginFailure failure) failure,
   }) =>
@@ -29,7 +29,7 @@ mixin _$LoginState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? logged,
+    TResult Function(User user)? logged,
     TResult Function()? notLogged,
     TResult Function(LoginFailure failure)? failure,
   }) =>
@@ -38,7 +38,7 @@ mixin _$LoginState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? logged,
+    TResult Function(User user)? logged,
     TResult Function()? notLogged,
     TResult Function(LoginFailure failure)? failure,
     required TResult orElse(),
@@ -131,7 +131,7 @@ class _$_Initial extends _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function() logged,
+    required TResult Function(User user) logged,
     required TResult Function() notLogged,
     required TResult Function(LoginFailure failure) failure,
   }) {
@@ -143,7 +143,7 @@ class _$_Initial extends _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? logged,
+    TResult Function(User user)? logged,
     TResult Function()? notLogged,
     TResult Function(LoginFailure failure)? failure,
   }) {
@@ -155,7 +155,7 @@ class _$_Initial extends _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? logged,
+    TResult Function(User user)? logged,
     TResult Function()? notLogged,
     TResult Function(LoginFailure failure)? failure,
     required TResult orElse(),
@@ -253,7 +253,7 @@ class _$_Loading extends _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function() logged,
+    required TResult Function(User user) logged,
     required TResult Function() notLogged,
     required TResult Function(LoginFailure failure) failure,
   }) {
@@ -265,7 +265,7 @@ class _$_Loading extends _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? logged,
+    TResult Function(User user)? logged,
     TResult Function()? notLogged,
     TResult Function(LoginFailure failure)? failure,
   }) {
@@ -277,7 +277,7 @@ class _$_Loading extends _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? logged,
+    TResult Function(User user)? logged,
     TResult Function()? notLogged,
     TResult Function(LoginFailure failure)? failure,
     required TResult orElse(),
@@ -338,6 +338,7 @@ abstract class _Loading extends LoginState {
 abstract class _$$_LoggedCopyWith<$Res> {
   factory _$$_LoggedCopyWith(_$_Logged value, $Res Function(_$_Logged) then) =
       __$$_LoggedCopyWithImpl<$Res>;
+  $Res call({User user});
 }
 
 /// @nodoc
@@ -348,37 +349,60 @@ class __$$_LoggedCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
 
   @override
   _$_Logged get _value => super._value as _$_Logged;
+
+  @override
+  $Res call({
+    Object? user = freezed,
+  }) {
+    return _then(_$_Logged(
+      user == freezed
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as User,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$_Logged extends _Logged {
-  const _$_Logged() : super._();
+  const _$_Logged(this.user) : super._();
+
+  @override
+  final User user;
 
   @override
   String toString() {
-    return 'LoginState.logged()';
+    return 'LoginState.logged(user: $user)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Logged);
+        (other.runtimeType == runtimeType &&
+            other is _$_Logged &&
+            const DeepCollectionEquality().equals(other.user, user));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(user));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_LoggedCopyWith<_$_Logged> get copyWith =>
+      __$$_LoggedCopyWithImpl<_$_Logged>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function() logged,
+    required TResult Function(User user) logged,
     required TResult Function() notLogged,
     required TResult Function(LoginFailure failure) failure,
   }) {
-    return logged();
+    return logged(user);
   }
 
   @override
@@ -386,11 +410,11 @@ class _$_Logged extends _Logged {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? logged,
+    TResult Function(User user)? logged,
     TResult Function()? notLogged,
     TResult Function(LoginFailure failure)? failure,
   }) {
-    return logged?.call();
+    return logged?.call(user);
   }
 
   @override
@@ -398,13 +422,13 @@ class _$_Logged extends _Logged {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? logged,
+    TResult Function(User user)? logged,
     TResult Function()? notLogged,
     TResult Function(LoginFailure failure)? failure,
     required TResult orElse(),
   }) {
     if (logged != null) {
-      return logged();
+      return logged(user);
     }
     return orElse();
   }
@@ -451,8 +475,13 @@ class _$_Logged extends _Logged {
 }
 
 abstract class _Logged extends LoginState {
-  const factory _Logged() = _$_Logged;
+  const factory _Logged(final User user) = _$_Logged;
   const _Logged._() : super._();
+
+  User get user => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$$_LoggedCopyWith<_$_Logged> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -497,7 +526,7 @@ class _$_NotLogged extends _NotLogged {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function() logged,
+    required TResult Function(User user) logged,
     required TResult Function() notLogged,
     required TResult Function(LoginFailure failure) failure,
   }) {
@@ -509,7 +538,7 @@ class _$_NotLogged extends _NotLogged {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? logged,
+    TResult Function(User user)? logged,
     TResult Function()? notLogged,
     TResult Function(LoginFailure failure)? failure,
   }) {
@@ -521,7 +550,7 @@ class _$_NotLogged extends _NotLogged {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? logged,
+    TResult Function(User user)? logged,
     TResult Function()? notLogged,
     TResult Function(LoginFailure failure)? failure,
     required TResult orElse(),
@@ -652,7 +681,7 @@ class _$_Failure extends _Failure {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function() logged,
+    required TResult Function(User user) logged,
     required TResult Function() notLogged,
     required TResult Function(LoginFailure failure) failure,
   }) {
@@ -664,7 +693,7 @@ class _$_Failure extends _Failure {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? logged,
+    TResult Function(User user)? logged,
     TResult Function()? notLogged,
     TResult Function(LoginFailure failure)? failure,
   }) {
@@ -676,7 +705,7 @@ class _$_Failure extends _Failure {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? logged,
+    TResult Function(User user)? logged,
     TResult Function()? notLogged,
     TResult Function(LoginFailure failure)? failure,
     required TResult orElse(),

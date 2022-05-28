@@ -11,7 +11,6 @@ class LoginRepository {
   LoginRepository(this._firebaseAuth, this._googleSignIn);
 
   Stream<User?> loginStateChanges() => _firebaseAuth.authStateChanges();
-  User? get _currentUser => _firebaseAuth.currentUser;
 
   Future<Either<LoginFailure, Unit>> loginWithGoogle() async {
     try {

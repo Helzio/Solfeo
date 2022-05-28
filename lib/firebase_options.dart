@@ -25,10 +25,7 @@ class DefaultFirebaseOptions {
       case TargetPlatform.iOS:
         return ios;
       case TargetPlatform.macOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for macos - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return macos;
       case TargetPlatform.windows:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for windows - '
@@ -72,5 +69,15 @@ class DefaultFirebaseOptions {
     storageBucket: 'solfa-f0d79.appspot.com',
     iosClientId: '1046474183879-fea0a88cc443adqmtr6ohudvchju7bms.apps.googleusercontent.com',
     iosBundleId: 'ccv.checkhelzio.solfeo',
+  );
+
+  static const FirebaseOptions macos = FirebaseOptions(
+    apiKey: 'AIzaSyB5muiQoMshPV2GESCmNT-wJUizJyoHspQ',
+    appId: '1:1046474183879:ios:cf969d6dc5b324c7f39ae2',
+    messagingSenderId: '1046474183879',
+    projectId: 'solfa-f0d79',
+    storageBucket: 'solfa-f0d79.appspot.com',
+    iosClientId: '1046474183879-9bmto82gaa7cpskeuol2ogcu2ecrg3pd.apps.googleusercontent.com',
+    iosBundleId: 'ccv.checkhelzio.solfa',
   );
 }

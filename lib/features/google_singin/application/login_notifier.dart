@@ -12,7 +12,7 @@ class LoginState with _$LoginState {
   const LoginState._();
   const factory LoginState.initial() = _Initial;
   const factory LoginState.loading() = _Loading;
-  const factory LoginState.logged() = _Logged;
+  const factory LoginState.logged(User user) = _Logged;
   const factory LoginState.notLogged() = _NotLogged;
   const factory LoginState.failure(LoginFailure failure) = _Failure;
 }
@@ -24,9 +24,9 @@ class LoginNotifier extends StateNotifier<LoginState> {
     _loginStateChangesSubscription =
         _repository.loginStateChanges().listen((user) {
       if (user != null) {
-        state = const LoginState.logged();
+        state =  LoginState.logged(user);
       } else {
-        const LoginState.notLogged();
+        state = const LoginState.notLogged();
       }
     });
   }
@@ -50,5 +50,3 @@ class LoginNotifier extends StateNotifier<LoginState> {
     await _repository.logout();
   }
 }
-
-
