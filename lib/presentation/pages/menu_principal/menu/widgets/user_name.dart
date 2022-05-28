@@ -13,7 +13,7 @@ class UserName extends ConsumerWidget {
         .watch(loginProvider)
         .maybeWhen(orElse: () => null, logged: (user) => user.displayName);
     return Text(
-      displayName ?? 'Bienvenido  Invitado',
+      displayName ?? 'Invitado',
       style: const TextStyle(
         fontSize: 18,
         color: Color(0xff2E3E5C),

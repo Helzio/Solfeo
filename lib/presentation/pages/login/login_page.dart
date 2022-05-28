@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:solfeo/features/google_singin/provider/login_provider.dart';
 import 'package:solfeo/presentation/acore/utils/colors.dart';
 import 'package:solfeo/routes/app_route.gr.dart';
 
@@ -83,7 +84,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                   height: 8,
                 ),
                 const Text(
-                  "Al iniciar sesión con Google, Facebook o Apple se cargará tu progreso previamente guardado en la nube.",
+                  "Al iniciar sesión con Google se cargará tu progreso previamente guardado en la nube.",
                   style: TextStyle(
                     fontSize: 14,
                     color: Colors.black87,
@@ -108,7 +109,9 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                       primary: Colors.white,
                       shape: const StadiumBorder(),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      ref.read(loginProvider.notifier).loginWithGoogle();
+                    },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
