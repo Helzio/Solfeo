@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -12,6 +13,7 @@ const _key = "lectura_libre";
 class LecturaLibreState with _$LecturaLibreState {
   const LecturaLibreState._();
   const factory LecturaLibreState({
+    required String uid,
     required int index,
     required int level,
     required double speed,
@@ -34,31 +36,35 @@ class LecturaLibreState with _$LecturaLibreState {
   }) = _LecturaLibreState;
 
   factory LecturaLibreState.initial(
-    int nivel, {
+    int nivel,
+    String uid, {
     required bool mutted,
     required int totalTime,
-  }) =>
-      LecturaLibreState(
-        index: 0,
-        level: nivel,
-        speed: 0,
-        errorCount: 0,
-        listErrorIndex: [],
-        accuracy: 0,
-        enterNote: null,
-        errors: {},
-        isRunning: false,
-        startTime: null,
-        ellapsedTime: 0,
-        totalTime: totalTime,
-        score: 0,
-        lastScore: 0,
-        lastAccuracy: 0,
-        lastSpeed: 0,
-        mutted: mutted,
-        greenNotes: {},
-        pentagrama: Pentagrama.lecturaLibre(nivel: nivel),
-      );
+  }) {
+    print("lectura libre initial");
+    return LecturaLibreState(
+      index: 0,
+      uid: uid,
+      level: nivel,
+      speed: 0,
+      errorCount: 0,
+      listErrorIndex: [],
+      accuracy: 0,
+      enterNote: null,
+      errors: {},
+      isRunning: false,
+      startTime: null,
+      ellapsedTime: 0,
+      totalTime: totalTime,
+      score: 0,
+      lastScore: 0,
+      lastAccuracy: 0,
+      lastSpeed: 0,
+      mutted: mutted,
+      greenNotes: {},
+      pentagrama: Pentagrama.lecturaLibre(nivel: nivel),
+    );
+  }
 }
 
 class LecturaLibreNotifier extends StateNotifier<LecturaLibreState> {
@@ -71,14 +77,21 @@ class LecturaLibreNotifier extends StateNotifier<LecturaLibreState> {
   int notaLa = -1;
   int notaSi = -1;
   final LecturaLibreLocal _local;
-  LecturaLibreNotifier(this._local)
+  final User? user;
+  LecturaLibreNotifier(this._local, this.user)
       : super(
           LecturaLibreState.initial(
-            _local.getNivel(_key),
-            mutted: _local.getMutted(_key),
-            totalTime: _local.getTotalTime(_key),
+            _local.getNivel(_key + (user == null ? "-1" : user.uid)),
+            user == null ? "-1" : user.uid,
+            mutted: _local.getMutted(_key + (user == null ? "-1" : user.uid)),
+            totalTime:
+                _local.getTotalTime(_key + (user == null ? "-1" : user.uid)),
           ),
         );
+
+  void resetCache(){
+    _local.reset();
+  }
 
   void generateNotes() {
     state = state.copyWith(
@@ -119,14 +132,14 @@ class LecturaLibreNotifier extends StateNotifier<LecturaLibreState> {
   void comprobarAvance() {
     if (state.accuracy >= 50 && state.speed > 30) {
       final newTotalTime = state.totalTime + state.ellapsedTime;
-      _local.saveTotalTime(newTotalTime, _key);
+      _local.saveTotalTime(newTotalTime, _key + state.uid);
       state = state.copyWith(totalTime: newTotalTime);
     }
 
     if ((state.accuracy >= 89 && state.speed > 100) && state.level <= 9) {
-      _local.saveNivel(state.level + 1, _key);
-      _local.savePrecision(state.accuracy, _key);
-      _local.saveVelocidad(state.speed, _key);
+      _local.saveNivel(state.level + 1, _key + state.uid);
+      _local.savePrecision(state.accuracy, _key + state.uid);
+      _local.saveVelocidad(state.speed, _key + state.uid);
       state = state.copyWith(
         level: state.level + 1,
       );
@@ -134,7 +147,7 @@ class LecturaLibreNotifier extends StateNotifier<LecturaLibreState> {
   }
 
   void toogleMutted() {
-    _local.saveMutted(_key, mutted: !state.mutted);
+    _local.saveMutted(_key + state.uid, mutted: !state.mutted);
     state = state.copyWith(mutted: !state.mutted);
   }
 

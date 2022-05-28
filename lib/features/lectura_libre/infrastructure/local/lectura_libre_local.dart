@@ -20,7 +20,8 @@ class LecturaLibreLocal {
     if (_nivel != null) {
       return _nivel!;
     }
-
+    print("--- key ---");
+    print(key);
     return _nivel = _sharedPreferences.getInt(_keyNivel + key) ?? 1;
   }
 
@@ -92,5 +93,13 @@ class LecturaLibreLocal {
     _sharedPreferences.remove(_keyMutted + key);
     _sharedPreferences.remove(_keyMetaDiaria + key);
     return _sharedPreferences.remove(_keyPrecision + key);
+  }
+
+  void reset() {
+    _nivel = null;
+    _precision = null;
+    _velocidad = null;
+    _mutted = null;
+    _totalTime = null;
   }
 }

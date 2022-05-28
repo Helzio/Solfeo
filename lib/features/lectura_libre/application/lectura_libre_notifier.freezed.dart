@@ -16,6 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$LecturaLibreState {
+  String get uid => throw _privateConstructorUsedError;
   int get index => throw _privateConstructorUsedError;
   int get level => throw _privateConstructorUsedError;
   double get speed => throw _privateConstructorUsedError;
@@ -47,7 +48,8 @@ abstract class $LecturaLibreStateCopyWith<$Res> {
           LecturaLibreState value, $Res Function(LecturaLibreState) then) =
       _$LecturaLibreStateCopyWithImpl<$Res>;
   $Res call(
-      {int index,
+      {String uid,
+      int index,
       int level,
       double speed,
       double lastSpeed,
@@ -82,6 +84,7 @@ class _$LecturaLibreStateCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? uid = freezed,
     Object? index = freezed,
     Object? level = freezed,
     Object? speed = freezed,
@@ -103,6 +106,10 @@ class _$LecturaLibreStateCopyWithImpl<$Res>
     Object? mutted = freezed,
   }) {
     return _then(_value.copyWith(
+      uid: uid == freezed
+          ? _value.uid
+          : uid // ignore: cast_nullable_to_non_nullable
+              as String,
       index: index == freezed
           ? _value.index
           : index // ignore: cast_nullable_to_non_nullable
@@ -209,7 +216,8 @@ abstract class _$$_LecturaLibreStateCopyWith<$Res>
       __$$_LecturaLibreStateCopyWithImpl<$Res>;
   @override
   $Res call(
-      {int index,
+      {String uid,
+      int index,
       int level,
       double speed,
       double lastSpeed,
@@ -248,6 +256,7 @@ class __$$_LecturaLibreStateCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? uid = freezed,
     Object? index = freezed,
     Object? level = freezed,
     Object? speed = freezed,
@@ -269,6 +278,10 @@ class __$$_LecturaLibreStateCopyWithImpl<$Res>
     Object? mutted = freezed,
   }) {
     return _then(_$_LecturaLibreState(
+      uid: uid == freezed
+          ? _value.uid
+          : uid // ignore: cast_nullable_to_non_nullable
+              as String,
       index: index == freezed
           ? _value.index
           : index // ignore: cast_nullable_to_non_nullable
@@ -353,7 +366,8 @@ class __$$_LecturaLibreStateCopyWithImpl<$Res>
 
 class _$_LecturaLibreState extends _LecturaLibreState {
   const _$_LecturaLibreState(
-      {required this.index,
+      {required this.uid,
+      required this.index,
       required this.level,
       required this.speed,
       required this.lastSpeed,
@@ -377,6 +391,8 @@ class _$_LecturaLibreState extends _LecturaLibreState {
         _greenNotes = greenNotes,
         super._();
 
+  @override
+  final String uid;
   @override
   final int index;
   @override
@@ -433,7 +449,7 @@ class _$_LecturaLibreState extends _LecturaLibreState {
 
   @override
   String toString() {
-    return 'LecturaLibreState(index: $index, level: $level, speed: $speed, lastSpeed: $lastSpeed, accuracy: $accuracy, lastAccuracy: $lastAccuracy, score: $score, lastScore: $lastScore, enterNote: $enterNote, errors: $errors, errorCount: $errorCount, listErrorIndex: $listErrorIndex, isRunning: $isRunning, startTime: $startTime, ellapsedTime: $ellapsedTime, totalTime: $totalTime, pentagrama: $pentagrama, greenNotes: $greenNotes, mutted: $mutted)';
+    return 'LecturaLibreState(uid: $uid, index: $index, level: $level, speed: $speed, lastSpeed: $lastSpeed, accuracy: $accuracy, lastAccuracy: $lastAccuracy, score: $score, lastScore: $lastScore, enterNote: $enterNote, errors: $errors, errorCount: $errorCount, listErrorIndex: $listErrorIndex, isRunning: $isRunning, startTime: $startTime, ellapsedTime: $ellapsedTime, totalTime: $totalTime, pentagrama: $pentagrama, greenNotes: $greenNotes, mutted: $mutted)';
   }
 
   @override
@@ -441,6 +457,7 @@ class _$_LecturaLibreState extends _LecturaLibreState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_LecturaLibreState &&
+            const DeepCollectionEquality().equals(other.uid, uid) &&
             const DeepCollectionEquality().equals(other.index, index) &&
             const DeepCollectionEquality().equals(other.level, level) &&
             const DeepCollectionEquality().equals(other.speed, speed) &&
@@ -471,6 +488,7 @@ class _$_LecturaLibreState extends _LecturaLibreState {
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
+        const DeepCollectionEquality().hash(uid),
         const DeepCollectionEquality().hash(index),
         const DeepCollectionEquality().hash(level),
         const DeepCollectionEquality().hash(speed),
@@ -501,7 +519,8 @@ class _$_LecturaLibreState extends _LecturaLibreState {
 
 abstract class _LecturaLibreState extends LecturaLibreState {
   const factory _LecturaLibreState(
-      {required final int index,
+      {required final String uid,
+      required final int index,
       required final int level,
       required final double speed,
       required final double lastSpeed,
@@ -522,6 +541,8 @@ abstract class _LecturaLibreState extends LecturaLibreState {
       required final bool mutted}) = _$_LecturaLibreState;
   const _LecturaLibreState._() : super._();
 
+  @override
+  String get uid => throw _privateConstructorUsedError;
   @override
   int get index => throw _privateConstructorUsedError;
   @override

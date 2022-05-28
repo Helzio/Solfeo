@@ -24,7 +24,7 @@ class LoginNotifier extends StateNotifier<LoginState> {
     _loginStateChangesSubscription =
         _repository.loginStateChanges().listen((user) {
       if (user != null) {
-        state =  LoginState.logged(user);
+        state = LoginState.logged(user);
       } else {
         state = const LoginState.notLogged();
       }
@@ -47,6 +47,11 @@ class LoginNotifier extends StateNotifier<LoginState> {
   }
 
   Future<void> singOut() async {
-    await _repository.logout();
+    if (state == const LoginState.notLogged()) {
+      state = const LoginState.loading();
+      state = const LoginState.notLogged();
+    } else {
+      await _repository.logout();
+    }
   }
 }
