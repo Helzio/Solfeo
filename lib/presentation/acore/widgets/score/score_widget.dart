@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:solfeo/features/lectura_libre/providers/lectura_libre_provider.dart';
@@ -90,8 +93,9 @@ class ScoreWidget extends ConsumerWidget {
                             ),
                           ),
                           TextSpan(
-                            text:
-                                " (${speed == lastSpeed ? '▼' : speed > lastSpeed ? '▲' : '▼'}",
+                            text: kIsWeb || Platform.isMacOS
+                                ? " (${speed == lastSpeed ? ' - ' : speed > lastSpeed ? ' + ' : ' - '}"
+                                : " (${speed == lastSpeed ? '▼' : speed > lastSpeed ? '▲' : '▼'}",
                             style: TextStyle(
                               fontSize: 11,
                               fontWeight: FontWeight.bold,
@@ -139,8 +143,9 @@ class ScoreWidget extends ConsumerWidget {
                         ),
                       ),
                       TextSpan(
-                        text:
-                            " (${acuracy == lastAcuracy ? '▼' : acuracy > lastAcuracy ? '▲' : '▼'}",
+                        text: kIsWeb || Platform.isMacOS
+                            ? " (${acuracy == lastAcuracy ? ' - ' : acuracy > lastAcuracy ? ' + ' : ' - '}"
+                            : " (${acuracy == lastAcuracy ? '▼' : acuracy > lastAcuracy ? '▲' : '▼'}",
                         style: TextStyle(
                           fontSize: 11,
                           fontWeight: FontWeight.bold,

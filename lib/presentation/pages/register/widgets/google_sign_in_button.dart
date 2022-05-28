@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:solfeo/features/google_singin/provider/login_provider.dart';
@@ -11,6 +14,7 @@ class GoogleSignInButton extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return SizedBox(
       height: 48,
+      width: kIsWeb || Platform.isMacOS ? 320 : double.infinity,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           primary: Colors.white,

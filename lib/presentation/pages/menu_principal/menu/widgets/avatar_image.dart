@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lottie/lottie.dart';
@@ -16,11 +19,11 @@ class AvatarImage extends ConsumerWidget {
         .maybeWhen(orElse: () => null, logged: (user) => user.photoURL);
     return photoURL == null
         ? CircleAvatar(
-            radius: 40,
+            radius: kIsWeb || Platform.isMacOS ? 28 : 40,
             backgroundColor: Colors.transparent,
             child: OverflowBox(
-              maxHeight: 132,
-              maxWidth: 132,
+              maxHeight: kIsWeb || Platform.isMacOS ? 90 : 132,
+              maxWidth: kIsWeb || Platform.isMacOS ? 90 : 132,
               child: Transform.translate(
                 offset: const Offset(-2, 0),
                 child: Lottie.asset(
@@ -31,7 +34,7 @@ class AvatarImage extends ConsumerWidget {
             ),
           )
         : CircleAvatar(
-            radius: 40,
+            radius: kIsWeb || Platform.isMacOS ? 28 : 40,
             backgroundImage: CachedNetworkImageProvider(photoURL),
           );
   }

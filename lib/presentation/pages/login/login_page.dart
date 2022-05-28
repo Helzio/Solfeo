@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -38,7 +41,6 @@ class _LoginPageState extends ConsumerState<LoginPage> {
               right: 40,
             ),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 const SizedBox(
                   height: 16,
@@ -104,6 +106,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                 ),
                 SizedBox(
                   height: 48,
+                  width: kIsWeb || Platform.isMacOS ? 320 : double.infinity,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       primary: Colors.white,
@@ -158,6 +161,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                 ),
                 SizedBox(
                   height: 48,
+                  width: kIsWeb || Platform.isMacOS ? 320 : double.infinity,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       primary: primaryColor,

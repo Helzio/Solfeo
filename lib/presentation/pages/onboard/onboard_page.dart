@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -16,7 +19,6 @@ class OnboardPage extends ConsumerWidget {
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 24.0, horizontal: 40),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             const SizedBox(
               height: 32,
@@ -48,16 +50,26 @@ class OnboardPage extends ConsumerWidget {
             const SizedBox(
               height: 16,
             ),
-            const Text(
-              "¡Te damos la bienvenida a Solfa! Tu entrenador de solfeo",
-              style: TextStyle(
-                fontSize: 20,
-                color: Colors.black,
+            Align(
+              alignment: kIsWeb || Platform.isMacOS
+                  ? Alignment.center
+                  : Alignment.centerLeft,
+              child: const Text(
+                "¡Te damos la bienvenida a Solfa! Tu entrenador de solfeo",
+                style: TextStyle(
+                  fontSize: 20,
+                  color: Colors.black,
+                ),
               ),
             ),
             Expanded(
-              child: Lottie.asset(
-                'assets/animations/music_class.json',
+              child: Padding(
+                padding: EdgeInsets.all(
+                  kIsWeb || Platform.isMacOS ? 32 : 0,
+                ),
+                child: Lottie.asset(
+                  'assets/animations/music_class.json',
+                ),
               ),
             ),
             const SizedBox(
@@ -65,6 +77,7 @@ class OnboardPage extends ConsumerWidget {
             ),
             SizedBox(
               height: 48,
+              width: kIsWeb || Platform.isMacOS ? 320 : double.infinity,
               child: ElevatedButton(
                 onPressed: () {
                   AutoRouter.of(context).push(const RegisterRoute());

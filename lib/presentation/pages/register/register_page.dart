@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -56,7 +59,6 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
               right: 40,
             ),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 const SizedBox(
                   height: 16,
@@ -88,13 +90,18 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
                 const SizedBox(
                   height: 16,
                 ),
-                const SizedBox(
-                  height: 48,
-                  child: Text(
-                    "Crea una cuenta para guardar tus avances",
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.black,
+                Align(
+                  alignment: kIsWeb || Platform.isMacOS
+                      ? Alignment.center
+                      : Alignment.centerLeft,
+                  child: const SizedBox(
+                    height: 48,
+                    child: Text(
+                      "Crea una cuenta para guardar tus avances",
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.black,
+                      ),
                     ),
                   ),
                 ),
@@ -122,6 +129,7 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
                 ),
                 SizedBox(
                   height: 48,
+                  width: kIsWeb || Platform.isMacOS ? 320 : double.infinity,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       primary: primaryColor,

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -11,7 +13,7 @@ class MenuPrincipalPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    if (kIsWeb) {
+    if (kIsWeb || Platform.isMacOS) {
       return Scaffold(
         appBar: AppBar(
           iconTheme: const IconThemeData(
