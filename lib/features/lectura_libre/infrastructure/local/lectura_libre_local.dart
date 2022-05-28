@@ -20,8 +20,6 @@ class LecturaLibreLocal {
     if (_nivel != null) {
       return _nivel!;
     }
-    print("--- key ---");
-    print(key);
     return _nivel = _sharedPreferences.getInt(_keyNivel + key) ?? 1;
   }
 

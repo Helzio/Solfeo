@@ -18,7 +18,7 @@ dependencies:
   soundpool: ^2.3.0
   material_design_icons_flutter: ^5.0.6595
   scrollable_positioned_list: ^0.3.2
-  flutter_svg: ^1.0.3
+  flutter_svg: ^1.1.0
   shared_preferences: ^2.0.15
   path_provider: ^2.0.10
   offline_speech_recognition:
@@ -30,8 +30,8 @@ dependencies:
   google_fonts: ^3.0.1
   flutter_signin_button: ^2.0.0
   animated_text_kit: ^4.2.1
-  firebase_core: ^1.17.0
-  firebase_auth: ^3.3.18
+  firebase_core: ^1.17.1
+  firebase_auth: ^3.3.19
   google_sign_in: ^5.3.2
   flash: ^2.0.3+2
   cached_network_image: ^3.2.1

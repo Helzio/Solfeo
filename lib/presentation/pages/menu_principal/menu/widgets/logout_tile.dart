@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:solfeo/features/google_singin/provider/login_provider.dart';
-import 'package:solfeo/features/lectura_libre/providers/lectura_libre_provider.dart';
 import 'package:solfeo/presentation/acore/utils/colors.dart';
 
 class LogoutTile extends ConsumerWidget {

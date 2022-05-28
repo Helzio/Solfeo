@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -86,7 +88,7 @@ class _LecturaLibrePageState extends ConsumerState<LecturaLibrePage> {
             backgroundColor: Colors.grey.shade100,
             body: Column(
               children: [
-                if (!kIsWeb)
+                if (!kIsWeb && !Platform.isMacOS)
                   AppBar(
                     title: const Text(
                       "Entrenamiento libre de lectura",

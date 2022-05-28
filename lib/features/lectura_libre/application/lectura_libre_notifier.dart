@@ -41,7 +41,6 @@ class LecturaLibreState with _$LecturaLibreState {
     required bool mutted,
     required int totalTime,
   }) {
-    print("lectura libre initial");
     return LecturaLibreState(
       index: 0,
       uid: uid,
